@@ -133,10 +133,16 @@ export function CinematicIntro({ onComplete }: CinematicIntroProps) {
       {/* STEP 2: Fullscreen Cinematic Video */}
       <video
         ref={videoRef}
-        src="/nexus.mp4"
+        src="/nexus_final.mp4"
         playsInline
         muted={isMuted}
         onEnded={handleSkipOrEnd}
+        onError={() => {
+          if (videoRef.current && !videoRef.current.src.endsWith('/nexus.mp4')) {
+            videoRef.current.src = '/nexus.mp4';
+            videoRef.current.play().catch(() => {});
+          }
+        }}
         style={{
           position: 'absolute',
           inset: 0,
@@ -147,7 +153,10 @@ export function CinematicIntro({ onComplete }: CinematicIntroProps) {
           transition: 'opacity 700ms ease',
           backgroundColor: '#000000',
         }}
-      />
+      >
+        <source src="/nexus_final.mp4" type="video/mp4" />
+        <source src="/nexus.mp4" type="video/mp4" />
+      </video>
 
       {/* Subtle SKIP INTRO Button in Top Right */}
       <div

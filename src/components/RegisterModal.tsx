@@ -14,7 +14,7 @@ export function RegisterModal({ isOpen, onClose, preselectedEvent }: RegisterMod
     fullName: '',
     email: '',
     institution: '',
-    selectedTrack: preselectedEvent || 'AERO-HACK & AUTONOMOUS AI',
+    selectedTrack: preselectedEvent || 'Hardware Hackathon',
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
 

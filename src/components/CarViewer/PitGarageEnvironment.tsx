@@ -1,24 +1,13 @@
-import { MeshReflectorMaterial } from '@react-three/drei';
-import * as THREE from 'three';
-
 export function PitGarageEnvironment() {
   return (
     <group>
-      {/* 1. Reflective Wet Garage Floor */}
+      {/* 1. Sleek High-Performance Glossy Garage Floor */}
       <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -0.01, 0]} receiveShadow>
         <planeGeometry args={[60, 60]} />
-        <MeshReflectorMaterial
-          blur={[400, 100]}
-          resolution={1024}
-          mirror={0.65}
-          mixBlur={0.8}
-          mixStrength={3.0}
+        <meshStandardMaterial
+          color="#08080a"
           roughness={0.22}
-          depthScale={1.2}
-          minDepthThreshold={0.4}
-          maxDepthThreshold={1.4}
-          color="#0b0b0d"
-          metalness={0.85}
+          metalness={0.75}
         />
       </mesh>
 
@@ -43,7 +32,7 @@ export function PitGarageEnvironment() {
         intensity={4.2}
         color="#FF7538"
         castShadow
-        shadow-mapSize={[2048, 2048]}
+        shadow-mapSize={[1024, 1024]}
         shadow-bias={-0.0001}
       />
 
@@ -58,7 +47,6 @@ export function PitGarageEnvironment() {
         color="#E4F0FF"
         angle={0.65}
         penumbra={0.7}
-        castShadow
       />
 
       {/* Nosecone / Front Wing Key Spotlight */}

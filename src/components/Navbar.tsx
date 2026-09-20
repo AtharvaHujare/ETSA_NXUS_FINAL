@@ -1,30 +1,78 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Menu, X, ArrowUpRight } from 'lucide-react';
+import { MusicControlButton } from '../context/AudioContext';
 
 interface NavbarProps {
   onRegisterClick: () => void;
+  activeOverride?: string;
+  onNavClick?: (href: string) => void;
 }
 
-export function Navbar({ onRegisterClick }: NavbarProps) {
+export function Navbar({ onRegisterClick, activeOverride, onNavClick }: NavbarProps) {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [activeItem, setActiveItem] = useState('EVENTS');
+  const isScrolledRef = useRef(false);
+  const [activeItem, setActiveItem] = useState(activeOverride || 'HOME');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
+  useEffect(() => {
+    if (activeOverride) {
+      setActiveItem(activeOverride);
+    }
+  }, [activeOverride]);
+
   const navLinks = [
+    { label: 'HOME', href: '#' },
     { label: 'EVENTS', href: '#events' },
     { label: 'CALENDAR', href: '#calendar' },
     { label: 'SPONSORS', href: '#sponsors' },
-    { label: 'GALLERY', href: '#gallery' },
-    { label: 'TEAM', href: '#team' },
-    { label: 'CONTACT', href: '#contact' },
+    { label: 'GLIMPSES', href: '/glimpses' },
+    { label: 'ABOUT', href: '#footer' },
   ];
 
   useEffect(() => {
+    let ticking = false;
+
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 40);
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const scrolled = window.scrollY > 40;
+          if (scrolled !== isScrolledRef.current) {
+            isScrolledRef.current = scrolled;
+            setIsScrolled(scrolled);
+          }
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+
+    // Use IntersectionObserver for active section highlight - zero layout thrashing!
+    const sections = ['events', 'calendar', 'sponsors', 'glimpses', 'footer'];
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            const id = entry.target.id;
+            const label = id === 'footer' ? 'ABOUT' : id.toUpperCase();
+            setActiveItem(label);
+            break;
+          }
+        }
+      },
+      { rootMargin: '-20% 0px -60% 0px', threshold: 0 }
+    );
+
+    sections.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      observer.disconnect();
+    };
   }, []);
 
   return (
@@ -114,7 +162,12 @@ export function Navbar({ onRegisterClick }: NavbarProps) {
             <a
               key={item.label}
               href={item.href}
-              onClick={() => setActiveItem(item.label)}
+              onClick={(e) => {
+                setActiveItem(item.label);
+                if (onNavClick) {
+                  onNavClick(item.href);
+                }
+              }}
               style={{
                 fontFamily: 'var(--font-mono)',
                 fontSize: '0.78rem',
@@ -150,8 +203,9 @@ export function Navbar({ onRegisterClick }: NavbarProps) {
         })}
       </nav>
 
-      {/* Right: Register CTA (Desktop) */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+      {/* Right: Music Control & Register CTA */}
+      <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+        <MusicControlButton />
         <button
           onClick={onRegisterClick}
           className="btn-racing-primary desktop-register"
@@ -210,6 +264,9 @@ export function Navbar({ onRegisterClick }: NavbarProps) {
               onClick={() => {
                 setActiveItem(item.label);
                 setMobileMenuOpen(false);
+                if (onNavClick) {
+                  onNavClick(item.href);
+                }
               }}
               style={{
                 fontFamily: 'var(--font-racing)',

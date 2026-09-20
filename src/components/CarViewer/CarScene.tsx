@@ -95,10 +95,10 @@ export function CarScene({ onUserInteract }: CarSceneProps) {
       isDragging.current = false;
     };
 
-    canvas.addEventListener('pointerdown', handlePointerDown);
-    window.addEventListener('pointermove', handlePointerMove);
-    window.addEventListener('pointerup', handlePointerUp);
-    window.addEventListener('pointercancel', handlePointerUp);
+    canvas.addEventListener('pointerdown', handlePointerDown, { passive: true });
+    window.addEventListener('pointermove', handlePointerMove, { passive: true });
+    window.addEventListener('pointerup', handlePointerUp, { passive: true });
+    window.addEventListener('pointercancel', handlePointerUp, { passive: true });
 
     return () => {
       canvas.removeEventListener('pointerdown', handlePointerDown);
@@ -146,6 +146,7 @@ export function CarScene({ onUserInteract }: CarSceneProps) {
     if (carPivotRef.current) {
       carPivotRef.current.rotation.y = currentRotationY.current;
       carPivotRef.current.rotation.x = currentRotationX.current;
+      carPivotRef.current.position.y = Math.sin(state.clock.elapsedTime * 1.5) * 0.003;
     }
   });
 

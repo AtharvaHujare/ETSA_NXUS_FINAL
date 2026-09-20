@@ -1,11 +1,13 @@
 import React from 'react';
+import { Play } from 'lucide-react';
 
 interface HeroContentProps {
   hasInteracted: boolean;
   onExploreEvents: () => void;
+  onWatchTrailer?: () => void;
 }
 
-export function HeroContent({ hasInteracted, onExploreEvents }: HeroContentProps) {
+export function HeroContent({ hasInteracted, onExploreEvents, onWatchTrailer }: HeroContentProps) {
   return (
     <div
       style={{
@@ -114,8 +116,8 @@ export function HeroContent({ hasInteracted, onExploreEvents }: HeroContentProps
           MEETS SPEED
         </p>
 
-        {/* Explore Events CTA Button */}
-        <div style={{ pointerEvents: 'auto' }}>
+        {/* Explore Events & Watch Trailer CTA Buttons */}
+        <div style={{ pointerEvents: 'auto', display: 'flex', alignItems: 'center', gap: '14px', flexWrap: 'wrap' }}>
           <button
             onClick={onExploreEvents}
             className="btn-racing-primary"
@@ -127,6 +129,39 @@ export function HeroContent({ hasInteracted, onExploreEvents }: HeroContentProps
           >
             <span>EXPLORE EVENTS</span>
             <span className="btn-arrow">→</span>
+          </button>
+
+          <button
+            onClick={onWatchTrailer}
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '8px',
+              padding: '13px 24px',
+              background: 'rgba(15, 15, 18, 0.75)',
+              border: '1px solid rgba(255, 255, 255, 0.2)',
+              borderRadius: '2px',
+              color: '#FFFFFF',
+              fontFamily: 'var(--font-mono)',
+              fontSize: '0.78rem',
+              fontWeight: 600,
+              letterSpacing: '0.14em',
+              textTransform: 'uppercase',
+              cursor: 'pointer',
+              transition: 'all 0.25s ease',
+              backdropFilter: 'blur(8px)',
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.borderColor = 'var(--accent-red)';
+              e.currentTarget.style.backgroundColor = 'rgba(225, 6, 0, 0.12)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.2)';
+              e.currentTarget.style.backgroundColor = 'rgba(15, 15, 18, 0.75)';
+            }}
+          >
+            <Play size={11} fill="#FFFFFF" />
+            <span>WATCH TRAILER</span>
           </button>
         </div>
       </div>

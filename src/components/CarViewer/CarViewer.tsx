@@ -6,9 +6,18 @@ import { CarScene } from './CarScene';
 interface CarViewerProps {
   onInteract?: () => void;
   hasInteracted?: boolean;
+  isHeroVisible?: boolean;
 }
 
-export function CarViewer({ onInteract, hasInteracted }: CarViewerProps) {
+const getTargetDpr = () => {
+  if (typeof window === 'undefined') return 1;
+  const rawDpr = window.devicePixelRatio || 1;
+  const isMobile = window.innerWidth < 768 || /Android|iPhone|iPad/i.test(navigator.userAgent);
+  if (isMobile) return Math.min(rawDpr, 1.2);
+  return Math.min(rawDpr, 1.5);
+};
+
+export function CarViewer({ onInteract, hasInteracted, isHeroVisible = true }: CarViewerProps) {
   const [isLoaded, setIsLoaded] = useState(false);
 
   return (
@@ -30,10 +39,12 @@ export function CarViewer({ onInteract, hasInteracted }: CarViewerProps) {
       }}
     >
       <Canvas
+        frameloop={isHeroVisible ? 'always' : 'never'}
         shadows
-        dpr={[1, 2]}
+        dpr={getTargetDpr()}
         gl={{
           antialias: true,
+          alpha: false,
           powerPreference: 'high-performance',
           toneMapping: THREE.ACESFilmicToneMapping,
           toneMappingExposure: 1.05,

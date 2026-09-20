@@ -8,6 +8,39 @@ interface CarModelProps {
   isHovered?: boolean;
 }
 
+// Shared high-performance PBR materials for F1 car (instantiated once, zero reallocation)
+const carbonBlackMaterial = new THREE.MeshStandardMaterial({
+  color: new THREE.Color('#080809'),
+  metalness: 0.85,
+  roughness: 0.22,
+});
+
+const racingRedMaterial = new THREE.MeshStandardMaterial({
+  color: new THREE.Color('#E10600'),
+  metalness: 0.5,
+  roughness: 0.28,
+  emissive: new THREE.Color('#380000'),
+  emissiveIntensity: 0.2,
+});
+
+const tireRubberMaterial = new THREE.MeshStandardMaterial({
+  color: new THREE.Color('#141416'),
+  roughness: 0.85,
+  metalness: 0.05,
+});
+
+const chromeTitaniumMaterial = new THREE.MeshStandardMaterial({
+  color: new THREE.Color('#C8CCD0'),
+  metalness: 0.95,
+  roughness: 0.15,
+});
+
+const rearRainLightMaterial = new THREE.MeshStandardMaterial({
+  color: new THREE.Color('#FF0000'),
+  emissive: new THREE.Color('#FF1100'),
+  emissiveIntensity: 2.5,
+});
+
 export function CarModel({ modelPath = '/models/nexus-f1-car.glb' }: CarModelProps) {
   const { scene } = useGLTF(modelPath);
   const carGroupRef = useRef<THREE.Group>(null);
@@ -36,47 +69,11 @@ export function CarModel({ modelPath = '/models/nexus-f1-car.glb' }: CarModelPro
       cloned.scale.set(scale, scale, scale);
     }
 
-    // Material enhancement for Formula 1 NEXUS livery
-    const carbonBlackMaterial = new THREE.MeshPhysicalMaterial({
-      color: new THREE.Color('#080809'),
-      metalness: 0.82,
-      roughness: 0.22,
-      clearcoat: 1.0,
-      clearcoatRoughness: 0.12,
-      reflectivity: 0.9,
-    });
-
-    const racingRedMaterial = new THREE.MeshStandardMaterial({
-      color: new THREE.Color('#E10600'),
-      metalness: 0.4,
-      roughness: 0.28,
-      emissive: new THREE.Color('#380000'),
-      emissiveIntensity: 0.2,
-    });
-
-    const tireRubberMaterial = new THREE.MeshStandardMaterial({
-      color: new THREE.Color('#141416'),
-      roughness: 0.85,
-      metalness: 0.05,
-    });
-
-    const chromeTitaniumMaterial = new THREE.MeshStandardMaterial({
-      color: new THREE.Color('#C8CCD0'),
-      metalness: 0.95,
-      roughness: 0.15,
-    });
-
-    const rearRainLightMaterial = new THREE.MeshStandardMaterial({
-      color: new THREE.Color('#FF0000'),
-      emissive: new THREE.Color('#FF1100'),
-      emissiveIntensity: 2.5,
-    });
-
     cloned.traverse((child) => {
       if ((child as THREE.Mesh).isMesh) {
         const mesh = child as THREE.Mesh;
         mesh.castShadow = true;
-        mesh.receiveShadow = true;
+        mesh.receiveShadow = false; // Prevents expensive self-shadowing on 237k triangles while preserving floor shadow
 
         const name = (mesh.name || '').toLowerCase();
         const matName = ((mesh.material as THREE.Material)?.name || '').toLowerCase();
@@ -107,14 +104,6 @@ export function CarModel({ modelPath = '/models/nexus-f1-car.glb' }: CarModelPro
     return cloned;
   }, [scene]);
 
-  // Subtle natural idle suspension vibration
-  useFrame((state) => {
-    if (carGroupRef.current) {
-      const t = state.clock.getElapsedTime();
-      carGroupRef.current.position.y = Math.sin(t * 1.5) * 0.003;
-    }
-  });
-
   return (
     <group ref={carGroupRef}>
       <primitive object={clonedScene} />
@@ -122,5 +111,3 @@ export function CarModel({ modelPath = '/models/nexus-f1-car.glb' }: CarModelPro
   );
 }
 
-// Preload the model asset
-useGLTF.preload('/models/nexus-f1-car.glb');

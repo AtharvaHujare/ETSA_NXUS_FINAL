@@ -112,10 +112,10 @@ export function Footer() {
             NAVIGATION
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-            {['EVENTS', 'CALENDAR', 'SPONSORS', 'GALLERY'].map((link) => (
+            {['EVENTS', 'CALENDAR', 'SPONSORS', 'GLIMPSES'].map((link) => (
               <a
                 key={link}
-                href={`#${link.toLowerCase()}`}
+                href={link === 'GLIMPSES' ? '/glimpses' : `#${link.toLowerCase()}`}
                 style={{
                   fontFamily: 'var(--font-mono)',
                   fontSize: '0.78rem',

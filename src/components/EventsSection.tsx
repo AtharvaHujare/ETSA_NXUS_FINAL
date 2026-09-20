@@ -1,82 +1,23 @@
 import React, { useState } from 'react';
-import { ArrowRight, Cpu, Trophy, Sparkles, Gamepad2, ShieldAlert, Award } from 'lucide-react';
-
-interface EventCategory {
-  id: string;
-  number: string;
-  category: string;
-  title: string;
-  tagline: string;
-  description: string;
-  prizePool: string;
-  format: string;
-  teamSize: string;
-  tags: string[];
-}
+import { NEXUS_EVENTS, type NexusEvent } from '../data/nexusEventsData';
 
 interface EventsSectionProps {
-  onSelectEvent: (eventName: string) => void;
+  onSelectEvent?: (eventName: string) => void;
+  onNavigateEvent?: (route: string) => void;
 }
 
-export function EventsSection({ onSelectEvent }: EventsSectionProps) {
+export function EventsSection({ onSelectEvent, onNavigateEvent }: EventsSectionProps) {
   const [activeTab, setActiveTab] = useState<number>(0);
 
-  const categories: EventCategory[] = [
-    {
-      id: 'technical',
-      number: '01',
-      category: 'TECHNICAL',
-      title: 'AERO-HACK & AUTONOMOUS AI',
-      tagline: 'High-speed algorithmic optimization and vehicle telemetry',
-      description:
-        'A 36-hour grueling high-performance computing sprint. Teams architect real-time computer vision, obstacle avoidance, and CAN bus telemetry processing models simulating Formula 1 telemetry datasets.',
-      prizePool: '₹1,50,000',
-      format: '36-Hour Hackathon',
-      teamSize: '2 — 4 Engineers',
-      tags: ['AI / ML', 'Telemetry Systems', 'Edge Robotics', 'Computer Vision'],
-    },
-    {
-      id: 'competitive',
-      number: '02',
-      category: 'COMPETITIVE',
-      title: 'ROBO-GP CIRCUIT WARFARE',
-      tagline: 'Precision wireless combat and circuit line sprint',
-      description:
-        'Custom-engineered battle chassis compete in high-velocity obstacle circuits and line-follower sprint tracks. Test acceleration, structural durability, torque transfer, and remote pilot precision under race conditions.',
-      prizePool: '₹1,25,000',
-      format: 'Time Attack + Arena Knockout',
-      teamSize: '2 — 5 Pilots',
-      tags: ['Hardware Battle', 'Speed Trials', 'Chassis Engineering', 'RF Protocol'],
-    },
-    {
-      id: 'creative',
-      number: '03',
-      category: 'CREATIVE',
-      title: 'LIVERY & VEHICLE AERODYNAMICS',
-      tagline: 'Industrial styling, CFD flow simulation, and 3D concept render',
-      description:
-        'Redefining automotive aesthetics. Designers and industrial engineers create next-generation aerodynamic liveries, carbon fiber body flow profiles, and digital twins evaluated by international motorsport styling directors.',
-      prizePool: '₹75,000',
-      format: 'CFD & Concept Pitch',
-      teamSize: 'Solo or Duo',
-      tags: ['Blender / CAD', 'CFD Simulation', 'Livery Design', 'Brand Identity'],
-    },
-    {
-      id: 'esports',
-      number: '04',
-      category: 'SIM RACING',
-      title: 'APEX SIMULATOR GRAND PRIX',
-      tagline: 'Direct-drive force feedback virtual Formula 1 tournament',
-      description:
-        'Official PCCOE Sim-Racing Invitational. Racers pilot custom-rigged direct drive simulators across laser-scanned international circuits in identical Formula 1 machinery with live pit-wall stewards.',
-      prizePool: '₹60,000',
-      format: 'Hot Lap Qualifying + 20-Lap Feature Race',
-      teamSize: 'Solo Driver',
-      tags: ['Assetto Corsa', 'Telemetry Analysis', 'Driver Fitness', 'Force Feedback'],
-    },
-  ];
+  const currentEvent = NEXUS_EVENTS[activeTab];
 
-  const currentEvent = categories[activeTab];
+  const handleEnterPitStop = (route: string) => {
+    if (onNavigateEvent) {
+      onNavigateEvent(route);
+    } else {
+      window.location.hash = route;
+    }
+  };
 
   return (
     <section
@@ -131,28 +72,28 @@ export function EventsSection({ onSelectEvent }: EventsSectionProps) {
           </div>
         </div>
 
-        {/* Editorial Category Selector */}
+        {/* Editorial Category Selector for Events */}
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(4, 1fr)',
+            gridTemplateColumns: `repeat(${NEXUS_EVENTS.length}, 1fr)`,
             gap: '1px',
             background: 'rgba(255, 255, 255, 0.08)',
             marginBottom: '48px',
           }}
           className="event-tabs-grid"
         >
-          {categories.map((cat, idx) => {
+          {NEXUS_EVENTS.map((evt, idx) => {
             const isSelected = activeTab === idx;
             return (
               <button
-                key={cat.id}
+                key={evt.id}
                 onClick={() => setActiveTab(idx)}
                 onMouseEnter={() => setActiveTab(idx)}
                 style={{
                   background: isSelected ? '#121216' : '#09090b',
                   border: 'none',
-                  padding: '24px 20px',
+                  padding: '24px 18px',
                   textAlign: 'left',
                   cursor: 'pointer',
                   position: 'relative',
@@ -174,26 +115,48 @@ export function EventsSection({ onSelectEvent }: EventsSectionProps) {
                 )}
                 <div
                   style={{
-                    fontFamily: 'var(--font-mono)',
-                    fontSize: '0.72rem',
-                    color: isSelected ? 'var(--accent-red)' : '#555555',
-                    letterSpacing: '0.2em',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
                     marginBottom: '8px',
                   }}
                 >
-                  {cat.number}
+                  <span
+                    style={{
+                      fontFamily: 'var(--font-mono)',
+                      fontSize: '0.72rem',
+                      color: isSelected ? 'var(--accent-red)' : '#555555',
+                      letterSpacing: '0.18em',
+                      fontWeight: 700,
+                    }}
+                  >
+                    {evt.number}
+                  </span>
+                  <span
+                    style={{
+                      fontFamily: 'var(--font-mono)',
+                      fontSize: '0.60rem',
+                      color: isSelected ? '#E0E0E0' : '#444444',
+                      letterSpacing: '0.14em',
+                      textTransform: 'uppercase',
+                    }}
+                  >
+                    {evt.category}
+                  </span>
                 </div>
                 <div
                   style={{
                     fontFamily: 'var(--font-racing)',
-                    fontSize: '1.05rem',
+                    fontSize: '1rem',
                     fontWeight: 700,
-                    letterSpacing: '0.12em',
+                    letterSpacing: '0.08em',
                     color: isSelected ? '#FFFFFF' : '#888888',
                     transition: 'color 0.2s ease',
+                    textTransform: 'uppercase',
+                    lineHeight: 1.2,
                   }}
                 >
-                  {cat.category}
+                  {evt.name}
                 </div>
               </button>
             );
@@ -232,7 +195,7 @@ export function EventsSection({ onSelectEvent }: EventsSectionProps) {
             {currentEvent.number}
           </div>
 
-          {/* Left Column: Event Title, Narrative, Tags */}
+          {/* Left Column: Event Title, Narrative, Tags, Primary CTA */}
           <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
             <div>
               <div
@@ -243,9 +206,14 @@ export function EventsSection({ onSelectEvent }: EventsSectionProps) {
                   color: 'var(--accent-red)',
                   marginBottom: '12px',
                   fontWeight: 600,
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '8px',
                 }}
               >
-                SERIES // {currentEvent.category}
+                <span>{currentEvent.pitStop}</span>
+                <span style={{ color: '#444444' }}>//</span>
+                <span>{currentEvent.category}</span>
               </div>
 
               <h3
@@ -256,16 +224,30 @@ export function EventsSection({ onSelectEvent }: EventsSectionProps) {
                   letterSpacing: '0.04em',
                   color: '#FFFFFF',
                   lineHeight: 1.1,
-                  marginBottom: '16px',
+                  marginBottom: '12px',
+                  textTransform: 'uppercase',
                 }}
               >
-                {currentEvent.title}
+                {currentEvent.name}
               </h3>
+
+              <div
+                style={{
+                  fontFamily: 'var(--font-racing)',
+                  fontSize: '0.92rem',
+                  fontWeight: 700,
+                  letterSpacing: '0.12em',
+                  color: 'var(--accent-red)',
+                  marginBottom: '18px',
+                }}
+              >
+                "{currentEvent.tagline}"
+              </div>
 
               <p
                 style={{
                   fontFamily: 'var(--font-body)',
-                  fontSize: '1.05rem',
+                  fontSize: '1.02rem',
                   color: '#CCCCCC',
                   lineHeight: 1.6,
                   marginBottom: '28px',
@@ -296,15 +278,35 @@ export function EventsSection({ onSelectEvent }: EventsSectionProps) {
               </div>
             </div>
 
-            {/* Action Button */}
+            {/* Highlighted Primary CTA: ENTER PIT STOP XX → */}
             <div>
-              <button
-                onClick={() => onSelectEvent(currentEvent.title)}
-                className="btn-racing-primary"
+              <a
+                href={currentEvent.route}
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleEnterPitStop(currentEvent.route);
+                }}
+                className="btn-racing-primary pit-stop-primary-cta"
+                style={{
+                  padding: '16px 36px',
+                  fontSize: '0.86rem',
+                  fontWeight: 700,
+                  letterSpacing: '0.18em',
+                  textDecoration: 'none',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '12px',
+                  backgroundColor: '#E10600',
+                  borderColor: '#FF2A2A',
+                  color: '#FFFFFF',
+                  boxShadow: '0 4px 18px rgba(225, 6, 0, 0.3)',
+                  cursor: 'pointer',
+                  transition: 'all 0.25s ease',
+                }}
               >
-                <span>ENTER COMPETITION</span>
-                <span className="btn-arrow">→</span>
-              </button>
+                <span>ENTER {currentEvent.pitStop}</span>
+                <span className="btn-arrow" style={{ fontSize: '1rem', fontWeight: 900 }}>→</span>
+              </a>
             </div>
           </div>
 
@@ -413,10 +415,12 @@ export function EventsSection({ onSelectEvent }: EventsSectionProps) {
       </div>
 
       <style>{`
-        @media (max-width: 900px) {
+        @media (max-width: 1100px) {
           .event-tabs-grid {
-            grid-template-columns: repeat(2, 1fr) !important;
+            grid-template-columns: repeat(3, 1fr) !important;
           }
+        }
+        @media (max-width: 900px) {
           .editorial-event-card {
             grid-template-columns: 1fr !important;
           }
@@ -425,6 +429,11 @@ export function EventsSection({ onSelectEvent }: EventsSectionProps) {
             padding-left: 0 !important;
             border-top: 1px solid rgba(255, 255, 255, 0.08);
             padding-top: 24px;
+          }
+        }
+        @media (max-width: 680px) {
+          .event-tabs-grid {
+            grid-template-columns: repeat(2, 1fr) !important;
           }
         }
       `}</style>

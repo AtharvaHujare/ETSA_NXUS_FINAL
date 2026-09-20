@@ -2,6 +2,39 @@ import { useRef } from 'react';
 import * as THREE from 'three';
 import { useFrame } from '@react-three/fiber';
 
+// Reusable static materials for procedural car
+const carbonMat = new THREE.MeshStandardMaterial({
+  color: '#0a0a0c',
+  metalness: 0.85,
+  roughness: 0.2,
+});
+
+const redMat = new THREE.MeshStandardMaterial({
+  color: '#E10600',
+  metalness: 0.5,
+  roughness: 0.25,
+  emissive: '#440000',
+  emissiveIntensity: 0.3,
+});
+
+const tireMat = new THREE.MeshStandardMaterial({
+  color: '#121214',
+  roughness: 0.85,
+  metalness: 0.05,
+});
+
+const rimMat = new THREE.MeshStandardMaterial({
+  color: '#1a1a1c',
+  metalness: 0.9,
+  roughness: 0.15,
+});
+
+const tireRingMat = new THREE.MeshStandardMaterial({
+  color: '#E10600',
+  roughness: 0.4,
+  metalness: 0.1,
+});
+
 export function ProceduralF1Car() {
   const groupRef = useRef<THREE.Group>(null);
 
@@ -10,40 +43,6 @@ export function ProceduralF1Car() {
       const t = state.clock.getElapsedTime();
       groupRef.current.position.y = Math.sin(t * 2) * 0.004;
     }
-  });
-
-  const carbonMat = new THREE.MeshPhysicalMaterial({
-    color: '#0a0a0c',
-    metalness: 0.85,
-    roughness: 0.2,
-    clearcoat: 1.0,
-    clearcoatRoughness: 0.1,
-  });
-
-  const redMat = new THREE.MeshStandardMaterial({
-    color: '#E10600',
-    metalness: 0.5,
-    roughness: 0.25,
-    emissive: '#440000',
-    emissiveIntensity: 0.3,
-  });
-
-  const tireMat = new THREE.MeshStandardMaterial({
-    color: '#121214',
-    roughness: 0.85,
-    metalness: 0.05,
-  });
-
-  const rimMat = new THREE.MeshStandardMaterial({
-    color: '#1a1a1c',
-    metalness: 0.9,
-    roughness: 0.15,
-  });
-
-  const tireRingMat = new THREE.MeshStandardMaterial({
-    color: '#E10600',
-    roughness: 0.4,
-    metalness: 0.1,
   });
 
   return (

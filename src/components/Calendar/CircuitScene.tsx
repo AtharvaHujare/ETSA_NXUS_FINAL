@@ -60,13 +60,7 @@ function CameraController({ activeStop }: { activeStop: PitStop }) {
   return null;
 }
 
-const getCircuitDpr = () => {
-  if (typeof window === 'undefined') return 1;
-  const rawDpr = window.devicePixelRatio || 1;
-  const isMobile = window.innerWidth < 768 || /Android|iPhone|iPad/i.test(navigator.userAgent);
-  if (isMobile) return Math.min(rawDpr, 1.2);
-  return Math.min(rawDpr, 1.5);
-};
+import { getQualitySettings } from '../../utils/qualityProfile';
 
 export function CircuitScene({
   activeStop,
@@ -74,6 +68,8 @@ export function CircuitScene({
   carProgress,
   onCarArrive,
 }: CircuitSceneProps) {
+  const quality = getQualitySettings();
+
   return (
     <div
       style={{
@@ -88,15 +84,16 @@ export function CircuitScene({
     >
       <Canvas
         camera={{ position: [0, 32, 38], fov: 38, near: 0.5, far: 200 }}
-        dpr={getCircuitDpr()}
+        dpr={quality.dpr}
         gl={{
-          antialias: true,
+          antialias: quality.antialias,
           alpha: false,
           powerPreference: 'high-performance',
           toneMapping: THREE.ACESFilmicToneMapping,
           toneMappingExposure: 1.15,
         }}
-        shadows
+        shadows={quality.shadows}
+        style={{ touchAction: 'none' }}
       >
         {/* Deep atmospheric fog matching reference aesthetic */}
         <color attach="background" args={['#050507']} />
@@ -110,9 +107,9 @@ export function CircuitScene({
           position={[25, 45, 20]}
           color="#d2e3f8"
           intensity={2.4}
-          castShadow
-          shadow-mapSize-width={1024}
-          shadow-mapSize-height={1024}
+          castShadow={quality.shadows}
+          shadow-mapSize-width={quality.shadowMapSize}
+          shadow-mapSize-height={quality.shadowMapSize}
           shadow-bias={-0.0001}
         />
 

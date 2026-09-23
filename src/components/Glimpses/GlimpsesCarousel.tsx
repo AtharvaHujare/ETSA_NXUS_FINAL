@@ -2,10 +2,10 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { ChevronLeft, ChevronRight, Play, Pause } from 'lucide-react';
 
 const GLIMPSES_IMAGES = [
-  { id: '01', src: '/glimpses/1.png', label: 'MOMENT 01' },
-  { id: '02', src: '/glimpses/2.png', label: 'MOMENT 02' },
-  { id: '03', src: '/glimpses/3.png', label: 'MOMENT 03' },
-  { id: '04', src: '/glimpses/4.png', label: 'MOMENT 04' },
+  { id: '01', src: '/glimpses/1.webp', label: 'MOMENT 01' },
+  { id: '02', src: '/glimpses/2.webp', label: 'MOMENT 02' },
+  { id: '03', src: '/glimpses/3.webp', label: 'MOMENT 03' },
+  { id: '04', src: '/glimpses/4.webp', label: 'MOMENT 04' },
 ];
 
 const AUTO_INTERVAL_MS = 4600;
@@ -14,11 +14,12 @@ export function GlimpsesCarousel() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const [direction, setDirection] = useState<'next' | 'prev'>('next');
-  const [progress, setProgress] = useState(0);
+  const progressBarRef = useRef<HTMLDivElement>(null);
+  const progressPctRef = useRef<number>(0);
   const startTimeRef = useRef<number>(Date.now());
   const rafRef = useRef<number | null>(null);
 
-  // Preload all 4 images on mount
+  // Preload all 4 optimized WebP images on mount
   useEffect(() => {
     GLIMPSES_IMAGES.forEach((img) => {
       const preloadImg = new Image();
@@ -26,45 +27,55 @@ export function GlimpsesCarousel() {
     });
   }, []);
 
+  const resetProgressBar = useCallback(() => {
+    progressPctRef.current = 0;
+    if (progressBarRef.current) {
+      progressBarRef.current.style.width = '0%';
+    }
+  }, []);
+
   const handleNext = useCallback(() => {
     setDirection('next');
     setCurrentIndex((prev) => (prev + 1) % GLIMPSES_IMAGES.length);
     startTimeRef.current = Date.now();
-    setProgress(0);
-  }, []);
+    resetProgressBar();
+  }, [resetProgressBar]);
 
   const handlePrev = useCallback(() => {
     setDirection('prev');
     setCurrentIndex((prev) => (prev - 1 + GLIMPSES_IMAGES.length) % GLIMPSES_IMAGES.length);
     startTimeRef.current = Date.now();
-    setProgress(0);
-  }, []);
+    resetProgressBar();
+  }, [resetProgressBar]);
 
   const handleSelect = useCallback((idx: number) => {
     setDirection(idx >= currentIndex ? 'next' : 'prev');
     setCurrentIndex(idx);
     startTimeRef.current = Date.now();
-    setProgress(0);
-  }, [currentIndex]);
+    resetProgressBar();
+  }, [currentIndex, resetProgressBar]);
 
   const togglePlayPause = useCallback(() => {
     setIsPaused((prev) => !prev);
-    startTimeRef.current = Date.now() - (progress / 100) * AUTO_INTERVAL_MS;
-  }, [progress]);
+    startTimeRef.current = Date.now() - (progressPctRef.current / 100) * AUTO_INTERVAL_MS;
+  }, []);
 
-  // Dynamic Progress Bar & Auto-Advance loop
+  // Smooth DOM-based Progress Bar & Auto-Advance loop (zero React re-renders per frame)
   useEffect(() => {
     if (isPaused) {
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
       return;
     }
 
-    startTimeRef.current = Date.now() - (progress / 100) * AUTO_INTERVAL_MS;
+    startTimeRef.current = Date.now() - (progressPctRef.current / 100) * AUTO_INTERVAL_MS;
 
     const tick = () => {
       const elapsed = Date.now() - startTimeRef.current;
       const pct = Math.min(100, (elapsed / AUTO_INTERVAL_MS) * 100);
-      setProgress(pct);
+      progressPctRef.current = pct;
+      if (progressBarRef.current) {
+        progressBarRef.current.style.width = `${pct}%`;
+      }
 
       if (elapsed >= AUTO_INTERVAL_MS) {
         handleNext();
@@ -375,12 +386,13 @@ export function GlimpsesCarousel() {
           }}
         >
           <div
+            ref={progressBarRef}
             style={{
               height: '100%',
-              width: `${progress}%`,
+              width: '0%',
               backgroundColor: 'var(--accent-red)',
               boxShadow: '0 0 10px var(--accent-red)',
-              transition: isPaused ? 'none' : 'width 0.1s linear',
+              willChange: 'width',
             }}
           />
         </div>

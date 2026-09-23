@@ -196,6 +196,15 @@ body {
   display: inline-block;
 }
 
+/* Touch ergonomics & tap delay prevention */
+button,
+a,
+input,
+select {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
 /* Containers */
 .section-container {
   width: 100%;
@@ -207,5 +216,23 @@ body {
 @media (max-width: 768px) {
   .section-container {
     padding: 80px 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .section-container {
+    padding: 60px 16px;
+  }
+}
+
+/* Accessibility: Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }

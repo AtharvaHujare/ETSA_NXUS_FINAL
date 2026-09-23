@@ -3,22 +3,17 @@ import { Canvas } from '@react-three/fiber';
 import * as THREE from 'three';
 import { CarScene } from './CarScene';
 
+import { getQualitySettings } from '../../utils/qualityProfile';
+
 interface CarViewerProps {
   onInteract?: () => void;
   hasInteracted?: boolean;
   isHeroVisible?: boolean;
 }
 
-const getTargetDpr = () => {
-  if (typeof window === 'undefined') return 1;
-  const rawDpr = window.devicePixelRatio || 1;
-  const isMobile = window.innerWidth < 768 || /Android|iPhone|iPad/i.test(navigator.userAgent);
-  if (isMobile) return Math.min(rawDpr, 1.2);
-  return Math.min(rawDpr, 1.5);
-};
-
-export function CarViewer({ onInteract, hasInteracted, isHeroVisible = true }: CarViewerProps) {
+export function CarViewer({ onInteract, isHeroVisible = true }: CarViewerProps) {
   const [isLoaded, setIsLoaded] = useState(false);
+  const quality = getQualitySettings();
 
   return (
     <div
@@ -40,15 +35,16 @@ export function CarViewer({ onInteract, hasInteracted, isHeroVisible = true }: C
     >
       <Canvas
         frameloop={isHeroVisible ? 'always' : 'never'}
-        shadows
-        dpr={getTargetDpr()}
+        shadows={quality.shadows}
+        dpr={quality.dpr}
         gl={{
-          antialias: true,
+          antialias: quality.antialias,
           alpha: false,
           powerPreference: 'high-performance',
           toneMapping: THREE.ACESFilmicToneMapping,
           toneMappingExposure: 1.05,
         }}
+        style={{ touchAction: 'none' }}
         camera={{
           fov: 38,
           near: 0.1,

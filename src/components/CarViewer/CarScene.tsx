@@ -63,6 +63,9 @@ export function CarScene({ onUserInteract }: CarSceneProps) {
       velocityY.current = 0;
       velocityX.current = 0;
       lastInteractionTime.current = Date.now();
+      try {
+        canvas.setPointerCapture(e.pointerId);
+      } catch {}
       if (onUserInteract) onUserInteract();
     };
 
@@ -91,8 +94,11 @@ export function CarScene({ onUserInteract }: CarSceneProps) {
       lastInteractionTime.current = Date.now();
     };
 
-    const handlePointerUp = () => {
+    const handlePointerUp = (e: PointerEvent) => {
       isDragging.current = false;
+      try {
+        canvas.releasePointerCapture(e.pointerId);
+      } catch {}
     };
 
     canvas.addEventListener('pointerdown', handlePointerDown, { passive: true });

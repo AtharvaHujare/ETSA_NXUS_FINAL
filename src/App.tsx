@@ -1,21 +1,58 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense, lazy } from 'react';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { EventsSection } from './components/EventsSection';
 import { CalendarSection } from './components/CalendarSection';
 import { SponsorsSection } from './components/SponsorsSection';
 import { GlimpsesSection } from './components/Glimpses/GlimpsesSection';
-import { GlimpsesPage } from './components/Glimpses/GlimpsesPage';
 import { AboutSection } from './components/AboutSection';
 import { Footer } from './components/Footer';
-import { RegisterModal } from './components/RegisterModal';
 import { CinematicIntro } from './components/CinematicIntro';
-import { HackathonPage } from './components/Hackathon/HackathonPage';
-import { PitStopProtocolPage } from './components/PitStop/PitStopProtocolPage';
-import { PCCOEGotTalentPage } from './components/Talent/PCCOEGotTalentPage';
-import { EventPlaceholderPage } from './components/Events/EventPlaceholderPage';
 import { NEXUS_EVENTS, type NexusEvent } from './data/nexusEventsData';
 import { AudioProvider } from './context/AudioContext';
+
+// Lazy-load route-specific views & registration modal so they do NOT bloat the homepage bundle
+const GlimpsesPage = lazy(() =>
+  import('./components/Glimpses/GlimpsesPage').then((m) => ({ default: m.GlimpsesPage }))
+);
+const HackathonPage = lazy(() => import('./components/Hackathon/HackathonPage'));
+const PitStopProtocolPage = lazy(() =>
+  import('./components/PitStop/PitStopProtocolPage').then((m) => ({ default: m.PitStopProtocolPage }))
+);
+const PCCOEGotTalentPage = lazy(() => import('./components/Talent/PCCOEGotTalentPage'));
+const EventPlaceholderPage = lazy(() =>
+  import('./components/Events/EventPlaceholderPage').then((m) => ({ default: m.EventPlaceholderPage }))
+);
+const RegisterModal = lazy(() =>
+  import('./components/RegisterModal').then((m) => ({ default: m.RegisterModal }))
+);
+
+const PageLoader = () => (
+  <div
+    style={{
+      minHeight: '80vh',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      backgroundColor: '#050507',
+      color: 'rgba(255, 255, 255, 0.4)',
+      fontFamily: 'var(--font-mono)',
+      fontSize: '0.74rem',
+      letterSpacing: '0.22em',
+    }}
+  >
+    <span
+      style={{
+        width: '6px',
+        height: '6px',
+        borderRadius: '50%',
+        backgroundColor: 'var(--accent-red)',
+        marginRight: '10px',
+      }}
+    />
+    LOADING TELEMETRY...
+  </div>
+);
 
 function getEventFromLocation(): NexusEvent | null {
   if (typeof window === 'undefined') return null;
@@ -190,13 +227,13 @@ export function AppContent() {
 
       {isGlimpses ? (
         /* Dedicated Glimpses View (/glimpses) */
-        <>
+        <Suspense fallback={<PageLoader />}>
           <GlimpsesPage onBackToHome={handleBackToHome} />
           <Footer />
-        </>
+        </Suspense>
       ) : activeEvent ? (
         /* Dedicated Event Subpage View */
-        <>
+        <Suspense fallback={<PageLoader />}>
           {activeEvent.id === 'pccoe-got-talent' ? (
             <PCCOEGotTalentPage
               onBackToEvents={handleBackToEvents}
@@ -216,7 +253,7 @@ export function AppContent() {
             <EventPlaceholderPage event={activeEvent} onBackToEvents={handleBackToEvents} />
           )}
           <Footer />
-        </>
+        </Suspense>
       ) : (
         /* Main NEXUS 2026 Portal View */
         <>
@@ -246,12 +283,16 @@ export function AppContent() {
         </>
       )}
 
-      {/* Interactive Registration Modal */}
-      <RegisterModal
-        isOpen={isRegisterOpen}
-        onClose={() => setIsRegisterOpen(false)}
-        preselectedEvent={selectedEvent}
-      />
+      {/* Interactive Registration Modal - Lazy loaded */}
+      {isRegisterOpen && (
+        <Suspense fallback={null}>
+          <RegisterModal
+            isOpen={isRegisterOpen}
+            onClose={() => setIsRegisterOpen(false)}
+            preselectedEvent={selectedEvent}
+          />
+        </Suspense>
+      )}
     </div>
   );
 }

@@ -49,7 +49,7 @@ export const PCCOE_GOT_TALENT_DATA = {
 
   rulebookPdfUrl: '/Rulebook_PCCOE_GOT_TALENT.pdf',
   registrationFormUrl: 'https://forms.gle/aSW1oNgAGfdZk4pM7',
-  heroImage: '/talent/pccoe_got_talent_hero.jpg',
+  heroImage: '/talent/pccoe_got_talent_hero.webp',
 
   overview: {
     titleKicker: 'ABOUT THE EVENT',

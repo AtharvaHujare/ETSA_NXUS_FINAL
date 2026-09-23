@@ -161,8 +161,8 @@ export function EventDetailModal({
                 background: 'rgba(255, 255, 255, 0.05)',
                 border: '1px solid rgba(255, 255, 255, 0.12)',
                 color: '#FFFFFF',
-                width: '34px',
-                height: '34px',
+                width: '40px',
+                height: '40px',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
@@ -184,8 +184,8 @@ export function EventDetailModal({
                 background: 'rgba(255, 255, 255, 0.05)',
                 border: '1px solid rgba(255, 255, 255, 0.12)',
                 color: '#FFFFFF',
-                width: '34px',
-                height: '34px',
+                width: '40px',
+                height: '40px',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
@@ -217,7 +217,8 @@ export function EventDetailModal({
               display: 'inline-flex',
               alignItems: 'center',
               gap: '6px',
-              padding: '8px 14px',
+              padding: '10px 14px',
+              minHeight: '40px',
               background: 'transparent',
               border: '1px solid rgba(255, 255, 255, 0.2)',
               color: '#FFFFFF',
@@ -248,7 +249,8 @@ export function EventDetailModal({
             onClick={() => onRegisterClick(activeStop.name)}
             className="btn-racing-primary"
             style={{
-              padding: '8px 16px',
+              padding: '10px 18px',
+              minHeight: '40px',
               fontSize: '0.72rem',
               letterSpacing: '0.14em',
             }}

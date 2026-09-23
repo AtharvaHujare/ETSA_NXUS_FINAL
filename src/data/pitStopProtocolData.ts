@@ -53,8 +53,8 @@ export const PIT_STOP_PROTOCOL_DATA = {
 
   rulebookPdfUrl: '/PIT_STOP_PROTOCOL_RULEBOOK-finale.pdf',
   registrationFormUrl: 'https://docs.google.com/forms/d/e/1FAIpQLSd-bD6nwmFtKreRESHkHEIP90TZvry8b_eOgIpFQihly2j2Dg/viewform?usp=publish-editor',
-  heroImage: '/pitstop/pit_stop_crew_hero.jpg',
-  helmetImage: '/pitstop/f1_helmet_card.jpg',
+  heroImage: '/pitstop/pit_stop_crew_hero.webp',
+  helmetImage: '/pitstop/f1_helmet_card.webp',
 
   overview: {
     titleKicker: 'ABOUT THE EVENT',

@@ -1,8 +1,12 @@
+import { getQualitySettings } from '../../utils/qualityProfile';
+
 export function PitGarageEnvironment() {
+  const quality = getQualitySettings();
+
   return (
     <group>
       {/* 1. Sleek High-Performance Glossy Garage Floor */}
-      <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -0.01, 0]} receiveShadow>
+      <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -0.01, 0]} receiveShadow={quality.shadows}>
         <planeGeometry args={[60, 60]} />
         <meshStandardMaterial
           color="#08080a"
@@ -31,8 +35,8 @@ export function PitGarageEnvironment() {
         position={[9, 3.5, -4]}
         intensity={4.2}
         color="#FF7538"
-        castShadow
-        shadow-mapSize={[1024, 1024]}
+        castShadow={quality.shadows}
+        shadow-mapSize={[quality.shadowMapSize, quality.shadowMapSize]}
         shadow-bias={-0.0001}
       />
 

@@ -17,7 +17,7 @@ export function HeroContent({ hasInteracted, onExploreEvents, onWatchTrailer }: 
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'space-between',
-        padding: 'clamp(90px, 12vh, 120px) clamp(24px, 5vw, 64px) clamp(24px, 4vh, 48px)',
+        padding: 'clamp(84px, 11vh, 120px) clamp(16px, 4vw, 64px) clamp(20px, 3vh, 48px)',
         zIndex: 10,
       }}
     >
@@ -34,8 +34,8 @@ export function HeroContent({ hasInteracted, onExploreEvents, onWatchTrailer }: 
         <div
           style={{
             fontFamily: 'var(--font-mono)',
-            fontSize: 'clamp(0.72rem, 1vw, 0.85rem)',
-            letterSpacing: '0.28em',
+            fontSize: 'clamp(0.68rem, 1vw, 0.85rem)',
+            letterSpacing: '0.24em',
             color: '#909499',
             marginBottom: '10px',
             textTransform: 'uppercase',
@@ -49,7 +49,7 @@ export function HeroContent({ hasInteracted, onExploreEvents, onWatchTrailer }: 
         <h1
           style={{
             fontFamily: 'var(--font-display)',
-            fontSize: 'clamp(4.2rem, 9.5vw, 8.6rem)',
+            fontSize: 'clamp(3.4rem, 9.2vw, 8.6rem)',
             fontWeight: 900,
             lineHeight: 0.9,
             letterSpacing: '0.04em',
@@ -71,7 +71,7 @@ export function HeroContent({ hasInteracted, onExploreEvents, onWatchTrailer }: 
                 top: '46%',
                 left: '12%',
                 width: '76%',
-                height: 'clamp(7px, 1.2vw, 14px)',
+                height: 'clamp(6px, 1.2vw, 14px)',
                 background: 'var(--accent-red)',
                 transform: 'rotate(-40deg)',
                 boxShadow: '0 0 16px var(--accent-red-glow)',
@@ -86,12 +86,12 @@ export function HeroContent({ hasInteracted, onExploreEvents, onWatchTrailer }: 
         <div
           style={{
             fontFamily: 'var(--font-racing)',
-            fontSize: 'clamp(2.4rem, 5.2vw, 4.8rem)',
+            fontSize: 'clamp(2.0rem, 5vw, 4.8rem)',
             fontWeight: 700,
             lineHeight: 0.95,
             letterSpacing: '0.18em',
             color: '#E0E0E0',
-            marginBottom: '28px',
+            marginBottom: '24px',
             textShadow: '0 2px 20px rgba(0,0,0,0.8)',
           }}
         >

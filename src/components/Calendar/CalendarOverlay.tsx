@@ -163,7 +163,12 @@ export function CalendarOverlay({
                         : '1px solid transparent',
                       borderRadius: isSelected ? '4px' : '3px',
                       padding: '6px 8px',
-                      minWidth: '32px',
+                      minWidth: '38px',
+                      minHeight: '44px',
+                      display: 'flex',
+                      flexDirection: 'column',
+                      alignItems: 'center',
+                      justifyContent: 'center',
                       textAlign: 'center',
                       cursor: isClickable ? 'pointer' : 'default',
                       opacity: isClickable ? 1.0 : 0.35,
@@ -283,7 +288,8 @@ export function CalendarOverlay({
                   display: 'flex',
                   alignItems: 'center',
                   gap: '8px',
-                  padding: '2px 4px',
+                  padding: '6px 8px',
+                  minHeight: '38px',
                 }}
               >
                 <span

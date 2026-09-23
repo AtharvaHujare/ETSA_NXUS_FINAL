@@ -55,12 +55,15 @@ function ParallaxCameraController() {
   return null;
 }
 
+import { getQualitySettings } from '../../../utils/qualityProfile';
+
 export function EngineeringDeskScene({
   onSelectComponent,
   hoveredId,
   setHoveredId,
 }: EngineeringDeskSceneProps) {
   const [webGlSupported, setWebGlSupported] = useState(true);
+  const quality = getQualitySettings();
 
   useEffect(() => {
     try {
@@ -103,14 +106,15 @@ export function EngineeringDeskScene({
     >
       <Canvas
         camera={{ position: [0.4, 1.6, 3.6], fov: 42, near: 0.2, far: 50 }}
-        dpr={[1, 2]}
+        dpr={quality.dpr}
         gl={{
-          antialias: true,
+          antialias: quality.antialias,
           powerPreference: 'high-performance',
           toneMapping: THREE.ACESFilmicToneMapping,
           toneMappingExposure: 1.1,
         }}
-        shadows
+        shadows={quality.shadows}
+        style={{ touchAction: 'none' }}
       >
         {/* Dark garage background atmosphere */}
         <color attach="background" args={['#070709']} />
@@ -128,9 +132,9 @@ export function EngineeringDeskScene({
           distance={8}
           angle={Math.PI / 3.4}
           penumbra={0.6}
-          castShadow
-          shadow-mapSize-width={1024}
-          shadow-mapSize-height={1024}
+          castShadow={quality.shadows}
+          shadow-mapSize-width={quality.shadowMapSize}
+          shadow-mapSize-height={quality.shadowMapSize}
         />
 
         {/* Cool Rim Key Light from the rear */}

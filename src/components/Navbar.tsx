@@ -221,7 +221,7 @@ export function Navbar({ onRegisterClick, activeOverride, onNavClick }: NavbarPr
           <span className="btn-arrow" style={{ fontSize: '0.9rem' }}>→</span>
         </button>
 
-        {/* Mobile Hamburger Button */}
+        {/* Mobile Hamburger Button (44px touch target) */}
         <button
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           className="mobile-hamburger"
@@ -230,8 +230,12 @@ export function Navbar({ onRegisterClick, activeOverride, onNavClick }: NavbarPr
             border: 'none',
             color: '#FFFFFF',
             cursor: 'pointer',
-            padding: '8px',
+            padding: '10px',
+            minWidth: '44px',
+            minHeight: '44px',
             display: 'none',
+            alignItems: 'center',
+            justifyContent: 'center',
           }}
           aria-label="Toggle menu"
         >
@@ -253,8 +257,9 @@ export function Navbar({ onRegisterClick, activeOverride, onNavClick }: NavbarPr
             display: 'flex',
             flexDirection: 'column',
             padding: '36px 28px',
-            gap: '24px',
+            gap: '16px',
             zIndex: 99,
+            overflowY: 'auto',
           }}
         >
           {navLinks.map((item) => (
@@ -274,7 +279,9 @@ export function Navbar({ onRegisterClick, activeOverride, onNavClick }: NavbarPr
                 letterSpacing: '0.15em',
                 color: activeItem === item.label ? 'var(--accent-red)' : '#F5F5F5',
                 textDecoration: 'none',
-                paddingBottom: '8px',
+                minHeight: '48px',
+                display: 'flex',
+                alignItems: 'center',
                 borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
               }}
             >
@@ -287,7 +294,7 @@ export function Navbar({ onRegisterClick, activeOverride, onNavClick }: NavbarPr
               onRegisterClick();
             }}
             className="btn-racing-primary"
-            style={{ marginTop: '16px', justifyContent: 'center' }}
+            style={{ marginTop: '16px', justifyContent: 'center', minHeight: '48px' }}
           >
             <span>REGISTER NOW</span>
             <span className="btn-arrow">→</span>

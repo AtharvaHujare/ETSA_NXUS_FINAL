@@ -8,6 +8,7 @@ import { GlimpsesSection } from './components/Glimpses/GlimpsesSection';
 import { AboutSection } from './components/AboutSection';
 import { Footer } from './components/Footer';
 import { CinematicIntro } from './components/CinematicIntro';
+import { InstitutionalLogos } from './components/InstitutionalLogos';
 import { NEXUS_EVENTS, type NexusEvent } from './data/nexusEventsData';
 import { AudioProvider } from './context/AudioContext';
 
@@ -259,6 +260,9 @@ export function AppContent() {
         <>
           {/* Main Hero with 3D Car & Reference UI */}
           <Hero onExploreEvents={handleScrollToEvents} canLoad3D={!showIntro} />
+
+          {/* Institutional Partner / Association Logo Strip */}
+          <InstitutionalLogos />
 
           {/* Editorial Events Championship Grid */}
           <EventsSection

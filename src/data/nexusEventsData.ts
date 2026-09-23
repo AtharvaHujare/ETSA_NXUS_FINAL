@@ -14,6 +14,7 @@ export interface NexusEvent {
 }
 
 import { PIT_STOP_PROTOCOL_DATA } from './pitStopProtocolData';
+import { PCCOE_GOT_TALENT_DATA } from './pccoeGotTalentData';
 
 export const NEXUS_EVENTS: NexusEvent[] = [
   {
@@ -32,22 +33,8 @@ export const NEXUS_EVENTS: NexusEvent[] = [
     tags: ['Embedded Systems', 'Electronics', 'Robotics', 'Open Theme Prototype'],
   },
   {
-    id: PIT_STOP_PROTOCOL_DATA.id,
-    number: '02',
-    category: PIT_STOP_PROTOCOL_DATA.category,
-    name: PIT_STOP_PROTOCOL_DATA.name,
-    pitStop: PIT_STOP_PROTOCOL_DATA.pitStop,
-    route: PIT_STOP_PROTOCOL_DATA.route,
-    tagline: PIT_STOP_PROTOCOL_DATA.tagline,
-    description: PIT_STOP_PROTOCOL_DATA.heroDescription,
-    prizePool: PIT_STOP_PROTOCOL_DATA.prizePool,
-    format: '3-Round Strategy & Pursuit',
-    teamSize: PIT_STOP_PROTOCOL_DATA.teamSize,
-    tags: ['Strategy', 'Clue Hunt', 'Team Coordination', 'Non-Technical'],
-  },
-  {
     id: 'tech-event-2',
-    number: '03',
+    number: '02',
     category: 'TECHNICAL',
     name: 'Tech Event 2',
     pitStop: 'PIT STOP 02',
@@ -61,49 +48,32 @@ export const NEXUS_EVENTS: NexusEvent[] = [
     tags: ['Algorithms', 'AI & Analytics', 'Problem Solving', 'System Design'],
   },
   {
-    id: 'talent-show',
-    number: '04',
-    category: 'CREATIVE',
-    name: 'Talent Show',
-    pitStop: 'PIT STOP 03',
-    route: '/events/talent-show',
-    tagline: 'Stage Under Floodlights',
-    description:
-      'A stage for participants to showcase creativity, performance and individual talent.',
-    prizePool: '₹15,000+',
+    id: PIT_STOP_PROTOCOL_DATA.id,
+    number: PIT_STOP_PROTOCOL_DATA.number,
+    category: PIT_STOP_PROTOCOL_DATA.category,
+    name: PIT_STOP_PROTOCOL_DATA.name,
+    pitStop: PIT_STOP_PROTOCOL_DATA.pitStop,
+    route: PIT_STOP_PROTOCOL_DATA.route,
+    tagline: PIT_STOP_PROTOCOL_DATA.tagline,
+    description: PIT_STOP_PROTOCOL_DATA.heroDescription,
+    prizePool: PIT_STOP_PROTOCOL_DATA.prizePool,
+    format: '3-Round Strategy & Pursuit',
+    teamSize: PIT_STOP_PROTOCOL_DATA.teamSize,
+    tags: ['Strategy', 'Clue Hunt', 'Team Coordination', 'Non-Technical'],
+  },
+  {
+    id: PCCOE_GOT_TALENT_DATA.id,
+    number: PCCOE_GOT_TALENT_DATA.number,
+    category: PCCOE_GOT_TALENT_DATA.category,
+    name: PCCOE_GOT_TALENT_DATA.name,
+    pitStop: PCCOE_GOT_TALENT_DATA.pitStop,
+    route: PCCOE_GOT_TALENT_DATA.route,
+    tagline: PCCOE_GOT_TALENT_DATA.tagline,
+    description: PCCOE_GOT_TALENT_DATA.heroDescription,
+    prizePool: PCCOE_GOT_TALENT_DATA.prizePool,
     format: 'Live Stage Performance',
-    teamSize: 'Solo or Group',
-    tags: ['Stage Performance', 'Music & Arts', 'Creative Expression', 'Live Showcase'],
-  },
-  {
-    id: 'theme-based',
-    number: '05',
-    category: 'CREATIVE',
-    name: 'Theme Based',
-    pitStop: 'PIT STOP 04',
-    route: '/events/theme-based',
-    tagline: 'NEXUS Visual Experience',
-    description:
-      'A creative challenge built around the NEXUS theme where participants turn ideas into visual experiences.',
-    prizePool: '₹15,000+',
-    format: 'Theme Sprint & Showcase',
-    teamSize: '1 — 3 Members',
-    tags: ['Visual Design', 'Theme Innovation', 'Digital Media', 'Concept Pitch'],
-  },
-  {
-    id: 'gaming-event',
-    number: '06',
-    category: 'COMPETITIVE',
-    name: 'Gaming Event',
-    pitStop: 'PIT STOP 05',
-    route: '/events/gaming-event',
-    tagline: 'Wheel-to-Wheel Virtual Arena',
-    description:
-      'A competitive gaming experience where participants compete for victory.',
-    prizePool: '₹20,000+',
-    format: 'Tournament Knockouts',
-    teamSize: 'Squad / Solo',
-    tags: ['Esports Battle', 'Sim Racing', 'Competitive Gaming', 'Knockout Arena'],
+    teamSize: PCCOE_GOT_TALENT_DATA.teamSize,
+    tags: ['Entertainment', 'Live Stage', 'Performing Arts', 'All PCCOE'],
   },
 ];
 

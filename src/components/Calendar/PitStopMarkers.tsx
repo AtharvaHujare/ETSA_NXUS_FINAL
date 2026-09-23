@@ -137,7 +137,7 @@ export function PitStopMarkers({ activeStopId, onSelectStop }: PitStopMarkersPro
                       textTransform: 'uppercase',
                     }}
                   >
-                    PIT STOP {stop.id}
+                    PIT STOP {stop.stopNumber}
                   </div>
 
                   {/* Main Event Name */}

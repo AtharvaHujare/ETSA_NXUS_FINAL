@@ -93,7 +93,7 @@ export function CalendarOverlay({
               textTransform: 'uppercase',
             }}
           >
-            TWO DAYS. FIVE STOPS. ENDLESS POSSIBILITIES.
+            TWO DAYS. FOUR STOPS. ENDLESS POSSIBILITIES.
           </div>
         </div>
 
@@ -254,7 +254,7 @@ export function CalendarOverlay({
           <span style={{ color: 'rgba(225, 6, 0, 0.15)' }}>TALENT</span>
         </div>
 
-        {/* Right Vertical Race Progress Indicator (01 - 05) */}
+        {/* Right Vertical Race Progress Indicator (01 - 04) */}
         <div
           style={{
             display: 'flex',

@@ -186,7 +186,7 @@ export function CalendarSection({ onRegisterClick, canLoad3D = true }: CalendarS
             WHERE TECHNOLOGY MEETS SPEED
           </div>
           <div>
-            OFFICIAL RACE CALENDAR // <span style={{ color: 'var(--accent-red)' }}>5 STOPS</span>
+            OFFICIAL RACE CALENDAR // <span style={{ color: 'var(--accent-red)' }}>{PIT_STOPS.length} STOPS</span>
           </div>
         </div>
       </div>

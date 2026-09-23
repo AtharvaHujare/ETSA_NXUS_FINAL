@@ -6,11 +6,13 @@ import { CalendarSection } from './components/CalendarSection';
 import { SponsorsSection } from './components/SponsorsSection';
 import { GlimpsesSection } from './components/Glimpses/GlimpsesSection';
 import { GlimpsesPage } from './components/Glimpses/GlimpsesPage';
+import { AboutSection } from './components/AboutSection';
 import { Footer } from './components/Footer';
 import { RegisterModal } from './components/RegisterModal';
 import { CinematicIntro } from './components/CinematicIntro';
 import { HackathonPage } from './components/Hackathon/HackathonPage';
 import { PitStopProtocolPage } from './components/PitStop/PitStopProtocolPage';
+import { PCCOEGotTalentPage } from './components/Talent/PCCOEGotTalentPage';
 import { EventPlaceholderPage } from './components/Events/EventPlaceholderPage';
 import { NEXUS_EVENTS, type NexusEvent } from './data/nexusEventsData';
 import { AudioProvider } from './context/AudioContext';
@@ -27,12 +29,15 @@ function getEventFromLocation(): NexusEvent | null {
     }
   }
 
-  // 2. Hash check (e.g. #hackathon, #pitstop, etc.)
+  // 2. Hash check (e.g. #hackathon, #pitstop, #talent, etc.)
   if (hash === '#hackathon' || hash === '#events/hardware-hackathon' || hash === '#/events/hardware-hackathon') {
     return NEXUS_EVENTS.find((e) => e.id === 'hardware-hackathon') || NEXUS_EVENTS[0];
   }
   if (hash === '#pitstop' || hash === '#pit-stop' || hash === '#pit-stop-protocol' || hash === '#events/pit-stop-protocol') {
     return NEXUS_EVENTS.find((e) => e.id === 'pit-stop-protocol') || null;
+  }
+  if (hash === '#talent' || hash === '#pccoe-got-talent' || hash === '#events/pccoe-got-talent' || hash === '#/events/pccoe-got-talent') {
+    return NEXUS_EVENTS.find((e) => e.id === 'pccoe-got-talent') || null;
   }
 
   for (const evt of NEXUS_EVENTS) {
@@ -57,7 +62,7 @@ function isGlimpsesLocation(): boolean {
 }
 
 export function AppContent() {
-  const [showIntro, setShowIntro] = useState(true);
+  const [showIntro, setShowIntro] = useState(() => !isGlimpsesLocation());
   const [isRegisterOpen, setIsRegisterOpen] = useState(false);
   const [selectedEvent, setSelectedEvent] = useState<string | undefined>(undefined);
   const [activeEvent, setActiveEvent] = useState<NexusEvent | null>(() => getEventFromLocation());
@@ -67,7 +72,11 @@ export function AppContent() {
     const handleLocationChange = () => {
       const evt = getEventFromLocation();
       setActiveEvent(evt);
-      setIsGlimpses(isGlimpsesLocation());
+      const glimpses = isGlimpsesLocation();
+      setIsGlimpses(glimpses);
+      if (glimpses) {
+        setShowIntro(false);
+      }
     };
 
     window.addEventListener('popstate', handleLocationChange);
@@ -82,7 +91,11 @@ export function AppContent() {
     window.history.pushState(null, '', route);
     const evt = getEventFromLocation();
     setActiveEvent(evt);
-    setIsGlimpses(isGlimpsesLocation());
+    const glimpses = isGlimpsesLocation();
+    setIsGlimpses(glimpses);
+    if (glimpses) {
+      setShowIntro(false);
+    }
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
@@ -121,6 +134,7 @@ export function AppContent() {
 
   const handleNavClick = (href: string) => {
     if (href === '/glimpses' || href === '#glimpses') {
+      setShowIntro(false);
       navigateToRoute('/glimpses');
       return;
     }
@@ -183,15 +197,20 @@ export function AppContent() {
       ) : activeEvent ? (
         /* Dedicated Event Subpage View */
         <>
-          {activeEvent.id === 'pit-stop-protocol' ? (
+          {activeEvent.id === 'pccoe-got-talent' ? (
+            <PCCOEGotTalentPage
+              onBackToEvents={handleBackToEvents}
+              onRegister={() => window.open('https://forms.gle/aSW1oNgAGfdZk4pM7', '_blank', 'noopener,noreferrer')}
+            />
+          ) : activeEvent.id === 'pit-stop-protocol' ? (
             <PitStopProtocolPage
               onBackToEvents={handleBackToEvents}
-              onRegister={() => handleOpenRegister('Pit Stop Protocol')}
+              onRegister={() => window.open('https://docs.google.com/forms/d/e/1FAIpQLSd-bD6nwmFtKreRESHkHEIP90TZvry8b_eOgIpFQihly2j2Dg/viewform?usp=publish-editor', '_blank', 'noopener,noreferrer')}
             />
           ) : activeEvent.id === 'hardware-hackathon' ? (
             <HackathonPage
               onBackToEvents={handleBackToEvents}
-              onRegister={() => handleOpenRegister('Hardware Hackathon')}
+              onRegister={() => window.open('https://docs.google.com/forms/d/e/1FAIpQLSfscMSrC3bGdzINzabhfzGmZMRUrToqFEKmQCrq0I-uQUIdaA/viewform?usp=publish-editor', '_blank', 'noopener,noreferrer')}
             />
           ) : (
             <EventPlaceholderPage event={activeEvent} onBackToEvents={handleBackToEvents} />
@@ -218,6 +237,9 @@ export function AppContent() {
 
           {/* Telemetry & Paddock Glimpses Visual Reel */}
           <GlimpsesSection />
+
+          {/* About Nexus, Organizing Domains & Contact Us */}
+          <AboutSection />
 
           {/* Minimalist Editorial Footer */}
           <Footer />

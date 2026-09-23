@@ -71,6 +71,7 @@ export const HARDWARE_HACKATHON_DATA = {
   registrationFee: '₹599 per team',
   participationNote: 'Free for PCCOE Students | Listed fee ₹599 per team',
   rulebookPdfUrl: '/Rulebook_FORMULA_HARDWARE 1.pdf',
+  registrationFormUrl: 'https://docs.google.com/forms/d/e/1FAIpQLSfscMSrC3bGdzINzabhfzGmZMRUrToqFEKmQCrq0I-uQUIdaA/viewform?usp=publish-editor',
 
   overviewPoints: [
     {
@@ -295,28 +296,28 @@ export const HARDWARE_HACKATHON_DATA = {
       id: 'samrat-latane',
       name: 'Samrat Latane',
       role: 'Lead Coordinator',
-      image: '/coordinators/hardware-hackathon/samrat latane.jpg',
+      image: '/images/coordinators/hardware/samrat_latane.webp',
       phone: '9146649309',
     },
     {
       id: 'vedant-jadhav',
       name: 'Vedant Jadhav',
       role: 'Event Coordinator',
-      image: '/coordinators/hardware-hackathon/vedant jadhav.png',
+      image: '/images/coordinators/hardware/vedant_jadhav.webp',
       phone: '8308108646',
     },
     {
       id: 'yugandhar-suryawanshi',
       name: 'Yugandhar Suryawanshi',
       role: 'Event Coordinator',
-      image: '/coordinators/hardware-hackathon/yugandhar suryawanshi.jpeg',
+      image: '/images/coordinators/hardware/yugandhar_suryawanshi.webp',
       phone: '7875251257',
     },
     {
       id: 'parth-fundkar',
       name: 'Parth Fundkar',
       role: 'Event Coordinator',
-      image: '/coordinators/hardware-hackathon/parth fundkar.jpg',
+      image: '/images/coordinators/hardware/parth_fundkar.webp',
       phone: '7058355379',
     },
   ] as HackathonCoordinator[],

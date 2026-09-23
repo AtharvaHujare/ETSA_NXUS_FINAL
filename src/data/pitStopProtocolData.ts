@@ -3,6 +3,7 @@ export interface Coordinator {
   year: 'Third Year' | 'Second Year';
   role: string;
   image: string;
+  phone?: string;
 }
 
 export interface RoundInfo {
@@ -29,10 +30,10 @@ export interface FAQItem {
 
 export const PIT_STOP_PROTOCOL_DATA = {
   id: 'pit-stop-protocol',
-  number: '01',
+  number: '03',
   category: 'NON-TECHNICAL',
   name: 'Pit Stop Protocol',
-  pitStop: 'PIT STOP 01',
+  pitStop: 'PIT STOP 03',
   route: '/events/pit-stop-protocol',
   tagline: 'THINK // COORDINATE // OUTRACE',
   heroMotto: 'SAME STRATEGY DIFFERENT HUMANS',
@@ -51,6 +52,7 @@ export const PIT_STOP_PROTOCOL_DATA = {
   eventType: 'Non-Technical',
 
   rulebookPdfUrl: '/PIT_STOP_PROTOCOL_RULEBOOK-finale.pdf',
+  registrationFormUrl: 'https://docs.google.com/forms/d/e/1FAIpQLSd-bD6nwmFtKreRESHkHEIP90TZvry8b_eOgIpFQihly2j2Dg/viewform?usp=publish-editor',
   heroImage: '/pitstop/pit_stop_crew_hero.jpg',
   helmetImage: '/pitstop/f1_helmet_card.jpg',
 
@@ -64,7 +66,7 @@ export const PIT_STOP_PROTOCOL_DATA = {
     noPriorKnowledgeBadge: 'NO PRIOR FORMULA 1 KNOWLEDGE REQUIRED',
     quoteCard: {
       quote: "IT'S NOT ABOUT SPEED ALONE, IT'S ABOUT THE TEAM THAT GETS IT RIGHT.",
-      tag: 'NEXUS 01 D1',
+      tag: 'NEXUS 03',
     },
   },
 
@@ -208,19 +210,22 @@ export const PIT_STOP_PROTOCOL_DATA = {
         name: 'Vibhuti Sahu',
         year: 'Third Year',
         role: 'TY Lead Coordinator',
-        image: '/coordinators/pitstop/vibhuti sahu.png',
+        image: '/images/coordinators/pitstop/vibhuti_sahu.webp',
+        phone: '8600964115',
       },
       {
         name: 'Atharva Pagrut',
         year: 'Third Year',
         role: 'TY Lead Coordinator',
-        image: '/coordinators/pitstop/atharva pagrut.png',
+        image: '/images/coordinators/pitstop/atharva_pagrut.webp',
+        phone: '9637715791',
       },
       {
         name: 'Kunj Patil',
         year: 'Third Year',
         role: 'TY Lead Coordinator',
-        image: '/coordinators/pitstop/kunj patil.jpg',
+        image: '/images/coordinators/pitstop/kunj_patil.webp',
+        phone: '7745898274',
       },
     ] as Coordinator[],
     secondYear: [
@@ -228,13 +233,15 @@ export const PIT_STOP_PROTOCOL_DATA = {
         name: 'Yash Mali',
         year: 'Second Year',
         role: 'SY Event Coordinator',
-        image: '/coordinators/pitstop/yash mali.jpg',
+        image: '/images/coordinators/pitstop/yash_mali.webp',
+        phone: '9356800345',
       },
       {
         name: 'Vedanti Waikar',
         year: 'Second Year',
         role: 'SY Event Coordinator',
-        image: '/coordinators/pitstop/vedanti waikar.jpeg',
+        image: '/images/coordinators/pitstop/vedanti_waikar.webp',
+        phone: '7972037770',
       },
     ] as Coordinator[],
   },

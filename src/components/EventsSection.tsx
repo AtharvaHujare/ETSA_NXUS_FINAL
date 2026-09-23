@@ -415,9 +415,9 @@ export function EventsSection({ onSelectEvent, onNavigateEvent }: EventsSectionP
       </div>
 
       <style>{`
-        @media (max-width: 1100px) {
+        @media (max-width: 960px) {
           .event-tabs-grid {
-            grid-template-columns: repeat(3, 1fr) !important;
+            grid-template-columns: repeat(2, 1fr) !important;
           }
         }
         @media (max-width: 900px) {
@@ -431,9 +431,9 @@ export function EventsSection({ onSelectEvent, onNavigateEvent }: EventsSectionP
             padding-top: 24px;
           }
         }
-        @media (max-width: 680px) {
+        @media (max-width: 520px) {
           .event-tabs-grid {
-            grid-template-columns: repeat(2, 1fr) !important;
+            grid-template-columns: 1fr !important;
           }
         }
       `}</style>

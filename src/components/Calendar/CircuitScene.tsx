@@ -136,7 +136,7 @@ export function CircuitScene({
         {/* The 3D Grand Prix Circuit Track */}
         <CircuitTrack />
 
-        {/* The 5 Pit Stop Interactive Markers */}
+        {/* The 4 Pit Stop Interactive Markers */}
         <PitStopMarkers activeStopId={activeStop.id} onSelectStop={onSelectStop} />
 
         {/* The Traveling F1 Race Car */}

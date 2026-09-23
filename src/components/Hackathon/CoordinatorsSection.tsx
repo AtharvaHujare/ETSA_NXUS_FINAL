@@ -42,12 +42,13 @@ export function CoordinatorsSection() {
         </div>
       </div>
 
-      {/* 4 Circular Photos in a Row matching reference */}
+      {/* Circular Photos Grid */}
       <div
+        className="hackathon-coords-grid"
         style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(4, 1fr)',
-          gap: '12px',
+          gridTemplateColumns: 'repeat(2, 1fr)',
+          gap: '16px 12px',
           alignItems: 'flex-start',
         }}
       >
@@ -67,19 +68,20 @@ export function CoordinatorsSection() {
                 cursor: 'pointer',
               }}
             >
-              {/* Circular Photo (target approx 64-80px in card, responsive) */}
+              {/* Circular Photo (100–120px desktop, 84–100px mobile) */}
               <div
                 style={{
-                  width: 'clamp(58px, 6vw, 76px)',
-                  height: 'clamp(58px, 6vw, 76px)',
+                  width: 'clamp(84px, 8.5vw, 115px)',
+                  height: 'clamp(84px, 8.5vw, 115px)',
+                  aspectRatio: '1 / 1',
                   borderRadius: '50%',
                   overflow: 'hidden',
                   border: isHovered
                     ? '2px solid var(--accent-red)'
-                    : '1.5px solid rgba(255, 255, 255, 0.15)',
+                    : '2px solid rgba(225, 6, 0, 0.4)',
                   boxShadow: isHovered
                     ? '0 0 16px rgba(225, 6, 0, 0.5)'
-                    : '0 4px 12px rgba(0, 0, 0, 0.4)',
+                    : '0 0 12px rgba(225, 6, 0, 0.15)',
                   transition: 'all 0.25s ease',
                   transform: isHovered ? 'scale(1.05)' : 'scale(1.0)',
                   backgroundColor: '#121318',
@@ -91,11 +93,12 @@ export function CoordinatorsSection() {
                   src={coordinator.image}
                   alt={coordinator.name}
                   loading="lazy"
+                  decoding="async"
                   style={{
                     width: '100%',
                     height: '100%',
                     objectFit: 'cover',
-                    objectPosition: 'center 20%',
+                    objectPosition: 'center',
                     display: 'block',
                   }}
                 />
@@ -105,20 +108,44 @@ export function CoordinatorsSection() {
               <div
                 style={{
                   fontFamily: 'var(--font-display)',
-                  fontSize: '0.74rem',
+                  fontSize: '0.82rem',
                   fontWeight: 700,
                   letterSpacing: '0.02em',
-                  color: isHovered ? '#FFFFFF' : '#D0D0D8',
-                  lineHeight: 1.2,
+                  color: isHovered ? '#FFFFFF' : '#E0E0E6',
+                  lineHeight: 1.25,
                   transition: 'color 0.2s ease',
                 }}
               >
                 {coordinator.name}
               </div>
+
+              {/* Phone / Contact */}
+              {coordinator.phone && (
+                <div
+                  style={{
+                    fontFamily: 'var(--font-mono)',
+                    fontSize: '0.62rem',
+                    color: 'var(--accent-red)',
+                    letterSpacing: '0.08em',
+                    marginTop: '3px',
+                    fontWeight: 600,
+                  }}
+                >
+                  {coordinator.phone}
+                </div>
+              )}
             </div>
           );
         })}
       </div>
+
+      <style>{`
+        @media (min-width: 768px) and (max-width: 1024px) {
+          .hackathon-coords-grid {
+            grid-template-columns: repeat(4, 1fr) !important;
+          }
+        }
+      `}</style>
     </div>
   );
 }

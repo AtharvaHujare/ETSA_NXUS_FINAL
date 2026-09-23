@@ -12,7 +12,6 @@ import { SpecialChallengesSection } from './SpecialChallengesSection';
 import { RulesSection } from './RulesSection';
 import { HackathonRulebookBanner } from './HackathonRulebookBanner';
 import { HackathonTimelineModal } from './HackathonTimelineModal';
-import { ComingSoonModal } from './ComingSoonModal';
 
 interface HackathonPageProps {
   onBackToEvents: () => void;
@@ -22,18 +21,9 @@ interface HackathonPageProps {
 export function HackathonPage({ onBackToEvents, onRegister }: HackathonPageProps) {
   const [selectedDeskComponent, setSelectedDeskComponent] = useState<DeskComponentInfo | null>(null);
   const [hoveredDeskId, setHoveredDeskId] = useState<string | null>(null);
-  const [isRegisterModalOpen, setIsRegisterModalOpen] = useState(false);
   const [isFullTimelineOpen, setIsFullTimelineOpen] = useState(false);
 
   const d = HARDWARE_HACKATHON_DATA;
-
-  const handleRegisterClick = () => {
-    if (onRegister) {
-      onRegister();
-    } else {
-      setIsRegisterModalOpen(true);
-    }
-  };
 
   return (
     <div
@@ -311,8 +301,10 @@ export function HackathonPage({ onBackToEvents, onRegister }: HackathonPageProps
 
           {/* CTAs: REGISTER NOW & DOWNLOAD RULEBOOK */}
           <div style={{ display: 'flex', alignItems: 'center', gap: '14px', flexWrap: 'wrap' }}>
-            <button
-              onClick={handleRegisterClick}
+            <a
+              href="https://docs.google.com/forms/d/e/1FAIpQLSfscMSrC3bGdzINzabhfzGmZMRUrToqFEKmQCrq0I-uQUIdaA/viewform?usp=publish-editor"
+              target="_blank"
+              rel="noopener noreferrer"
               className="btn-racing-primary"
               style={{
                 padding: '14px 32px',
@@ -323,11 +315,12 @@ export function HackathonPage({ onBackToEvents, onRegister }: HackathonPageProps
                 alignItems: 'center',
                 gap: '8px',
                 cursor: 'pointer',
+                textDecoration: 'none',
               }}
             >
               <span>REGISTER NOW</span>
-              <ArrowRight size={14} />
-            </button>
+              <span className="btn-arrow" style={{ fontSize: '1rem', fontWeight: 900 }}>→</span>
+            </a>
 
             <a
               href={d.rulebookPdfUrl}
@@ -495,11 +488,6 @@ export function HackathonPage({ onBackToEvents, onRegister }: HackathonPageProps
       {/* 7. Large Rulebook Download Banner */}
       <HackathonRulebookBanner />
 
-      {/* Registration Modal */}
-      <ComingSoonModal
-        isOpen={isRegisterModalOpen}
-        onClose={() => setIsRegisterModalOpen(false)}
-      />
 
       {/* Full Timeline Modal */}
       <HackathonTimelineModal

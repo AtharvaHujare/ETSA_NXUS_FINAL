@@ -17,7 +17,7 @@ export function PitStopCoordinators() {
           flexDirection: 'column',
           alignItems: 'center',
           textAlign: 'center',
-          padding: '24px 20px',
+          padding: '24px 16px',
           transition: 'all 0.25s ease',
         }}
         onMouseEnter={(e) => {
@@ -34,11 +34,12 @@ export function PitStopCoordinators() {
         {/* Profile Image with subtle red rim */}
         <div
           style={{
-            width: '84px',
-            height: '84px',
+            width: 'clamp(84px, 8.5vw, 110px)',
+            height: 'clamp(84px, 8.5vw, 110px)',
+            aspectRatio: '1 / 1',
             borderRadius: '50%',
             overflow: 'hidden',
-            border: '2px solid rgba(225, 6, 0, 0.4)',
+            border: '2px solid rgba(225, 6, 0, 0.45)',
             marginBottom: '16px',
             background: '#14151c',
             boxShadow: '0 0 15px rgba(225, 6, 0, 0.2)',
@@ -47,14 +48,14 @@ export function PitStopCoordinators() {
           <img
             src={coordinator.image}
             alt={coordinator.name}
+            loading="lazy"
+            decoding="async"
             style={{
               width: '100%',
               height: '100%',
               objectFit: 'cover',
-            }}
-            onError={(e) => {
-              // Fallback to initials if image fails
-              (e.target as HTMLElement).style.display = 'none';
+              objectPosition: 'center',
+              display: 'block',
             }}
           />
         </div>
@@ -63,12 +64,13 @@ export function PitStopCoordinators() {
         <div
           style={{
             fontFamily: 'var(--font-display)',
-            fontSize: '1.05rem',
+            fontSize: '1rem',
             fontWeight: 800,
             letterSpacing: '0.04em',
             color: '#FFFFFF',
             marginBottom: '4px',
             textTransform: 'uppercase',
+            lineHeight: 1.2,
           }}
         >
           {coordinator.name}
@@ -78,7 +80,7 @@ export function PitStopCoordinators() {
         <div
           style={{
             fontFamily: 'var(--font-mono)',
-            fontSize: '0.68rem',
+            fontSize: '0.66rem',
             fontWeight: 700,
             letterSpacing: '0.14em',
             color: 'var(--accent-red)',
@@ -87,6 +89,21 @@ export function PitStopCoordinators() {
         >
           {coordinator.year}
         </div>
+
+        {/* Phone / Contact */}
+        {coordinator.phone && (
+          <div
+            style={{
+              fontFamily: 'var(--font-mono)',
+              fontSize: '0.62rem',
+              color: '#8A8A93',
+              letterSpacing: '0.08em',
+              marginTop: '4px',
+            }}
+          >
+            {coordinator.phone}
+          </div>
+        )}
       </div>
     );
   };
@@ -132,17 +149,31 @@ export function PitStopCoordinators() {
         </h2>
       </div>
 
-      {/* Grid: 5 Coordinators (3 TY, 2 SY) */}
-      <div
-        style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-          gap: '20px',
-        }}
-      >
+      {/* Grid: 5 Coordinators (3 TY, 2 SY) - 5 columns on desktop, 2-3 on mobile */}
+      <div className="pitstop-coords-grid">
         {thirdYear.map(renderCoordinatorCard)}
         {secondYear.map(renderCoordinatorCard)}
       </div>
+
+      <style>{`
+        .pitstop-coords-grid {
+          display: grid;
+          grid-template-columns: repeat(5, 1fr);
+          gap: 18px;
+        }
+        @media (max-width: 1024px) {
+          .pitstop-coords-grid {
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+          }
+        }
+        @media (max-width: 640px) {
+          .pitstop-coords-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+          }
+        }
+      `}</style>
     </section>
   );
 }

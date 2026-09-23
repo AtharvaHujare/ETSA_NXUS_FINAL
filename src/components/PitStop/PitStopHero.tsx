@@ -3,7 +3,7 @@ import { Calendar, MapPin, Download, ArrowRight, ArrowLeft } from 'lucide-react'
 import { PIT_STOP_PROTOCOL_DATA } from '../../data/pitStopProtocolData';
 
 interface PitStopHeroProps {
-  onRegisterClick: () => void;
+  onRegisterClick?: () => void;
   onBackToEvents: () => void;
 }
 
@@ -292,8 +292,10 @@ export function PitStopHero({ onRegisterClick, onBackToEvents }: PitStopHeroProp
               }}
             >
               {/* Register Button */}
-              <button
-                onClick={onRegisterClick}
+              <a
+                href="https://docs.google.com/forms/d/e/1FAIpQLSd-bD6nwmFtKreRESHkHEIP90TZvry8b_eOgIpFQihly2j2Dg/viewform?usp=publish-editor"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="btn-racing-primary"
                 style={{
                   padding: '14px 32px',
@@ -305,11 +307,12 @@ export function PitStopHero({ onRegisterClick, onBackToEvents }: PitStopHeroProp
                   display: 'inline-flex',
                   alignItems: 'center',
                   gap: '10px',
+                  textDecoration: 'none',
                 }}
               >
-                <span>REGISTER</span>
-                <ArrowRight size={16} />
-              </button>
+                <span>REGISTER NOW</span>
+                <span className="btn-arrow" style={{ fontSize: '1rem', fontWeight: 900 }}>→</span>
+              </a>
 
               {/* Download Rulebook Button */}
               <a

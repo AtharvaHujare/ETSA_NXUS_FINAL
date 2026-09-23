@@ -11,8 +11,8 @@ const TRACK_POINTS: THREE.Vector3[] = [
   new THREE.Vector3(18, 0.65, -17),  // Turn 6 right descent
   new THREE.Vector3(28, 0.45, -7),   // Turn 7 horseshoe (Pit Stop 3 area)
   new THREE.Vector3(25, 0.25, 6),    // Turn 8 carousel entry
-  new THREE.Vector3(17, 0.15, 14),   // Turn 9 apex (Pit Stop 4 area)
-  new THREE.Vector3(2, 0.08, 9),     // Turn 10 infield sweep (Pit Stop 5 area)
+  new THREE.Vector3(17, 0.15, 14),   // Turn 9 apex
+  new THREE.Vector3(2, 0.08, 9),     // Turn 10 infield sweep (Pit Stop 4 area)
   new THREE.Vector3(-8, 0.02, 13),   // Final corner onto straight
 ];
 

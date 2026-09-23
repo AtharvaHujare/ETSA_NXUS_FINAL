@@ -26,7 +26,7 @@ export function Navbar({ onRegisterClick, activeOverride, onNavClick }: NavbarPr
     { label: 'CALENDAR', href: '#calendar' },
     { label: 'SPONSORS', href: '#sponsors' },
     { label: 'GLIMPSES', href: '/glimpses' },
-    { label: 'ABOUT', href: '#footer' },
+    { label: 'ABOUT', href: '#about' },
   ];
 
   useEffect(() => {
@@ -49,13 +49,13 @@ export function Navbar({ onRegisterClick, activeOverride, onNavClick }: NavbarPr
     window.addEventListener('scroll', handleScroll, { passive: true });
 
     // Use IntersectionObserver for active section highlight - zero layout thrashing!
-    const sections = ['events', 'calendar', 'sponsors', 'glimpses', 'footer'];
+    const sections = ['events', 'calendar', 'sponsors', 'glimpses', 'about', 'footer'];
     const observer = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
           if (entry.isIntersecting) {
             const id = entry.target.id;
-            const label = id === 'footer' ? 'ABOUT' : id.toUpperCase();
+            const label = (id === 'about' || id === 'footer') ? 'ABOUT' : id.toUpperCase();
             setActiveItem(label);
             break;
           }

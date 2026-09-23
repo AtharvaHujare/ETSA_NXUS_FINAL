@@ -185,7 +185,7 @@ export function Footer() {
               marginBottom: '16px',
             }}
           >
-            nexus.entc@pccoepune.org
+            etsaietepccoe1@gmail.com
           </div>
 
           <button

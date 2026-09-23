@@ -210,10 +210,8 @@ export function EventDetailModal({
                 : activeStop.id === 2
                 ? '#events/tech-event-2'
                 : activeStop.id === 3
-                ? '#events/talent-show'
-                : activeStop.id === 4
-                ? '#events/theme-based'
-                : '#events/gaming-event'
+                ? '#events/pit-stop-protocol'
+                : '#events/pccoe-got-talent'
             }
             style={{
               display: 'inline-flex',

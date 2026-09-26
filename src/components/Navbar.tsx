@@ -213,23 +213,9 @@ export function Navbar({ onRegisterClick, activeOverride, onNavClick }: NavbarPr
         })}
       </nav>
 
-      {/* Right: Music Control & Register CTA */}
+      {/* Right: Music Control & Mobile Menu Toggle */}
       <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
         <MusicControlButton />
-        <button
-          onClick={onRegisterClick}
-          className="btn-racing-primary desktop-register"
-          style={{
-            padding: '8px 20px',
-            fontSize: '0.75rem',
-            letterSpacing: '0.16em',
-            border: '1px solid var(--accent-red-border)',
-            background: 'rgba(15, 15, 15, 0.7)',
-          }}
-        >
-          <span>REGISTER</span>
-          <span className="btn-arrow" style={{ fontSize: '0.9rem' }}>→</span>
-        </button>
 
         {/* Mobile Hamburger Button (44px touch target) */}
         <button
@@ -319,9 +305,6 @@ export function Navbar({ onRegisterClick, activeOverride, onNavClick }: NavbarPr
       <style>{`
         @media (max-width: 900px) {
           .desktop-nav {
-            display: none !important;
-          }
-          .desktop-register {
             display: none !important;
           }
           .mobile-hamburger {

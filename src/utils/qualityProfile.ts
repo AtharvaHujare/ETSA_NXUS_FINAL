@@ -28,22 +28,35 @@ export function detectDeviceQuality(): QualitySettings {
     window.innerWidth < 768 ||
     /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 
+  // Mobile-specific high-performance tuning:
+  // Disables costly shadow maps and antialiasing, caps DPR at 1.15, simplifies lights
+  if (isMobile) {
+    return {
+      tier: 'low',
+      dpr: Math.min(rawDpr, 1.15),
+      shadows: false,
+      shadowMapSize: 0,
+      antialias: false,
+      lightComplexity: 'low',
+      isMobile: true,
+    };
+  }
+
   const concurrency = navigator.hardwareConcurrency || 4;
   const deviceMemory = (navigator as unknown as { deviceMemory?: number }).deviceMemory || 4;
   const saveData = (navigator as unknown as { connection?: { saveData?: boolean } }).connection?.saveData === true;
 
-  // Determine Quality Tier
+  // Determine Desktop Quality Tier
   let tier: QualityTier = 'high';
 
-  if (saveData || (isMobile && (concurrency <= 4 || deviceMemory <= 2))) {
+  if (saveData || concurrency <= 4 || deviceMemory <= 2) {
     tier = 'low';
-  } else if (isMobile || concurrency <= 6 || window.innerWidth < 1024) {
+  } else if (concurrency <= 6 || window.innerWidth < 1024) {
     tier = 'medium';
   } else {
     tier = 'high';
   }
 
-  // Profile Specific Tuning
   if (tier === 'low') {
     return {
       tier,
@@ -52,7 +65,7 @@ export function detectDeviceQuality(): QualitySettings {
       shadowMapSize: 256,
       antialias: false,
       lightComplexity: 'low',
-      isMobile,
+      isMobile: false,
     };
   }
 
@@ -64,7 +77,7 @@ export function detectDeviceQuality(): QualitySettings {
       shadowMapSize: 512,
       antialias: true,
       lightComplexity: 'medium',
-      isMobile,
+      isMobile: false,
     };
   }
 
@@ -75,7 +88,7 @@ export function detectDeviceQuality(): QualitySettings {
     shadowMapSize: 1024,
     antialias: true,
     lightComplexity: 'full',
-    isMobile,
+    isMobile: false,
   };
 }
 

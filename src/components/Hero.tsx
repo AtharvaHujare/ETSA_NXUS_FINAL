@@ -46,6 +46,7 @@ export function Hero({ onExploreEvents, canLoad3D = true }: HeroProps) {
         minHeight: '720px',
         overflow: 'hidden',
         backgroundColor: '#050505',
+        touchAction: 'pan-y',
       }}
     >
       {/* 3D Interactive Car Scene Canvas - Lazy loaded after intro finishes */}

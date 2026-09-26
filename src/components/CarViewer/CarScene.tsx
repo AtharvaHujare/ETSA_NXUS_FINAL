@@ -7,6 +7,7 @@ import { PitGarageEnvironment } from './PitGarageEnvironment';
 
 interface CarSceneProps {
   onUserInteract?: () => void;
+  isMobile?: boolean;
 }
 
 // Error Boundary for GLTF loading failure
@@ -29,7 +30,7 @@ class ModelErrorBoundary extends React.Component<
   }
 }
 
-export function CarScene({ onUserInteract }: CarSceneProps) {
+export function CarScene({ onUserInteract, isMobile = false }: CarSceneProps) {
   const { camera, gl } = useThree();
   const carPivotRef = useRef<THREE.Group>(null);
 
@@ -54,6 +55,12 @@ export function CarScene({ onUserInteract }: CarSceneProps) {
   useEffect(() => {
     camera.position.copy(cameraInitialPos.current);
     camera.lookAt(cameraLookTarget.current);
+
+    // On mobile devices: DO NOT attach pointer/drag listeners.
+    // Mobile car is non-interactive; touches pass directly to page scrolling.
+    if (isMobile) {
+      return;
+    }
 
     const canvas = gl.domElement;
 
@@ -85,7 +92,7 @@ export function CarScene({ onUserInteract }: CarSceneProps) {
       targetRotationY.current += deltaX * rotSpeed;
       velocityY.current = deltaX * rotSpeed;
 
-      // Restrict vertical pitch so car never flips upside down (-0.12 rad to +0.25 rad)
+      // Restrict vertical pitch so car never flips upside down (-0.10 rad to +0.24 rad)
       targetRotationX.current += deltaY * (rotSpeed * 0.5);
       targetRotationX.current = Math.max(-0.10, Math.min(0.24, targetRotationX.current));
       velocityX.current = deltaY * (rotSpeed * 0.5);
@@ -112,7 +119,7 @@ export function CarScene({ onUserInteract }: CarSceneProps) {
       window.removeEventListener('pointerup', handlePointerUp);
       window.removeEventListener('pointercancel', handlePointerUp);
     };
-  }, [gl, camera, onUserInteract]);
+  }, [gl, camera, onUserInteract, isMobile]);
 
   useFrame((state, delta) => {
     // 1. Cinematic Camera Push-in
@@ -120,8 +127,8 @@ export function CarScene({ onUserInteract }: CarSceneProps) {
       cinematicPushIn.current = Math.min(1, cinematicPushIn.current + delta * 0.6);
       const ease = 1 - Math.pow(1 - cinematicPushIn.current, 3);
       camera.position.lerpVectors(cameraInitialPos.current, cameraFinalPos.current, ease);
-    } else {
-      // 2. Camera Parallax based on mouse movement
+    } else if (!isMobile) {
+      // 2. Camera Parallax based on mouse movement (desktop only)
       const targetCamX = cameraFinalPos.current.x + mouseParallax.current.x * 0.25;
       const targetCamY = cameraFinalPos.current.y + mouseParallax.current.y * 0.12;
       camera.position.x += (targetCamX - camera.position.x) * 0.04;
@@ -129,24 +136,30 @@ export function CarScene({ onUserInteract }: CarSceneProps) {
     }
     camera.lookAt(cameraLookTarget.current);
 
-    // 3. Inertia & Friction Momentum on Car Rotation
-    if (!isDragging.current) {
-      velocityY.current *= 0.93; // horizontal damping
-      velocityX.current *= 0.90; // vertical damping
+    if (isMobile) {
+      // Mobile: Constant smooth subtle auto-rotation with gentle idle float
+      targetRotationY.current += delta * 0.16; // Smooth 360 degree natural showcase rotation
+      targetRotationX.current = 0.04;
+    } else {
+      // Desktop: 3. Inertia & Friction Momentum on Car Rotation
+      if (!isDragging.current) {
+        velocityY.current *= 0.93; // horizontal damping
+        velocityX.current *= 0.90; // vertical damping
 
-      targetRotationY.current += velocityY.current;
-      targetRotationX.current += velocityX.current;
-      targetRotationX.current = Math.max(-0.10, Math.min(0.24, targetRotationX.current));
+        targetRotationY.current += velocityY.current;
+        targetRotationX.current += velocityX.current;
+        targetRotationX.current = Math.max(-0.10, Math.min(0.24, targetRotationX.current));
 
-      // Subtle Idle rotation when user is idle for > 1.8 seconds
-      const timeSinceInteract = Date.now() - lastInteractionTime.current;
-      if (timeSinceInteract > 1800 && Math.abs(velocityY.current) < 0.0005) {
-        targetRotationY.current += delta * 0.045; // Slow natural showcase rotation
+        // Subtle Idle rotation when user is idle for > 1.8 seconds
+        const timeSinceInteract = Date.now() - lastInteractionTime.current;
+        if (timeSinceInteract > 1800 && Math.abs(velocityY.current) < 0.0005) {
+          targetRotationY.current += delta * 0.045; // Slow natural showcase rotation
+        }
       }
     }
 
     // 4. Smooth Rotation Interpolation
-    currentRotationY.current += (targetRotationY.current - currentRotationY.current) * 0.14;
+    currentRotationY.current += (targetRotationY.current - currentRotationY.current) * (isMobile ? 0.2 : 0.14);
     currentRotationX.current += (targetRotationX.current - currentRotationX.current) * 0.14;
 
     if (carPivotRef.current) {

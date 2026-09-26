@@ -30,41 +30,64 @@ export function PitGarageEnvironment() {
       </mesh>
 
       {/* 2. Studio & Sunset Lighting */}
-      {/* Warm Sunset Directional Rim Light from the Racetrack Opening (Right) */}
-      <directionalLight
-        position={[9, 3.5, -4]}
-        intensity={4.2}
-        color="#FF7538"
-        castShadow={quality.shadows}
-        shadow-mapSize={[quality.shadowMapSize, quality.shadowMapSize]}
-        shadow-bias={-0.0001}
-      />
+      {quality.isMobile ? (
+        /* Mobile: Ultra-efficient 3-light setup (Zero shadows, zero spot/point light penumbra overhead) */
+        <>
+          {/* Main Sunset Directional Rim Light */}
+          <directionalLight
+            position={[8, 3.5, -3]}
+            intensity={3.8}
+            color="#FF7538"
+          />
+          {/* Cool Overhead Key Light */}
+          <directionalLight
+            position={[-3, 5, 2]}
+            intensity={2.2}
+            color="#E4F0FF"
+          />
+          {/* Ambient Fill Light */}
+          <ambientLight intensity={0.65} color="#202430" />
+        </>
+      ) : (
+        /* Desktop: Full Studio & Sunset Lighting */
+        <>
+          {/* Warm Sunset Directional Rim Light from the Racetrack Opening (Right) */}
+          <directionalLight
+            position={[9, 3.5, -4]}
+            intensity={4.2}
+            color="#FF7538"
+            castShadow={quality.shadows}
+            shadow-mapSize={[quality.shadowMapSize, quality.shadowMapSize]}
+            shadow-bias={-0.0001}
+          />
 
-      {/* Secondary Warm Horizon Fill Light */}
-      <pointLight position={[12, 1.5, -6]} intensity={3.5} color="#FF511A" distance={25} />
+          {/* Secondary Warm Horizon Fill Light */}
+          <pointLight position={[12, 1.5, -6]} intensity={3.5} color="#FF511A" distance={25} />
 
-      {/* Cool Garage Overhead Light Strip (Left / Top) */}
-      <spotLight
-        position={[-3.5, 6, 1.5]}
-        target-position={[0, 0, 0]}
-        intensity={3.8}
-        color="#E4F0FF"
-        angle={0.65}
-        penumbra={0.7}
-      />
+          {/* Cool Garage Overhead Light Strip (Left / Top) */}
+          <spotLight
+            position={[-3.5, 6, 1.5]}
+            target-position={[0, 0, 0]}
+            intensity={3.8}
+            color="#E4F0FF"
+            angle={0.65}
+            penumbra={0.7}
+          />
 
-      {/* Nosecone / Front Wing Key Spotlight */}
-      <spotLight
-        position={[-1, 3.5, 5]}
-        target-position={[0.5, 0.2, 1]}
-        intensity={2.2}
-        color="#FFFFFF"
-        angle={0.55}
-        penumbra={0.8}
-      />
+          {/* Nosecone / Front Wing Key Spotlight */}
+          <spotLight
+            position={[-1, 3.5, 5]}
+            target-position={[0.5, 0.2, 1]}
+            intensity={2.2}
+            color="#FFFFFF"
+            angle={0.55}
+            penumbra={0.8}
+          />
 
-      {/* Garage Interior Ambient Bounce Light */}
-      <ambientLight intensity={0.4} color="#1c2028" />
+          {/* Garage Interior Ambient Bounce Light */}
+          <ambientLight intensity={0.4} color="#1c2028" />
+        </>
+      )}
 
       {/* 3. Garage Architectural Pillars & LED Light Strips */}
       {/* Left Wall Support Column */}
@@ -78,13 +101,17 @@ export function PitGarageEnvironment() {
         <boxGeometry args={[0.04, 5.0, 0.04]} />
         <meshBasicMaterial color="#FFFFFF" />
       </mesh>
-      <pointLight position={[-5.3, 3.8, 1.5]} intensity={1.5} color="#E0EFFF" distance={6} />
+      {!quality.isMobile && (
+        <pointLight position={[-5.3, 3.8, 1.5]} intensity={1.5} color="#E0EFFF" distance={6} />
+      )}
 
       <mesh position={[-1.2, 4.2, -6]}>
         <boxGeometry args={[0.04, 5.5, 0.04]} />
         <meshBasicMaterial color="#FFFFFF" />
       </mesh>
-      <pointLight position={[-1.2, 4.2, -5.8]} intensity={1.8} color="#FF7A3D" distance={7} />
+      {!quality.isMobile && (
+        <pointLight position={[-1.2, 4.2, -5.8]} intensity={1.8} color="#FF7A3D" distance={7} />
+      )}
 
       {/* Garage Roof / Lintel separating inside and outside track view */}
       <mesh position={[4, 6.8, -6]}>

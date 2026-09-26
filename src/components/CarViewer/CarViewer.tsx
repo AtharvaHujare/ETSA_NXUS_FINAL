@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Canvas } from '@react-three/fiber';
 import * as THREE from 'three';
 import { CarScene } from './CarScene';
@@ -13,38 +13,75 @@ interface CarViewerProps {
 
 export function CarViewer({ onInteract, isHeroVisible = true }: CarViewerProps) {
   const [isLoaded, setIsLoaded] = useState(false);
+  const [isMobile, setIsMobile] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return window.innerWidth <= 768 || window.matchMedia('(max-width: 768px)').matches;
+    }
+    return false;
+  });
+
+  const [isDocumentVisible, setIsDocumentVisible] = useState(() => {
+    return typeof document !== 'undefined' ? document.visibilityState === 'visible' : true;
+  });
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768 || window.matchMedia('(max-width: 768px)').matches);
+    };
+    const handleVisibility = () => {
+      setIsDocumentVisible(document.visibilityState === 'visible');
+    };
+    handleResize();
+    window.addEventListener('resize', handleResize, { passive: true });
+    document.addEventListener('visibilitychange', handleVisibility);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      document.removeEventListener('visibilitychange', handleVisibility);
+    };
+  }, []);
+
   const quality = getQualitySettings();
 
   return (
     <div
+      className="car-viewer-stage"
       style={{
         position: 'absolute',
         inset: 0,
         width: '100%',
         height: '100%',
         overflow: 'hidden',
-        cursor: 'grab',
-        touchAction: 'none',
+        cursor: isMobile ? 'default' : 'grab',
+        pointerEvents: isMobile ? 'none' : 'auto',
+        touchAction: isMobile ? 'auto' : 'none',
       }}
       onMouseDown={(e) => {
-        (e.currentTarget as HTMLElement).style.cursor = 'grabbing';
+        if (!isMobile) {
+          (e.currentTarget as HTMLElement).style.cursor = 'grabbing';
+        }
       }}
       onMouseUp={(e) => {
-        (e.currentTarget as HTMLElement).style.cursor = 'grab';
+        if (!isMobile) {
+          (e.currentTarget as HTMLElement).style.cursor = 'grab';
+        }
       }}
     >
       <Canvas
-        frameloop={isHeroVisible ? 'always' : 'never'}
-        shadows={quality.shadows}
-        dpr={quality.dpr}
+        className="car-viewer-canvas"
+        frameloop={isHeroVisible && isDocumentVisible ? 'always' : 'never'}
+        shadows={isMobile ? false : quality.shadows}
+        dpr={isMobile ? 1.0 : quality.dpr}
         gl={{
-          antialias: quality.antialias,
+          antialias: isMobile ? false : quality.antialias,
           alpha: false,
-          powerPreference: 'high-performance',
+          powerPreference: isMobile ? 'low-power' : 'high-performance',
           toneMapping: THREE.ACESFilmicToneMapping,
           toneMappingExposure: 1.05,
         }}
-        style={{ touchAction: 'none' }}
+        style={{
+          pointerEvents: isMobile ? 'none' : 'auto',
+          touchAction: isMobile ? 'auto' : 'none',
+        }}
         camera={{
           fov: 38,
           near: 0.1,
@@ -53,7 +90,7 @@ export function CarViewer({ onInteract, isHeroVisible = true }: CarViewerProps) 
         }}
         onCreated={() => setIsLoaded(true)}
       >
-        <CarScene onUserInteract={onInteract} />
+        <CarScene onUserInteract={onInteract} isMobile={isMobile} />
       </Canvas>
 
       {/* Loading Overlay */}
@@ -76,6 +113,18 @@ export function CarViewer({ onInteract, isHeroVisible = true }: CarViewerProps) 
           INITIALIZING TELEMETRY // 3D CAR
         </div>
       )}
+
+      {/* Zero touch-capture guarantee on mobile */}
+      <style>{`
+        @media (max-width: 768px) {
+          .car-viewer-stage,
+          .car-viewer-stage canvas {
+            pointer-events: none !important;
+            touch-action: auto !important;
+            cursor: default !important;
+          }
+        }
+      `}</style>
     </div>
   );
 }

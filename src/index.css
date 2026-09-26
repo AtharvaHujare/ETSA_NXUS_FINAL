@@ -81,6 +81,12 @@ body {
   transform: translateZ(0);
 }
 
+@media (max-width: 768px) {
+  .noise-overlay {
+    display: none !important;
+  }
+}
+
 /* Typography Utilities */
 .font-display {
   font-family: var(--font-display);

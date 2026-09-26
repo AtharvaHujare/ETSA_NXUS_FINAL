@@ -14,6 +14,7 @@ interface CircuitSceneProps {
   onSelectStop: (stop: PitStop) => void;
   carProgress: number;
   onCarArrive?: () => void;
+  isVisible?: boolean;
 }
 
 // Cinematic Camera Controller
@@ -67,8 +68,26 @@ export function CircuitScene({
   onSelectStop,
   carProgress,
   onCarArrive,
+  isVisible = true,
 }: CircuitSceneProps) {
   const quality = getQualitySettings();
+  const [isMobile, setIsMobile] = React.useState(() => {
+    return typeof window !== 'undefined' ? window.innerWidth <= 768 : false;
+  });
+  const [isDocVisible, setIsDocVisible] = React.useState(() => {
+    return typeof document !== 'undefined' ? document.visibilityState === 'visible' : true;
+  });
+
+  React.useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 768);
+    const handleVisibility = () => setIsDocVisible(document.visibilityState === 'visible');
+    window.addEventListener('resize', handleResize, { passive: true });
+    document.addEventListener('visibilitychange', handleVisibility);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      document.removeEventListener('visibilitychange', handleVisibility);
+    };
+  }, []);
 
   return (
     <div
@@ -79,21 +98,26 @@ export function CircuitScene({
         width: '100%',
         height: '100%',
         zIndex: 1,
-        pointerEvents: 'auto',
+        pointerEvents: isMobile ? 'none' : 'auto',
+        touchAction: isMobile ? 'auto' : 'none',
       }}
     >
       <Canvas
+        frameloop={isVisible && isDocVisible ? 'always' : 'never'}
         camera={{ position: [0, 32, 38], fov: 38, near: 0.5, far: 200 }}
-        dpr={quality.dpr}
+        dpr={isMobile ? 1.0 : quality.dpr}
         gl={{
-          antialias: quality.antialias,
+          antialias: isMobile ? false : quality.antialias,
           alpha: false,
-          powerPreference: 'high-performance',
+          powerPreference: isMobile ? 'low-power' : 'high-performance',
           toneMapping: THREE.ACESFilmicToneMapping,
           toneMappingExposure: 1.15,
         }}
-        shadows={quality.shadows}
-        style={{ touchAction: 'none' }}
+        shadows={isMobile ? false : quality.shadows}
+        style={{
+          pointerEvents: isMobile ? 'none' : 'auto',
+          touchAction: isMobile ? 'auto' : 'none',
+        }}
       >
         {/* Deep atmospheric fog matching reference aesthetic */}
         <color attach="background" args={['#050507']} />
@@ -107,9 +131,9 @@ export function CircuitScene({
           position={[25, 45, 20]}
           color="#d2e3f8"
           intensity={2.4}
-          castShadow={quality.shadows}
-          shadow-mapSize-width={quality.shadowMapSize}
-          shadow-mapSize-height={quality.shadowMapSize}
+          castShadow={isMobile ? false : quality.shadows}
+          shadow-mapSize-width={isMobile ? 0 : quality.shadowMapSize}
+          shadow-mapSize-height={isMobile ? 0 : quality.shadowMapSize}
           shadow-bias={-0.0001}
         />
 
@@ -119,12 +143,13 @@ export function CircuitScene({
         {/* Elevated Camera Controller */}
         <CameraController activeStop={activeStop} />
 
-        {/* Orbit Controls with bounded angles for user exploration without breaking cinematic composition */}
+        {/* Orbit Controls: Enabled on desktop, disabled on mobile so touches scroll smoothly */}
         <OrbitControls
-          enableZoom={true}
+          enabled={!isMobile}
+          enableZoom={!isMobile}
           minDistance={18}
           maxDistance={65}
-          maxPolarAngle={Math.PI / 2.15} // Don't allow viewing underneath the ground
+          maxPolarAngle={Math.PI / 2.15}
           minPolarAngle={Math.PI / 6}
           enablePan={false}
           dampingFactor={0.06}

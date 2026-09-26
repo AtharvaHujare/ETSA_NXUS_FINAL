@@ -17,18 +17,20 @@ export function CalendarSection({ onRegisterClick, canLoad3D = true }: CalendarS
   const [selectedDay, setSelectedDay] = useState<1 | 2>(1);
   const [activeStop, setActiveStop] = useState<PitStop>(PIT_STOPS[0]);
   const [carProgress, setCarProgress] = useState<number>(PIT_STOPS[0].trackProgress);
-  const [isNearViewport, setIsNearViewport] = useState(false);
+  const [isCalendarVisible, setIsCalendarVisible] = useState(false);
+  const [hasLoadedCircuit, setHasLoadedCircuit] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     if (!canLoad3D) return;
     const observer = new IntersectionObserver(
       ([entry]) => {
+        setIsCalendarVisible(entry.isIntersecting);
         if (entry.isIntersecting) {
-          setIsNearViewport(true);
+          setHasLoadedCircuit(true);
         }
       },
-      { rootMargin: '350px' }
+      { rootMargin: '200px', threshold: 0.02 }
     );
     if (sectionRef.current) observer.observe(sectionRef.current);
     return () => observer.disconnect();
@@ -81,7 +83,7 @@ export function CalendarSection({ onRegisterClick, canLoad3D = true }: CalendarS
         }}
       >
         {/* Real 3D WebGL Canvas Scene - Only loaded when scrolled near and intro is finished */}
-        {canLoad3D && isNearViewport ? (
+        {canLoad3D && hasLoadedCircuit ? (
           <Suspense
             fallback={
               <div
@@ -111,6 +113,7 @@ export function CalendarSection({ onRegisterClick, canLoad3D = true }: CalendarS
               activeStop={activeStop}
               onSelectStop={handleSelectStop}
               carProgress={carProgress}
+              isVisible={isCalendarVisible}
             />
           </Suspense>
         ) : (

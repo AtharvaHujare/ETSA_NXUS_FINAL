@@ -91,9 +91,24 @@ export function GlimpsesCarousel() {
     startTimeRef.current = Date.now() - (progressPctRef.current / 100) * AUTO_INTERVAL_MS;
   }, []);
 
-  // Smooth DOM-based Progress Bar & Auto-Advance loop (zero React re-renders per frame)
+  const [isInViewport, setIsInViewport] = useState(false);
+
   useEffect(() => {
-    if (isPaused) {
+    const el = containerRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsInViewport(entry.isIntersecting);
+      },
+      { threshold: 0.05 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  // Smooth DOM-based Progress Bar & Auto-Advance loop (paused when offscreen or paused)
+  useEffect(() => {
+    if (isPaused || !isInViewport) {
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
       return;
     }
@@ -120,7 +135,7 @@ export function GlimpsesCarousel() {
     return () => {
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
     };
-  }, [currentIndex, isPaused, handleNext]);
+  }, [currentIndex, isPaused, isInViewport, handleNext]);
 
   // Keyboard navigation - strictly non-intrusive to page scrolling
   useEffect(() => {
@@ -228,8 +243,11 @@ export function GlimpsesCarousel() {
               }}
             >
               <img
+                className="glimpse-img"
                 src={img.src}
                 alt={`NEXUS 2026 Glimpse ${img.id}`}
+                loading={idx === 0 ? 'eager' : 'lazy'}
+                decoding="async"
                 onError={(e) => handleImageError(img.id, e)}
                 style={{
                   width: '100%',
@@ -574,6 +592,11 @@ export function GlimpsesCarousel() {
         @keyframes kenBurns {
           0% { transform: scale(1.0); }
           100% { transform: scale(1.04); }
+        }
+        @media (max-width: 768px) {
+          .glimpse-img {
+            animation: none !important;
+          }
         }
         @media (prefers-reduced-motion: reduce) {
           * {

@@ -294,6 +294,7 @@ export function HeroContent({ hasInteracted, onExploreEvents, onWatchTrailer }: 
 
       {/* Middle Center/Right: Drag to Rotate Hint */}
       <div
+        className="drag-hint-container"
         style={{
           alignSelf: 'center',
           display: 'flex',
@@ -447,6 +448,9 @@ export function HeroContent({ hasInteracted, onExploreEvents, onWatchTrailer }: 
       <style>{`
         @media (max-width: 768px) {
           .pitwall-motto {
+            display: none !important;
+          }
+          .drag-hint-container {
             display: none !important;
           }
         }

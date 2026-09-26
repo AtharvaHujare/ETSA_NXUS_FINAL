@@ -64,6 +64,15 @@ export function EngineeringDeskScene({
 }: EngineeringDeskSceneProps) {
   const [webGlSupported, setWebGlSupported] = useState(true);
   const quality = getQualitySettings();
+  const [isMobile, setIsMobile] = useState(() => {
+    return typeof window !== 'undefined' ? window.innerWidth <= 768 : false;
+  });
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 768);
+    window.addEventListener('resize', handleResize, { passive: true });
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   useEffect(() => {
     try {
@@ -102,19 +111,24 @@ export function EngineeringDeskScene({
         width: '100%',
         height: '100%',
         minHeight: '440px',
+        pointerEvents: isMobile ? 'none' : 'auto',
+        touchAction: isMobile ? 'auto' : 'none',
       }}
     >
       <Canvas
         camera={{ position: [0.4, 1.6, 3.6], fov: 42, near: 0.2, far: 50 }}
-        dpr={quality.dpr}
+        dpr={isMobile ? 1.0 : quality.dpr}
         gl={{
-          antialias: quality.antialias,
-          powerPreference: 'high-performance',
+          antialias: isMobile ? false : quality.antialias,
+          powerPreference: isMobile ? 'low-power' : 'high-performance',
           toneMapping: THREE.ACESFilmicToneMapping,
           toneMappingExposure: 1.1,
         }}
-        shadows={quality.shadows}
-        style={{ touchAction: 'none' }}
+        shadows={isMobile ? false : quality.shadows}
+        style={{
+          pointerEvents: isMobile ? 'none' : 'auto',
+          touchAction: isMobile ? 'auto' : 'none',
+        }}
       >
         {/* Dark garage background atmosphere */}
         <color attach="background" args={['#070709']} />
@@ -132,9 +146,9 @@ export function EngineeringDeskScene({
           distance={8}
           angle={Math.PI / 3.4}
           penumbra={0.6}
-          castShadow={quality.shadows}
-          shadow-mapSize-width={quality.shadowMapSize}
-          shadow-mapSize-height={quality.shadowMapSize}
+          castShadow={isMobile ? false : quality.shadows}
+          shadow-mapSize-width={isMobile ? 0 : quality.shadowMapSize}
+          shadow-mapSize-height={isMobile ? 0 : quality.shadowMapSize}
         />
 
         {/* Cool Rim Key Light from the rear */}
@@ -143,11 +157,12 @@ export function EngineeringDeskScene({
         {/* Warm Motorsport Rim Light from right */}
         <directionalLight position={[3.2, 1.8, 1.5]} color="#ff2200" intensity={0.7} />
 
-        {/* Parallax Controller */}
-        <ParallaxCameraController />
+        {/* Parallax Controller (Desktop only) */}
+        {!isMobile && <ParallaxCameraController />}
 
         {/* Bounded Orbit Controls so the user can freely inspect but not flip outside garage */}
         <OrbitControls
+          enabled={!isMobile}
           enableZoom={false}
           enablePan={false}
           minPolarAngle={Math.PI / 4}

@@ -199,7 +199,7 @@ export function HackathonTimelineModal({ isOpen, onClose }: HackathonTimelineMod
               color: '#777777',
             }}
           >
-            Source: Rulebook_FORMULA_HARDWARE 1.pdf
+            Source: Rulebook_FORMULA_HARDWARE 2_final.pdf
           </span>
           <button
             onClick={onClose}

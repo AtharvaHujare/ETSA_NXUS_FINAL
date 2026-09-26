@@ -132,6 +132,42 @@ export function AboutSection() {
             </div>
           ))}
         </div>
+
+        {/* Technical Domains Strip */}
+        <div style={{ marginBottom: '20px' }}>
+          <div
+            style={{
+              fontFamily: 'var(--font-mono)',
+              fontSize: '0.62rem',
+              fontWeight: 700,
+              letterSpacing: '0.14em',
+              color: '#8A8A93',
+              textTransform: 'uppercase',
+              marginBottom: '8px',
+            }}
+          >
+            DOMAINS & PROBLEM STATEMENTS
+          </div>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
+            {HARDWARE_HACKATHON_DATA.domains.map((domain) => (
+              <span
+                key={domain}
+                style={{
+                  fontFamily: 'var(--font-mono)',
+                  fontSize: '0.62rem',
+                  padding: '3px 8px',
+                  background: 'rgba(255, 255, 255, 0.03)',
+                  border: '1px solid rgba(255, 255, 255, 0.08)',
+                  borderRadius: '3px',
+                  color: '#C0C0C8',
+                  letterSpacing: '0.04em',
+                }}
+              >
+                {domain}
+              </span>
+            ))}
+          </div>
+        </div>
       </div>
 
       {/* Bottom Motorsport Banner matching reference */}

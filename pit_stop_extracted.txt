@@ -1,0 +1,165 @@
+--- PAGE 1 ---
+  
+PCET' S 
+Pimpri Chinchwad College Of Engineering, 
+Nigdi Pune 
+Electronics & Telecommunication Student 
+Association- ISF, IEEE SPS & IETE 
+  
+NEXUS - 2026 
+PIT STOP PROTOCOL 
+Event Type: Non-Technical Event 
+Venue 
+3rd Floor EnTC Building 
+Event Coordinators 
+Third Year (TY) Coordinators: 
+Vibhuti Sahu – 8600964115 
+Atharva Pagrut – 9637715791 
+Kunj Patil – 7745898274 
+Second Year (SY) Coordinators: 
+Yash Mali – 9356800345 
+Vedanti Waikar – 7972037770 
+Prize Pool : 15k+ 
+Event Description 
+Event Overview: 
+Pit Stop Protocol is a multi-round strategy and coordination event that tests participants' logical reasoning, 
+clue-solving ability, teamwork, and composure under time pressure. Inspired by the world of Formula 1 
+racing, the event challenges teams to move through a qualifying assessment, a clue-driven pursuit across 
+campus which also includes simple technical clues, and a final hands-on coordination challenge modelled on a 
+race pit stop. While the theme is motorsport, every round is self-contained and logic-driven — no prior 
+knowledge of Formula 1, its teams, or its rules is required to compete or to win. The event is designed so that 
+participants who have never watched a race compete on equal footing with those who have. 
+ 
+Event Structure & Rules: 
+Round 1: Grid Qualifiers (Online Assessment) 
+● Conducted online; individual team members may attempt together on one device or as decided by 
+coordinators.  
+● Numerical and logical reasoning questions, lightly themed c around race strategy (pit timing, lap math, 
+probability).  
+● All data required to solve a question is provided within it — no outside F1 knowledge is needed.  
+● Teams are ranked by score ,time and shortlisted for Round 2. 
+ 
+Round 2: Pit Lane Pursuit (Treasure Hunt) 
+● Each team receives an opening chit containing a hint to the location of the next clue.  
+● Teams follow the resulting chain of clues across the venue; each chit leads to the next.  
+
+--- PAGE 2 ---
+● Some clues may include a short technical, logical, or engineering-based task that must be solved to 
+proceed to the next clue. All information required to solve such tasks will be provided within the clue 
+itself. 
+● The final clue leads to a hidden 'suspense object' — locating and presenting it marks the hunt as complete. 
+ ● Teams are shortlisted based on the total time taken to complete the full chain. 
+ ● Each team receives a unique set of clues to prevent teams from following one another. 
+Optional Lifeline 
+• Each team may use one additional hint at any point during the round. 
+• The lifeline is separate from the normal clue chain. 
+• If the lifeline is used, 45 sec  is added to the actual time. 
+• Final Time = Actual Time + 45 sec  (if lifeline is used). 
+ 
+Round 3 – Blindfolded Pit Walk (Final Round) 
+● One member of each team is blindfolded at the start line of a hurdle track.  
+● The track includes obstacles such as tyres, barricades, and cones laid out in a fixed pattern.  
+● Remaining team members stand outside the track boundary and may only guide the blindfolded member 
+verbally — no physical contact or touching is allowed.  
+● The blindfolded member must complete the track, avoiding all hurdles, in the shortest possible time. 
+● Each hurdle contact adds a time penalty; a set number of contacts results in elimination. 
+● Winner is declared based on final completion time (including penalties). 
+ 
+Lifeline Decision 
+• Use Lifeline: Teams may call for an additional hint when stuck. 45 sec is added to their final time. 
+• Save Lifeline: Teams may choose to solve the challenge without using the lifeline. No time penalty is 
+applied, and the saved lifeline carries into the final round as a Round 3 advantage. 
+ 
+ 
+Event Timeline 
+Time Activity Description 
+8 October 2026 
+7-8 PM Reporting & Briefing Team verification and explanation of event rules, round structure, 
+and safety instructions for the physical final round. 
+11:00 AM – 11:45 AM 
+Round 1 – Grid 
+Qualifiers (Online 
+Assessment) 
+Online aptitude and logical-reasoning assessment, lightly themed 
+around race strategy. All data needed to answer is provided within 
+the questions — no prior F1 knowledge required. Teams 
+shortlisted by score and time. 
+12:00 PM – 1:30 PM Round 2 – Pit Lane 
+Pursuit (Treasure Hunt) 
+Chit-based clue hunt across campus. The first chit hints at the 
+location of the second, and so on, ending in a hidden 'suspense 
+object' that confirms completion. Teams are shortlisted by the 
+time taken to complete the full chain. 
+1:30 PM – 2:00 PM Break & Transition Break period, followed by briefing and safety walkthrough for the 
+final round. 
+2:00 PM – 3:30 PM Round 3 – Blindfolded 
+Pit Walk (Final Round) 
+One blindfolded team member navigates a hurdle track (tyres, 
+barricades, cones) guided only by verbal instructions from 
+teammates. Winner decided by completion time and number of 
+hurdle contacts. 
+Event Rules and Regulations 
+1. Team & Participation Rules 
+--- PAGE 3 ---
+● Each team must consist of exactly [4] members. 
+● Teams must report on time for registration and briefing. 
+● Only registered team members are allowed to participate in subsequent 
+rounds . 
+ 
+● No external help (phones, internet, books) is allowed during Rounds 1 and 
+2. 
+● Teams must follow their assigned clues strictly during Round 2; swapping 
+or sharing clues with other teams is not permitted. 
+● In Round 3, only verbal guidance is allowed — no team member may 
+touch, pull, or physically direct the blindfolded participant. 
+● Safety briefing for Round 3 is mandatory for all participating teams before 
+the round begins. 
+ 
+2. Resource & Technical Constraints 
+● All necessary equipment, resources, and materials will be provided by the 
+organizers. 
+3. Time & Submission Rules 
+● Teams must adhere strictly to the given time limits for each round. 
+● Teams may call for an additional hint when stuck. 45 sec is added to their 
+final time (ROUND 2) 
+● If lifeline in ROUND 2 is saved no Time penalty is added for ROUND 2 . 
+● Evaluation of Last Round is also Time based . 
+4. Conduct & Fair Play 
+● Teams must maintain professional behaviour throughout the event. 
+● Any attempt to gain unfair advantage will lead to disqualification. 
+● Judges' & Co-ordinators' decisions will be final and binding. 
+5. Disqualification Criteria & Elimination Criteria  
+● Any form of misconduct, cheating, or rule violation will result in immediate 
+disqualification. 
+● Use of offensive, unsafe, or prohibited material. 
+● A time penalty is added for each contact; a set number of contacts within 
+one attempt results in elimination. (FOR ROUND 3 HURDLES),No.of 
+touches and exact time penalty will be conveyed at the time of Round 3. 
+ 
+ 
+6. Tie-Breaker Rules 
+● In case of a tie in ROUND 1, the team with the lower time taken in Quiz of  
+Round 1 will be ranked higher. 
+Evaluation and Judging Criteria 
+● Accuracy of answers and solutions  
+● Logical approach and problem-solving strategy 
+--- PAGE 4 ---
+● Team coordination and communication (especially in Round 3)  
+● Time taken to complete each round  
+● Rule adherence, including hurdle-contact penalties in Round 3 
+ 
+ 
+ 
+FAQs 
+1. Who can participate? 
+- Any undergraduate engineering student with a valid college ID. 
+2. Do we need prior Formula 1 knowledge? 
+- No. All rounds are self-contained and logic- or coordination-based; no racing knowledge is 
+tested or assumed. 
+     3.Can team members be changed later? 
+     - No. Teams once registered cannot be modified. 
+     4. Will the clues in Round 2 be the same for all teams? 
+     -No. Each team receives a unique clue chain. 
+     5. What happens if the blindfolded participant touches a hurdle in Round 3?  
+      -A time penalty is added for each contact; a set number of contacts within one attempt results in 
+elimination.  

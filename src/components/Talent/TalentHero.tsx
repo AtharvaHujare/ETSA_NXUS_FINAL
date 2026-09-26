@@ -438,7 +438,7 @@ export function TalentHero({ onRegisterClick, onBackToEvents }: TalentHeroProps)
               {/* Download Rulebook Button */}
               <a
                 href={d.rulebookPdfUrl}
-                download="Rulebook_PCCOE_GOT_TALENT.pdf"
+                download="RULEBOOK_Pccoe_Got_Talent_Technical_final.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{
@@ -507,11 +507,11 @@ export function TalentHero({ onRegisterClick, onBackToEvents }: TalentHeroProps)
                 textTransform: 'uppercase',
               }}
             >
-              IDEAS
+              INNOVATE
               <br />
-              PEOPLE
+              BUILD
               <br />
-              CULTURE
+              SHOWCASE
             </div>
 
             {/* Stage Hero Image */}

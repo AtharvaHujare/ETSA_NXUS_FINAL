@@ -122,7 +122,7 @@ export function DayScheduleCards({
               </div>
 
               {/* Timetable Rows */}
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
                 {day.sessions.map((session, sIdx) => {
                   const matchingStop = session.pitStopId
                     ? PIT_STOPS.find((s) => s.id === session.pitStopId)
@@ -140,81 +140,177 @@ export function DayScheduleCards({
                         }
                       }}
                       style={{
-                        display: 'grid',
-                        gridTemplateColumns: '95px 1fr auto',
-                        alignItems: 'center',
-                        gap: '14px',
-                        padding: '9px 12px',
-                        borderRadius: '4px',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        gap: '6px',
+                        padding: '12px 14px',
+                        borderRadius: '6px',
                         background: isSessionActive
                           ? 'rgba(225, 6, 0, 0.16)'
                           : 'rgba(255, 255, 255, 0.02)',
                         border: isSessionActive
-                          ? '1px solid rgba(225, 6, 0, 0.5)'
-                          : '1px solid transparent',
+                          ? '1px solid rgba(225, 6, 0, 0.55)'
+                          : '1px solid rgba(255, 255, 255, 0.05)',
                         cursor: matchingStop ? 'pointer' : 'default',
                         transition: 'all 0.2s ease',
                       }}
                       onMouseEnter={(e) => {
                         if (matchingStop && !isSessionActive) {
-                          e.currentTarget.style.background = 'rgba(255, 255, 255, 0.06)';
+                          e.currentTarget.style.background = 'rgba(255, 255, 255, 0.05)';
                           e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.15)';
                         }
                       }}
                       onMouseLeave={(e) => {
                         if (matchingStop && !isSessionActive) {
                           e.currentTarget.style.background = 'rgba(255, 255, 255, 0.02)';
-                          e.currentTarget.style.borderColor = 'transparent';
+                          e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.05)';
                         }
                       }}
                     >
-                      {/* Time */}
-                      <span
+                      {/* Event Header Row: Time + Title + PIT badge */}
+                      <div
                         style={{
-                          fontFamily: 'var(--font-mono)',
-                          fontSize: '0.74rem',
-                          fontWeight: 600,
-                          color: isSessionActive ? '#FF3B30' : '#A0A0A0',
-                          letterSpacing: '0.08em',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'space-between',
+                          gap: '12px',
+                          flexWrap: 'wrap',
                         }}
                       >
-                        {session.time}
-                      </span>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flexWrap: 'wrap' }}>
+                          {/* Time Badge */}
+                          <span
+                            style={{
+                              fontFamily: 'var(--font-mono)',
+                              fontSize: '0.72rem',
+                              fontWeight: 700,
+                              color: isSessionActive ? '#FF4D4D' : day.accentColor,
+                              letterSpacing: '0.08em',
+                              background: 'rgba(255, 255, 255, 0.04)',
+                              padding: '2px 8px',
+                              borderRadius: '3px',
+                              border: `1px solid ${isSessionActive ? 'rgba(225, 6, 0, 0.4)' : 'rgba(255, 255, 255, 0.08)'}`,
+                            }}
+                          >
+                            {session.time}
+                          </span>
 
-                      {/* Title */}
-                      <span
-                        style={{
-                          fontFamily: 'var(--font-body)',
-                          fontSize: '0.88rem',
-                          fontWeight: matchingStop ? 600 : 400,
-                          color: isSessionActive ? '#FFFFFF' : matchingStop ? '#F0F0F0' : '#888888',
-                          letterSpacing: '0.02em',
-                        }}
-                      >
-                        {session.title}
-                      </span>
+                          {/* Event Title */}
+                          <span
+                            style={{
+                              fontFamily: 'var(--font-racing)',
+                              fontSize: '0.94rem',
+                              fontWeight: 700,
+                              color: isSessionActive ? '#FFFFFF' : matchingStop ? '#F0F0F0' : '#888888',
+                              letterSpacing: '0.04em',
+                              textTransform: 'uppercase',
+                            }}
+                          >
+                            {session.title}
+                          </span>
+                        </div>
 
-                      {/* Pit Stop Badge Link */}
-                      {matchingStop && (
-                        <span
+                        {/* Pit Stop Badge Link */}
+                        {matchingStop && (
+                          <span
+                            style={{
+                              fontFamily: 'var(--font-mono)',
+                              fontSize: '0.62rem',
+                              fontWeight: 800,
+                              letterSpacing: '0.12em',
+                              padding: '3px 9px',
+                              background: isSessionActive
+                                ? '#E10600'
+                                : 'rgba(255, 255, 255, 0.06)',
+                              color: '#FFFFFF',
+                              borderRadius: '2px',
+                              display: 'inline-flex',
+                              alignItems: 'center',
+                              gap: '4px',
+                              boxShadow: isSessionActive ? '0 0 12px rgba(225, 6, 0, 0.6)' : 'none',
+                              flexShrink: 0,
+                            }}
+                          >
+                            PIT {matchingStop.stopNumber}
+                          </span>
+                        )}
+                      </div>
+
+                      {/* Location / Subtitle */}
+                      {session.location && (
+                        <div
                           style={{
                             fontFamily: 'var(--font-mono)',
-                            fontSize: '0.60rem',
-                            fontWeight: 700,
-                            letterSpacing: '0.1em',
-                            padding: '3px 8px',
-                            background: isSessionActive
-                              ? '#E10600'
-                              : 'rgba(255, 255, 255, 0.06)',
-                            color: '#FFFFFF',
-                            borderRadius: '2px',
+                            fontSize: '0.68rem',
+                            color: '#8E8E96',
+                            letterSpacing: '0.03em',
                             display: 'flex',
                             alignItems: 'center',
-                            gap: '4px',
+                            gap: '6px',
                           }}
                         >
-                          PIT {matchingStop.stopNumber}
-                        </span>
+                          <span style={{ color: day.accentColor }}>•</span>
+                          <span>{session.location}</span>
+                        </div>
+                      )}
+
+                      {session.subtitle && !session.rounds && (
+                        <div
+                          style={{
+                            fontFamily: 'var(--font-mono)',
+                            fontSize: '0.66rem',
+                            color: '#76767E',
+                            letterSpacing: '0.02em',
+                          }}
+                        >
+                          {session.subtitle}
+                        </div>
+                      )}
+
+                      {/* Nested Rounds Breakdown (e.g. for Pit Stop Protocol) */}
+                      {session.rounds && (
+                        <div
+                          style={{
+                            marginTop: '4px',
+                            paddingTop: '6px',
+                            borderTop: '1px solid rgba(255, 255, 255, 0.05)',
+                            display: 'flex',
+                            flexDirection: 'column',
+                            gap: '5px',
+                          }}
+                        >
+                          {session.rounds.map((round, rIdx) => (
+                            <div
+                              key={rIdx}
+                              style={{
+                                display: 'grid',
+                                gridTemplateColumns: 'clamp(115px, 28%, 140px) 1fr',
+                                gap: '8px',
+                                alignItems: 'center',
+                                fontFamily: 'var(--font-mono)',
+                                fontSize: '0.68rem',
+                              }}
+                            >
+                              <span
+                                style={{
+                                  color: isSessionActive ? '#FFA0A0' : '#A0A0A8',
+                                  fontWeight: 600,
+                                  letterSpacing: '0.02em',
+                                }}
+                              >
+                                {round.time}
+                              </span>
+                              <span
+                                style={{
+                                  color: '#CCCCCC',
+                                  letterSpacing: '0.01em',
+                                }}
+                              >
+                                {round.title}
+                              </span>
+                            </div>
+                          ))}
+                        </div>
                       )}
                     </div>
                   );

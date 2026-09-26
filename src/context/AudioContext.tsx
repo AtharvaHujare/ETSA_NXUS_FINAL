@@ -19,59 +19,90 @@ export function AudioProvider({ children }: { children: React.ReactNode }) {
 
   // Initialize single global audio instance
   useEffect(() => {
-    // Encode spaces in audio filename for universal browser compatibility
-    const audioSrc = encodeURI('/Formula 1 - Brian Tyler.mp3');
-    const audio = new Audio(audioSrc);
-    audio.loop = true;
-    audio.volume = 0.55;
-    audio.preload = 'auto';
-    audioRef.current = audio;
+    let audio: HTMLAudioElement | null = null;
+    let onPlay: (() => void) | null = null;
+    let onPause: (() => void) | null = null;
+    let onError: (() => void) | null = null;
 
-    // Track play/pause state from audio events
-    const onPlay = () => setIsPlaying(true);
-    const onPause = () => setIsPlaying(false);
-    audio.addEventListener('play', onPlay);
-    audio.addEventListener('pause', onPause);
+    try {
+      // Use clean filename without spaces for reliable Linux/Vercel production serving
+      const primarySrc = '/formula1_theme.mp3';
+      const fallbackSrc = encodeURI('/Formula 1 - Brian Tyler.mp3');
 
-    // Attempt autoplay gracefully per modern browser standards
-    const startPlayback = () => {
-      if (hasInteractedRef.current) return;
-      hasInteractedRef.current = true;
+      audio = new Audio(primarySrc);
+      audio.loop = true;
+      audio.volume = 0.55;
+      audio.preload = 'auto';
+      audioRef.current = audio;
 
-      if (audioRef.current && !audioRef.current.paused) return;
+      // Track play/pause state from audio events
+      onPlay = () => setIsPlaying(true);
+      onPause = () => setIsPlaying(false);
+      onError = () => {
+        // Fallback to secondary source if primary fails
+        if (audio && !audio.src.includes('Formula%201')) {
+          try {
+            audio.src = fallbackSrc;
+            audio.load();
+          } catch {
+            setIsPlaying(false);
+          }
+        } else {
+          setIsPlaying(false);
+        }
+      };
 
-      audio.play().then(() => {
-        setIsPlaying(true);
-        setIsMuted(false);
-      }).catch(() => {
-        // Browser blocked initial unmuted autoplay - keep ready for first user gesture
-        setIsPlaying(false);
-      });
-    };
+      audio.addEventListener('play', onPlay);
+      audio.addEventListener('pause', onPause);
+      audio.addEventListener('error', onError);
 
-    // Try playing immediately
-    const initialPlayPromise = audio.play();
-    if (initialPlayPromise !== undefined) {
-      initialPlayPromise
-        .then(() => {
+      // Attempt autoplay gracefully per modern browser standards
+      const startPlayback = () => {
+        if (hasInteractedRef.current) return;
+        hasInteractedRef.current = true;
+
+        if (audioRef.current && !audioRef.current.paused) return;
+
+        audioRef.current?.play().then(() => {
           setIsPlaying(true);
-          hasInteractedRef.current = true;
-        })
-        .catch(() => {
-          // Listen for first document interaction to unlock audio
-          const unlockEvents = ['click', 'pointerdown', 'keydown', 'touchstart'];
-          const unlockHandler = () => {
-            startPlayback();
-            unlockEvents.forEach((evt) => window.removeEventListener(evt, unlockHandler));
-          };
-          unlockEvents.forEach((evt) => window.addEventListener(evt, unlockHandler, { once: true }));
+          setIsMuted(false);
+        }).catch(() => {
+          // Browser blocked initial unmuted autoplay - keep ready for first user gesture
+          setIsPlaying(false);
         });
+      };
+
+      // Try playing immediately
+      const initialPlayPromise = audio.play();
+      if (initialPlayPromise !== undefined) {
+        initialPlayPromise
+          .then(() => {
+            setIsPlaying(true);
+            hasInteractedRef.current = true;
+          })
+          .catch(() => {
+            // Listen for first document interaction to unlock audio
+            const unlockEvents = ['click', 'pointerdown', 'keydown', 'touchstart'];
+            const unlockHandler = () => {
+              startPlayback();
+              unlockEvents.forEach((evt) => window.removeEventListener(evt, unlockHandler));
+            };
+            unlockEvents.forEach((evt) => window.addEventListener(evt, unlockHandler, { once: true }));
+          });
+      }
+    } catch (err) {
+      console.warn('Audio initialization notice:', err);
     }
 
     return () => {
-      audio.removeEventListener('play', onPlay);
-      audio.removeEventListener('pause', onPause);
-      audio.pause();
+      if (audio) {
+        if (onPlay) audio.removeEventListener('play', onPlay);
+        if (onPause) audio.removeEventListener('pause', onPause);
+        if (onError) audio.removeEventListener('error', onError);
+        try {
+          audio.pause();
+        } catch {}
+      }
     };
   }, []);
 

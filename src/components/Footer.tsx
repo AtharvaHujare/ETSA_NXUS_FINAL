@@ -1,7 +1,11 @@
 import React from 'react';
 import { ArrowUp } from 'lucide-react';
 
-export function Footer() {
+interface FooterProps {
+  onNavClick?: (href: string) => void;
+}
+
+export function Footer({ onNavClick }: FooterProps = {}) {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -29,47 +33,58 @@ export function Footer() {
       >
         {/* Brand & Department */}
         <div>
-          <div
-            style={{
-              fontFamily: 'var(--font-display)',
-              fontSize: '1.8rem',
-              fontWeight: 900,
-              letterSpacing: '0.1em',
-              display: 'flex',
-              alignItems: 'center',
-              lineHeight: 1,
-              marginBottom: '6px',
+          <a
+            href="#"
+            onClick={(e) => {
+              if (onNavClick) {
+                e.preventDefault();
+                onNavClick('#');
+              }
             }}
+            style={{ textDecoration: 'none', color: '#FFFFFF', display: 'inline-block' }}
           >
-            <span>NE</span>
-            <span style={{ position: 'relative', color: '#F5F5F5' }}>
-              X
-              <span
-                style={{
-                  position: 'absolute',
-                  top: '46%',
-                  left: '18%',
-                  width: '64%',
-                  height: '3px',
-                  background: 'var(--accent-red)',
-                  transform: 'rotate(-42deg)',
-                  borderRadius: '1px',
-                }}
-              />
-            </span>
-            <span>US</span>
-            <span
+            <div
               style={{
-                fontFamily: 'var(--font-racing)',
-                fontSize: '0.9rem',
-                color: '#888888',
-                marginLeft: '8px',
-                fontWeight: 600,
+                fontFamily: 'var(--font-display)',
+                fontSize: '1.8rem',
+                fontWeight: 900,
+                letterSpacing: '0.1em',
+                display: 'flex',
+                alignItems: 'center',
+                lineHeight: 1,
+                marginBottom: '6px',
               }}
             >
-              2026
-            </span>
-          </div>
+              <span>NE</span>
+              <span style={{ position: 'relative', color: '#F5F5F5' }}>
+                X
+                <span
+                  style={{
+                    position: 'absolute',
+                    top: '46%',
+                    left: '18%',
+                    width: '64%',
+                    height: '3px',
+                    background: 'var(--accent-red)',
+                    transform: 'rotate(-42deg)',
+                    borderRadius: '1px',
+                  }}
+                />
+              </span>
+              <span>US</span>
+              <span
+                style={{
+                  fontFamily: 'var(--font-racing)',
+                  fontSize: '0.9rem',
+                  color: '#888888',
+                  marginLeft: '8px',
+                  fontWeight: 600,
+                }}
+              >
+                2026
+              </span>
+            </div>
+          </a>
 
           <p
             style={{
@@ -112,24 +127,33 @@ export function Footer() {
             NAVIGATION
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-            {['EVENTS', 'CALENDAR', 'SPONSORS', 'GLIMPSES'].map((link) => (
-              <a
-                key={link}
-                href={link === 'GLIMPSES' ? '/glimpses' : `#${link.toLowerCase()}`}
-                style={{
-                  fontFamily: 'var(--font-mono)',
-                  fontSize: '0.78rem',
-                  letterSpacing: '0.14em',
-                  color: '#888888',
-                  textDecoration: 'none',
-                  transition: 'color 0.2s ease',
-                }}
-                onMouseEnter={(e) => (e.currentTarget.style.color = '#FFFFFF')}
-                onMouseLeave={(e) => (e.currentTarget.style.color = '#888888')}
-              >
-                {link}
-              </a>
-            ))}
+            {['EVENTS', 'CALENDAR', 'SPONSORS', 'GLIMPSES'].map((link) => {
+              const targetHref = link === 'GLIMPSES' ? '/glimpses' : `#${link.toLowerCase()}`;
+              return (
+                <a
+                  key={link}
+                  href={targetHref}
+                  onClick={(e) => {
+                    if (onNavClick) {
+                      e.preventDefault();
+                      onNavClick(targetHref);
+                    }
+                  }}
+                  style={{
+                    fontFamily: 'var(--font-mono)',
+                    fontSize: '0.78rem',
+                    letterSpacing: '0.14em',
+                    color: '#888888',
+                    textDecoration: 'none',
+                    transition: 'color 0.2s ease',
+                  }}
+                  onMouseEnter={(e) => (e.currentTarget.style.color = '#FFFFFF')}
+                  onMouseLeave={(e) => (e.currentTarget.style.color = '#888888')}
+                >
+                  {link}
+                </a>
+              );
+            })}
           </div>
         </div>
 

@@ -317,7 +317,7 @@ export function PitStopHero({ onRegisterClick, onBackToEvents }: PitStopHeroProp
               {/* Download Rulebook Button */}
               <a
                 href={d.rulebookPdfUrl}
-                download="PIT_STOP_PROTOCOL_RULEBOOK-finale.pdf"
+                download="pitstop_finalfinal.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{

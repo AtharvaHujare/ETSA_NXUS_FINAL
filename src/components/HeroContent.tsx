@@ -30,19 +30,145 @@ export function HeroContent({ hasInteracted, onExploreEvents, onWatchTrailer }: 
           alignItems: 'flex-start',
         }}
       >
-        {/* Presenter tag */}
+        {/* Institutional Branding Lockup */}
         <div
+          className="hero-branding-lockup"
           style={{
-            fontFamily: 'var(--font-mono)',
-            fontSize: 'clamp(0.68rem, 1vw, 0.85rem)',
-            letterSpacing: '0.24em',
-            color: '#909499',
-            marginBottom: '10px',
-            textTransform: 'uppercase',
-            fontWeight: 500,
+            display: 'flex',
+            alignItems: 'center',
+            gap: 'clamp(12px, 1.8vw, 20px)',
+            marginBottom: '16px',
+            flexWrap: 'wrap',
           }}
         >
-          PCCOE ENTC PRESENTS
+          {/* Official Logos Group */}
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: 'clamp(10px, 1.2vw, 14px)',
+            }}
+          >
+            {/* PCCOE Logo */}
+            <div
+              title="Pimpri Chinchwad College of Engineering"
+              style={{
+                height: 'clamp(40px, 4.4vw, 50px)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                filter: 'drop-shadow(0 2px 8px rgba(0, 0, 0, 0.6))',
+              }}
+            >
+              <img
+                src="/logos/pccoelogo.png"
+                alt="PCCOE Logo"
+                style={{
+                  height: '100%',
+                  width: 'auto',
+                  objectFit: 'contain',
+                  display: 'block',
+                }}
+              />
+            </div>
+
+            {/* Subtle Vertical Divider */}
+            <div
+              style={{
+                width: '1px',
+                height: '26px',
+                backgroundColor: 'rgba(255, 255, 255, 0.18)',
+              }}
+            />
+
+            {/* ETSA Logo */}
+            <div
+              title="Electronics & Telecommunication Students Association"
+              style={{
+                height: 'clamp(38px, 4.0vw, 46px)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                filter: 'drop-shadow(0 2px 8px rgba(0, 0, 0, 0.6))',
+              }}
+            >
+              <img
+                src="/logos/etsalogo.webp"
+                alt="ETSA Logo"
+                style={{
+                  height: '100%',
+                  width: 'auto',
+                  objectFit: 'contain',
+                  display: 'block',
+                }}
+              />
+            </div>
+
+            {/* IEEE Logo */}
+            <div
+              title="IEEE PCCOE Chapter"
+              style={{
+                height: 'clamp(38px, 4.0vw, 46px)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                filter: 'drop-shadow(0 2px 8px rgba(0, 0, 0, 0.6))',
+              }}
+            >
+              <img
+                src="/logos/ieeelogo.webp"
+                alt="IEEE Logo"
+                style={{
+                  height: '100%',
+                  width: 'auto',
+                  objectFit: 'contain',
+                  display: 'block',
+                }}
+              />
+            </div>
+          </div>
+
+          {/* Association Text & PRESENTS */}
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'center',
+            }}
+          >
+            <div
+              style={{
+                fontFamily: 'var(--font-racing)',
+                fontSize: 'clamp(0.86rem, 1.15vw, 1.05rem)',
+                fontWeight: 700,
+                letterSpacing: '0.16em',
+                color: '#FFFFFF',
+                textTransform: 'uppercase',
+                lineHeight: 1.1,
+                display: 'flex',
+                alignItems: 'center',
+                gap: '6px',
+                textShadow: '0 2px 10px rgba(0, 0, 0, 0.8)',
+              }}
+            >
+              <span>ETSA</span>
+              <span style={{ color: 'var(--accent-red)', fontWeight: 900 }}>×</span>
+              <span>IEEE</span>
+            </div>
+            <div
+              style={{
+                fontFamily: 'var(--font-mono)',
+                fontSize: 'clamp(0.58rem, 0.72vw, 0.68rem)',
+                fontWeight: 600,
+                letterSpacing: '0.28em',
+                color: '#8E9298',
+                textTransform: 'uppercase',
+                marginTop: '3px',
+              }}
+            >
+              PRESENTS
+            </div>
+          </div>
         </div>
 
         {/* Main Title: NEXUS */}
@@ -246,7 +372,7 @@ export function HeroContent({ hasInteracted, onExploreEvents, onWatchTrailer }: 
               marginBottom: '4px',
             }}
           >
-            12 — 14 MAR 2026
+            9 — 10 OCT 2026
           </div>
           <div
             style={{

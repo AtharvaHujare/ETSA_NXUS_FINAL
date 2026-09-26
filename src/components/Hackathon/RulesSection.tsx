@@ -147,7 +147,7 @@ export function RulesSection() {
 
             <a
               href={rulebookPdfUrl}
-              download="Rulebook_FORMULA_HARDWARE 1.pdf"
+              download="Rulebook_FORMULA_HARDWARE 2_final.pdf"
               target="_blank"
               rel="noopener noreferrer"
               style={{

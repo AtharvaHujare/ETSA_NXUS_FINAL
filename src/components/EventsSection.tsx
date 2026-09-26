@@ -58,18 +58,6 @@ export function EventsSection({ onSelectEvent, onNavigateEvent }: EventsSectionP
               EVENTS
             </h2>
           </div>
-
-          <div
-            style={{
-              fontFamily: 'var(--font-mono)',
-              fontSize: '0.78rem',
-              letterSpacing: '0.2em',
-              color: '#888888',
-              textAlign: 'right',
-            }}
-          >
-            TOTAL PURSE // <span style={{ color: 'var(--accent-red)', fontWeight: 700 }}>₹4,10,000+</span>
-          </div>
         </div>
 
         {/* Editorial Category Selector for Events */}

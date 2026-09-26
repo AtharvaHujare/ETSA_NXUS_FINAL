@@ -163,7 +163,7 @@ export function TalentRulesAndCTA() {
         {/* Big Download Button */}
         <a
           href={d.rulebookPdfUrl}
-          download="Rulebook_PCCOE_GOT_TALENT.pdf"
+          download="RULEBOOK_Pccoe_Got_Talent_Technical_final.pdf"
           target="_blank"
           rel="noopener noreferrer"
           className="btn-racing-primary"

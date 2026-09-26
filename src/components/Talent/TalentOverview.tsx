@@ -1,9 +1,19 @@
 import React from 'react';
-import { Users, Heart, Mic, Trophy } from 'lucide-react';
+import { Users, Sparkles, Cpu, Trophy } from 'lucide-react';
 import { PCCOE_GOT_TALENT_DATA } from '../../data/pccoeGotTalentData';
 
 export function TalentOverview() {
   const d = PCCOE_GOT_TALENT_DATA.overview;
+
+  const getFeatureIcon = (iconName: string) => {
+    switch (iconName) {
+      case 'users': return <Users size={16} />;
+      case 'sparkles': return <Sparkles size={16} />;
+      case 'cpu': return <Cpu size={16} />;
+      case 'trophy': return <Trophy size={16} />;
+      default: return <Cpu size={16} />;
+    }
+  };
 
   return (
     <div
@@ -77,209 +87,58 @@ export function TalentOverview() {
             marginBottom: '28px',
           }}
         >
-          {/* Card 1 */}
-          <div
-            style={{
-              background: 'rgba(255, 255, 255, 0.02)',
-              border: '1px solid rgba(255, 255, 255, 0.08)',
-              borderRadius: '6px',
-              padding: '14px 16px',
-              display: 'flex',
-              alignItems: 'center',
-              gap: '12px',
-              transition: 'border-color 0.2s ease',
-            }}
-          >
+          {d.features.map((feat) => (
             <div
+              key={feat.title}
               style={{
-                width: '32px',
-                height: '32px',
-                borderRadius: '4px',
-                backgroundColor: 'rgba(225, 6, 0, 0.1)',
+                background: 'rgba(255, 255, 255, 0.02)',
+                border: '1px solid rgba(255, 255, 255, 0.08)',
+                borderRadius: '6px',
+                padding: '14px 16px',
                 display: 'flex',
                 alignItems: 'center',
-                justifyContent: 'center',
-                color: 'var(--accent-red)',
-                flexShrink: 0,
+                gap: '12px',
+                transition: 'border-color 0.2s ease',
               }}
             >
-              <Users size={16} />
-            </div>
-            <div>
               <div
                 style={{
-                  fontFamily: 'var(--font-mono)',
-                  fontSize: '0.78rem',
-                  fontWeight: 700,
-                  color: '#FFFFFF',
+                  width: '32px',
+                  height: '32px',
+                  borderRadius: '4px',
+                  backgroundColor: 'rgba(225, 6, 0, 0.1)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  color: 'var(--accent-red)',
+                  flexShrink: 0,
                 }}
               >
-                Open to All
+                {getFeatureIcon(feat.icon)}
               </div>
-              <div
-                style={{
-                  fontFamily: 'var(--font-mono)',
-                  fontSize: '0.66rem',
-                  color: '#8A8A93',
-                }}
-              >
-                PCCOE Students
-              </div>
-            </div>
-          </div>
-
-          {/* Card 2 */}
-          <div
-            style={{
-              background: 'rgba(255, 255, 255, 0.02)',
-              border: '1px solid rgba(255, 255, 255, 0.08)',
-              borderRadius: '6px',
-              padding: '14px 16px',
-              display: 'flex',
-              alignItems: 'center',
-              gap: '12px',
-              transition: 'border-color 0.2s ease',
-            }}
-          >
-            <div
-              style={{
-                width: '32px',
-                height: '32px',
-                borderRadius: '4px',
-                backgroundColor: 'rgba(225, 6, 0, 0.1)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                color: 'var(--accent-red)',
-                flexShrink: 0,
-              }}
-            >
-              <Heart size={16} />
-            </div>
-            <div>
-              <div
-                style={{
-                  fontFamily: 'var(--font-mono)',
-                  fontSize: '0.78rem',
-                  fontWeight: 700,
-                  color: '#FFFFFF',
-                }}
-              >
-                Solo or Group
-              </div>
-              <div
-                style={{
-                  fontFamily: 'var(--font-mono)',
-                  fontSize: '0.66rem',
-                  color: '#8A8A93',
-                }}
-              >
-                Acts Welcome
+              <div>
+                <div
+                  style={{
+                    fontFamily: 'var(--font-mono)',
+                    fontSize: '0.78rem',
+                    fontWeight: 700,
+                    color: '#FFFFFF',
+                  }}
+                >
+                  {feat.title}
+                </div>
+                <div
+                  style={{
+                    fontFamily: 'var(--font-mono)',
+                    fontSize: '0.66rem',
+                    color: '#8A8A93',
+                  }}
+                >
+                  {feat.subtitle}
+                </div>
               </div>
             </div>
-          </div>
-
-          {/* Card 3 */}
-          <div
-            style={{
-              background: 'rgba(255, 255, 255, 0.02)',
-              border: '1px solid rgba(255, 255, 255, 0.08)',
-              borderRadius: '6px',
-              padding: '14px 16px',
-              display: 'flex',
-              alignItems: 'center',
-              gap: '12px',
-              transition: 'border-color 0.2s ease',
-            }}
-          >
-            <div
-              style={{
-                width: '32px',
-                height: '32px',
-                borderRadius: '4px',
-                backgroundColor: 'rgba(225, 6, 0, 0.1)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                color: 'var(--accent-red)',
-                flexShrink: 0,
-              }}
-            >
-              <Mic size={16} />
-            </div>
-            <div>
-              <div
-                style={{
-                  fontFamily: 'var(--font-mono)',
-                  fontSize: '0.78rem',
-                  fontWeight: 700,
-                  color: '#FFFFFF',
-                }}
-              >
-                Multiple Categories
-              </div>
-              <div
-                style={{
-                  fontFamily: 'var(--font-mono)',
-                  fontSize: '0.66rem',
-                  color: '#8A8A93',
-                }}
-              >
-                Sing, Dance, Comedy & more
-              </div>
-            </div>
-          </div>
-
-          {/* Card 4 */}
-          <div
-            style={{
-              background: 'rgba(255, 255, 255, 0.02)',
-              border: '1px solid rgba(255, 255, 255, 0.08)',
-              borderRadius: '6px',
-              padding: '14px 16px',
-              display: 'flex',
-              alignItems: 'center',
-              gap: '12px',
-              transition: 'border-color 0.2s ease',
-            }}
-          >
-            <div
-              style={{
-                width: '32px',
-                height: '32px',
-                borderRadius: '4px',
-                backgroundColor: 'rgba(225, 6, 0, 0.1)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                color: 'var(--accent-red)',
-                flexShrink: 0,
-              }}
-            >
-              <Trophy size={16} />
-            </div>
-            <div>
-              <div
-                style={{
-                  fontFamily: 'var(--font-mono)',
-                  fontSize: '0.78rem',
-                  fontWeight: 700,
-                  color: '#FFFFFF',
-                }}
-              >
-                Fun Judging Format
-              </div>
-              <div
-                style={{
-                  fontFamily: 'var(--font-mono)',
-                  fontSize: '0.66rem',
-                  color: '#8A8A93',
-                }}
-              >
-                1–10 Rating System
-              </div>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
 

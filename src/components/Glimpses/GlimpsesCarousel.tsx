@@ -2,10 +2,34 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { ChevronLeft, ChevronRight, Play, Pause } from 'lucide-react';
 
 const GLIMPSES_IMAGES = [
-  { id: '01', src: '/glimpses/1.webp', label: 'MOMENT 01' },
-  { id: '02', src: '/glimpses/2.webp', label: 'MOMENT 02' },
-  { id: '03', src: '/glimpses/3.webp', label: 'MOMENT 03' },
-  { id: '04', src: '/glimpses/4.webp', label: 'MOMENT 04' },
+  {
+    id: '01',
+    src: '/images/glimpses/1.webp',
+    pngFallback: '/images/glimpses/1.png',
+    legacySrc: '/glimpses/1.webp',
+    label: 'MOMENT 01',
+  },
+  {
+    id: '02',
+    src: '/images/glimpses/2.webp',
+    pngFallback: '/images/glimpses/2.png',
+    legacySrc: '/glimpses/2.webp',
+    label: 'MOMENT 02',
+  },
+  {
+    id: '03',
+    src: '/images/glimpses/3.webp',
+    pngFallback: '/images/glimpses/3.png',
+    legacySrc: '/glimpses/3.webp',
+    label: 'MOMENT 03',
+  },
+  {
+    id: '04',
+    src: '/images/glimpses/4.webp',
+    pngFallback: '/images/glimpses/4.png',
+    legacySrc: '/glimpses/4.webp',
+    label: 'MOMENT 04',
+  },
 ];
 
 const AUTO_INTERVAL_MS = 4600;
@@ -14,16 +38,23 @@ export function GlimpsesCarousel() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const [direction, setDirection] = useState<'next' | 'prev'>('next');
+  const [failedImages, setFailedImages] = useState<Record<string, boolean>>({});
   const progressBarRef = useRef<HTMLDivElement>(null);
   const progressPctRef = useRef<number>(0);
-  const startTimeRef = useRef<number>(Date.now());
+  const startTimeRef = useRef<number>(0);
   const rafRef = useRef<number | null>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
 
-  // Preload all 4 optimized WebP images on mount
+  // Preload all 4 optimized WebP images safely on mount
   useEffect(() => {
+    if (typeof window === 'undefined') return;
     GLIMPSES_IMAGES.forEach((img) => {
-      const preloadImg = new Image();
-      preloadImg.src = img.src;
+      try {
+        const preloadImg = new Image();
+        preloadImg.src = img.src;
+      } catch {
+        // Ignore preload errors
+      }
     });
   }, []);
 
@@ -91,21 +122,32 @@ export function GlimpsesCarousel() {
     };
   }, [currentIndex, isPaused, handleNext]);
 
-  // Keyboard navigation
+  // Keyboard navigation - strictly non-intrusive to page scrolling
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       // Don't intercept if typing in an input
       if (['INPUT', 'TEXTAREA'].includes((e.target as HTMLElement)?.tagName)) return;
 
-      if (e.key === 'ArrowRight') {
+      const isHoveredOrFocused =
+        containerRef.current?.matches(':hover') ||
+        containerRef.current?.contains(document.activeElement) ||
+        (typeof window !== 'undefined' && window.location.pathname.toLowerCase().includes('glimpses'));
+
+      if (e.key === ' ' || e.code === 'Space') {
+        // Only preventDefault if user is intentionally interacting with the carousel
+        if (isHoveredOrFocused) {
+          e.preventDefault();
+          togglePlayPause();
+        }
+        return;
+      }
+
+      if (e.key === 'ArrowRight' && isHoveredOrFocused) {
         e.preventDefault();
         handleNext();
-      } else if (e.key === 'ArrowLeft') {
+      } else if (e.key === 'ArrowLeft' && isHoveredOrFocused) {
         e.preventDefault();
         handlePrev();
-      } else if (e.key === ' ' || e.code === 'Space') {
-        e.preventDefault();
-        togglePlayPause();
       }
     };
 
@@ -113,15 +155,36 @@ export function GlimpsesCarousel() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [handleNext, handlePrev, togglePlayPause]);
 
-  const currentItem = GLIMPSES_IMAGES[currentIndex];
+  const currentItem = GLIMPSES_IMAGES[currentIndex] || GLIMPSES_IMAGES[0];
+
+  const handleImageError = (imgId: string, e: React.SyntheticEvent<HTMLImageElement>) => {
+    const target = e.currentTarget;
+    const item = GLIMPSES_IMAGES.find((img) => img.id === imgId);
+    if (!item) return;
+
+    if (target.src.endsWith('.webp') && !target.src.includes('glimpses/')) {
+      // Try legacy path
+      target.src = item.legacySrc;
+    } else if (target.src.endsWith('.webp')) {
+      // Try PNG fallback
+      target.src = item.pngFallback;
+    } else {
+      // Mark as failed gracefully
+      setFailedImages((prev) => ({ ...prev, [imgId]: true }));
+    }
+  };
 
   return (
     <div
+      ref={containerRef}
+      tabIndex={0}
+      aria-label="Nexus 2026 Glimpses Visual Reel"
       style={{
         position: 'relative',
         width: '100%',
         maxWidth: '1240px',
         margin: '0 auto',
+        outline: 'none',
       }}
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
@@ -145,6 +208,7 @@ export function GlimpsesCarousel() {
         {GLIMPSES_IMAGES.map((img, idx) => {
           const isActive = idx === currentIndex;
           const isPrev = (idx === (currentIndex - 1 + GLIMPSES_IMAGES.length) % GLIMPSES_IMAGES.length);
+          const isFailed = failedImages[img.id];
 
           return (
             <div
@@ -152,8 +216,8 @@ export function GlimpsesCarousel() {
               style={{
                 position: 'absolute',
                 inset: 0,
-                opacity: isActive ? 1 : 0,
-                visibility: isActive || isPrev ? 'visible' : 'hidden',
+                opacity: isActive && !isFailed ? 1 : 0,
+                visibility: (isActive || isPrev) && !isFailed ? 'visible' : 'hidden',
                 transform: isActive
                   ? 'scale(1.02) translate3d(0, 0, 0)'
                   : direction === 'next'
@@ -166,6 +230,7 @@ export function GlimpsesCarousel() {
               <img
                 src={img.src}
                 alt={`NEXUS 2026 Glimpse ${img.id}`}
+                onError={(e) => handleImageError(img.id, e)}
                 style={{
                   width: '100%',
                   height: '100%',
@@ -262,9 +327,9 @@ export function GlimpsesCarousel() {
             color: '#FFFFFF',
           }}
         >
-          <span style={{ color: 'var(--accent-red)' }}>{currentItem.id}</span>
+          <span style={{ color: 'var(--accent-red)' }}>{currentItem?.id || '01'}</span>
           <span style={{ color: '#66666E', margin: '0 4px' }}>/</span>
-          <span>04</span>
+          <span>{String(GLIMPSES_IMAGES.length || 4).padStart(2, '0')}</span>
         </div>
 
         {/* Bottom Left: Subtle Quote / Subtitle */}

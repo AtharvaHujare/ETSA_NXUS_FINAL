@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Menu, X, ArrowUpRight } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { MusicControlButton } from '../context/AudioContext';
 
 interface NavbarProps {
@@ -97,6 +97,13 @@ export function Navbar({ onRegisterClick, activeOverride, onNavClick }: NavbarPr
       {/* Left: Brand Logo */}
       <a
         href="#"
+        onClick={(e) => {
+          if (onNavClick) {
+            e.preventDefault();
+            setActiveItem('HOME');
+            onNavClick('#');
+          }
+        }}
         style={{
           display: 'flex',
           flexDirection: 'column',
@@ -163,9 +170,12 @@ export function Navbar({ onRegisterClick, activeOverride, onNavClick }: NavbarPr
               key={item.label}
               href={item.href}
               onClick={(e) => {
-                setActiveItem(item.label);
                 if (onNavClick) {
+                  e.preventDefault();
+                  setActiveItem(item.label);
                   onNavClick(item.href);
+                } else {
+                  setActiveItem(item.label);
                 }
               }}
               style={{
@@ -266,11 +276,15 @@ export function Navbar({ onRegisterClick, activeOverride, onNavClick }: NavbarPr
             <a
               key={item.label}
               href={item.href}
-              onClick={() => {
-                setActiveItem(item.label);
-                setMobileMenuOpen(false);
+              onClick={(e) => {
                 if (onNavClick) {
+                  e.preventDefault();
+                  setActiveItem(item.label);
+                  setMobileMenuOpen(false);
                   onNavClick(item.href);
+                } else {
+                  setActiveItem(item.label);
+                  setMobileMenuOpen(false);
                 }
               }}
               style={{

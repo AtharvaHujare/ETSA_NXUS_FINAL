@@ -14,12 +14,19 @@ export interface PitStop {
   badgeColor?: string;
 }
 
+export interface ScheduleRound {
+  time: string;
+  title: string;
+}
+
 export interface ScheduleSession {
   time: string;
   title: string;
   pitStopId?: number; // Links to pit stop if applicable
   location?: string;
-  status?: string;
+  subtitle?: string;
+  badge?: string;
+  rounds?: ScheduleRound[];
 }
 
 export interface DaySchedule {
@@ -40,8 +47,8 @@ export const PIT_STOPS: PitStop[] = [
     dateStr: '09 OCT 2026',
     dayNumber: 1,
     dayLabel: 'OCT 9',
-    time: '10:00 AM',
-    location: 'Third Floor Labs, E&TC Dept.',
+    time: '8:00 AM – 8:00 PM',
+    location: 'Third Floor Labs – E&TC Dept., PCCOE',
     tagline: 'Build. Break. Rebuild.',
     description: 'FORMULA HARDWARE is an open-theme hardware hackathon focused on creativity, practical engineering, innovation and working prototypes.',
     trackProgress: 0.14,
@@ -49,15 +56,15 @@ export const PIT_STOPS: PitStop[] = [
   {
     id: 2,
     stopNumber: '02',
-    name: 'Tech Event 2',
+    name: 'AERO-X',
     category: 'TECHNICAL',
-    dateStr: '09 OCT 2026',
+    dateStr: '09–10 OCT 2026',
     dayNumber: 1,
-    dayLabel: 'OCT 9',
-    time: '02:00 PM',
-    location: 'Design Studio Amphitheatre',
-    tagline: 'High-Velocity Technical Challenge',
-    description: 'A technology-focused challenge where participants compete through innovation, problem solving and technical skills.',
+    dayLabel: 'OCT 9–10',
+    time: '09–10 OCT',
+    location: 'E&TC Department, PCCOE',
+    tagline: 'BUILD | FLY | COMPETE',
+    description: 'A two-day hands-on technical workshop and competition on drone technology conducted in association with Prarambh-X Technologies.',
     trackProgress: 0.38,
   },
   {
@@ -65,27 +72,27 @@ export const PIT_STOPS: PitStop[] = [
     stopNumber: '03',
     name: 'Pit Stop Protocol',
     category: 'NON-TECHNICAL',
-    dateStr: '10 OCT 2026',
+    dateStr: '8 & 10 OCT 2026',
     dayNumber: 2,
-    dayLabel: 'OCT 10',
-    time: '10:00 AM',
-    location: '3rd Floor, EnTC Building',
+    dayLabel: 'OCT 8 & 10',
+    time: '9:15 AM – 12:30 PM',
+    location: '3rd Floor EnTC Building',
     tagline: 'THINK // COORDINATE // OUTRACE',
-    description: 'A multi-round strategy and coordination challenge inspired by the world of Formula 1. Solve, chase, and execute – it’s not just a game, it’s a pit stop.',
+    description: 'A multi-round strategy and coordination challenge inspired by motorsport. Solve, chase, and execute through 3 thrilling rounds — no prior F1 knowledge needed.',
     trackProgress: 0.62,
   },
   {
     id: 4,
     stopNumber: '04',
     name: 'PCCOE Got Talent',
-    category: 'NON-TECHNICAL',
-    dateStr: 'DATE TO BE ANNOUNCED',
+    category: 'TECHNICAL',
+    dateStr: 'DATE & TIME: TBA',
     dayNumber: 2,
     dayLabel: 'TBA',
     time: 'TBA',
     location: 'PCCOE — 3rd Floor (Classroom)',
-    tagline: 'YOUR STAGE. YOUR STORY.',
-    description: 'A fun-filled, non-technical entertainment event where PCCOE students showcase talent, creativity, humour and spontaneity in front of a live audience and judging panel.',
+    tagline: 'TECHNICAL TALENT & INNOVATION SHOWCASE',
+    description: 'A technical talent and innovation showcase where PCCOE students present their technical skills, coding, AI, builds, and creative tech ideas.',
     trackProgress: 0.85,
   },
 ];
@@ -99,22 +106,19 @@ export const DAYS_SCHEDULE: DaySchedule[] = [
     tagline: 'IDEAS FUEL THE ENGINE.',
     sessions: [
       {
-        time: '09:00 AM',
-        title: 'Opening Ceremony',
-      },
-      {
-        time: '10:00 AM',
-        title: 'Hardware Hackathon',
+        time: '8:00 AM – 8:00 PM',
+        title: 'Formula Hardware',
         pitStopId: 1,
+        location: 'Third Floor Labs – E&TC Dept., PCCOE',
+        subtitle: '12-Hour Prototype Build & Evaluation',
       },
       {
-        time: '02:00 PM',
-        title: 'Tech Event 2',
+        time: '09–10 OCT',
+        title: 'AERO-X',
         pitStopId: 2,
-      },
-      {
-        time: '06:00 PM',
-        title: 'Networking & Paddock Expo',
+        location: 'E&TC Department, PCCOE',
+        badge: 'TWO-DAY EVENT',
+        subtitle: 'Two-Day Drone Workshop & Arena Competition',
       },
     ],
   },
@@ -126,22 +130,24 @@ export const DAYS_SCHEDULE: DaySchedule[] = [
     tagline: 'STRATEGY & TALENT TAKE THE FINAL LAP.',
     sessions: [
       {
-        time: '09:30 AM',
-        title: 'Briefing & Scrutineering',
-      },
-      {
-        time: '10:00 AM',
+        time: '9:15 AM – 12:30 PM',
         title: 'Pit Stop Protocol',
         pitStopId: 3,
+        location: '3rd Floor EnTC Building',
+        subtitle: 'Campus Strategy & Coordination Challenge',
+        rounds: [
+          { time: '9:15–9:30 AM', title: 'Reporting & Briefing' },
+          { time: '10:00–11:00 AM', title: 'Round 2: Pit Lane Pursuit' },
+          { time: '11:00–11:30 AM', title: 'Break & Transition' },
+          { time: '11:30 AM–12:30 PM', title: 'Round 3: Blindfolded Pit Walk' },
+        ],
       },
       {
-        time: '02:00 PM',
+        time: 'TBA',
         title: 'PCCOE Got Talent',
         pitStopId: 4,
-      },
-      {
-        time: '06:00 PM',
-        title: 'Prize Distribution & Closing',
+        location: 'PCCOE — 3rd Floor (Classroom)',
+        subtitle: 'Date & Time: TBA (Technical Talent Showcase)',
       },
     ],
   },

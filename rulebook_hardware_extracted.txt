@@ -1,0 +1,209 @@
+ 
+ 
+ 
+ 
+ 
+PCET’S 
+Pimpri Chinchwad College Of 
+Engineering, Nigdi - Pune 
+Electronics & Telecommunication 
+Student 
+Association- ISF, IEEE SPS & IETE 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Organized by :-ETSA , PCCoE 
+NEXUS 2026 
+FORMULA HARDWARE 
+Event Type :- Technical - Hardware Hackathon 
+Venue :- Third Floor Labs – E&TC Dept., PCCOE 
+Time :- 8:00 AM – 8:00 PM 
+Coordinators :– Samrat Latane , Vedant Jadhav , Yugandhar Suryawanshi , Parth Fundkar 
+ 
+ 
+Team Size :- 2–5 Members 
+Registration Fee :- ₹599 per team  
+ 
+Participation Details:- 
+ All students of PCCoE, across years and departments 
+ Free for PCCOE Students 
+ Participants may bring any project idea or problem statement of their choice. 
+ No compulsory common hardware theme will be imposed. 
+ Registration fees: ₹599 per team 
+ 
+Prize Pool:- 
+ 
+Position Prize Amount 
+First Place ₹12,000 
+Second Place ₹8,000 
+Third Place ₹5,000 
+Total Prize Pool ₹25,000 
+
+--- PAGE ---
+Description:- 
+FORMULA HARDWARE is an open-theme hardware hackathon designed to encourage creativity, practical 
+engineering, innovation and working prototypes. Teams may select any project idea, real-world problem 
+statement, application area or technical domain, subject to safety and event guidelines. 
+The event is inspired by the precision, pressure and teamwork of Formula 1, while focusing on real 
+hardware, technical evaluation and practical implementation. 
+ 
+ 
+01  EVENT OVERVIEW 
+ Participants may bring any project idea or problem statement of their choice. 
+ Projects may involve electronics, embedded systems, programming, mechanics, AI/ML, IoT, 
+automation, robotics, communication, sustainability or social innovation. 
+ No compulsory common hardware theme will be imposed. 
+ The event has no racetrack, lap race, car-building requirement or compulsory racing concept. 
+ Teams will be evaluated on technical clarity, feasibility, implementation, demonstration, teamwork 
+and presentation. 
+ 
+02  EVENT FORMAT 
+ 
+ROUND 1 ROUND 2 
+6-slide PPT 
+Technical clarity & feasibility 
+12- Hour Prototype Build 
+Build • Test • Integrate • Demonstrate 
+ 
+03  ROUND 1 — IDEA PRESENTATION 
+Shortlisted teams will first present their proposed project idea to the evaluation panel. 
+ Submit a 6-slide PowerPoint presentation. 
+ The PPT must clearly explain the problem statement, proposed solution, working principle and expected 
+outcome. 
+ Teams should mention the major hardware, software, sensors, controllers, actuators or other resources 
+planned. 
+ Shortlisting will be based on technical clarity and feasibility. 
+ Only shortlisted teams will proceed to Round 2. 
+ Teams should be prepared to answer questions from judges regarding practicality, implementation and 
+limitations. 
+--- PAGE ---
+NEXUS 2026 // FORMULA HARDWARE 
+ 
+ 
+Suggested PPT structure 
+ Slide 1: Problem statement and motivation 
+ Slide 2: Proposed solution and innovation 
+ Slide 3: System architecture / working principle 
+ Slide 4: Components and technical requirements 
+ Slide 5: Feasibility, implementation plan and testing 
+ Slide 6: Expected outcome, impact and future scope 
+ 
+ 
+04  ROUND 2 — 12-HOUR PROTOTYPE BUILD & EVALUATION 
+Shortlisted teams will develop, assemble, code, test and demonstrate a working hardware prototype during 
+the 12-hour event window. 
+ Event duration: 12 hours, from 8:00 AM to 8:00 PM. 
+ Teams must bring their own components, tools, wires, consumables, batteries and project-specific 
+materials. 
+ Teams may build a new project or improve an existing concept, but prior work must be disclosed when 
+requested. 
+ Judges may ask for architecture explanation, live demonstration, subsystem testing and technical 
+justification. 
+ Partially functional projects may demonstrate working subsystems with an honest explanation of 
+limitations. 
+ 
+EVENT FLOW : Round 2 
+
+--- PAGE ---
+ 
+Special Challenges 
+ SURPRISE CONSTRAINT TWIST 
+Teams may be given an unexpected technical or resource constraint during the building. They must 
+adapt their design while maintaining safety and engineering logic. 
+ REVERSE ENGINEERING CHALLENGE 
+Teams may be asked to inspect, interpret or explain an assigned circuit, module, mechanism, signal 
+path or system behavior. 
+ BONUS MARKS 
+Additional marks may be awarded for clearly explaining system logic, signal flow, fault detection, 
+failure handling, debugging approach and design trade-offs. 
+ 
+Round 2 evaluation focus: 
+ Working performance and live demonstration 
+ Technical architecture and integration 
+ Implementation quality, neatness and reliability 
+ Testing, debugging and validation 
+ Response to surprise constraints 
+ Reverse engineering understanding 
+ Teamwork, communication and technical presentation 
+ 
+05  ELIGIBILITY & TEAM FORMATION 
+ The event is open to engineering students. 
+ Each team must consist of 2 to 5 members. 
+ Each member must have a clearly defined responsibility. 
+ Each team must nominate one Team Captain for official communication. 
+ All members are expected to contribute meaningfully and understand the project. 
+ 
+06  COMPONENTS, TOOLS & RESOURCES 
+ Every team is responsible for bringing its own components, modules, sensors, controllers, motors, 
+batteries, mechanical parts, tools, wires, consumables and other project requirements. 
+ Organizers will not provide project-specific components unless announced before the event. 
+ Teams must verify component compatibility, ratings, battery condition and safe operation. 
+ Use of pre-built modules is permitted as part of a larger original system. 
+ Presenting a ready-made complete project as original work is prohibited. 
+ Any external assistance, online resources or AI tool used must be disclosed when requested. 
+--- PAGE ---
+NEXUS 2026 // FORMULA HARDWARE 
+ 
+ 
+ 
+ 
+07  SAFETY & ETHICAL ENGINEERING 
+ Follow safe soldering, wiring, battery handling, charging and power-use practices. 
+ All electrical connections must be insulated, secure and suitable for operating current. 
+ Battery terminals must be protected against short circuits, overheating and physical damage. 
+ Projects must not contain sharp, exposed, loose, explosive or intentionally hazardous parts. 
+ Organizers may stop or remove any unsafe project. 
+ Plagiarism, false claims, fabricated results or misrepresentation may lead to disqualification. 
+--- PAGE ---
+ 
+08  EVALUATION & JUDGING 
+ 
+Criterion Evaluation focus 
+Problem Understanding Clarity, relevance and definition of the selected 
+problem 
+Innovation Originality, creativity and quality of the approach 
+Technical Architecture Integration of hardware, software, mechanics, AI/ML 
+or related systems 
+Implementation Quality Build quality, coding, integration, reliability and 
+neatness 
+Functionality & Demonstration Working performance, proof of concept and live 
+demonstration 
+Testing & Validation Testing method, observations, debugging and 
+evidence 
+Presentation & Team Understanding Clarity, documentation, teamwork and responses 
+Impact & Future Scope Practical usefulness, scalability, sustainability and 
+improvements 
+ 
+10   GENERAL RULES 
+ Only registered team members may represent a team during evaluation. 
+ Teams must follow venue rules and directions from organizers, judges, mentors and volunteers. 
+ Unauthorized interference with another team’s project or workspace is prohibited. 
+ Fabricating test results or project claims is prohibited. 
+ The committee may make minor operational changes for safety and smooth conduct. 
+ The decision of the judges and organizing committee shall be final. 
+ 
+ 
+ 
+11 // EVENT DETAILS & CONTACT 
+Venue: E&TC Dept., PCCOE , Pune 
+--- PAGE ---
+NEXUS 2026 // FORMULA HARDWARE 
+ 
+ 
+COORDINATORS 
+Samrat Latane — 9146649309 
+Vedant Jadhav — 8308108646 
+Yugandhar Suryawanshi — 7875251257 
+Parth Fundkar — 7058355379 
+ 
+ 
+INNOVATE FREELY. BUILD RESPONSIBLY. DEMONSTRATE WITH IMPACT. 
+This event celebrates independent ideas, practical engineering, teamwork and the courage to build solutions 
+to problems that matter. 

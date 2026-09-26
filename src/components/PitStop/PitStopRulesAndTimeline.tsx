@@ -9,11 +9,13 @@ export function PitStopRulesAndTimeline() {
 
   // Selected key rules for the compact card matching the reference design
   const compactRules = [
-    'Team must have exactly 4 members.',
-    'No prior F1 knowledge required.',
-    'Each team gets a unique set of clues.',
-    'Lifeline available (45 sec penalty if used).',
-    'Rules may be updated — check the rulebook for full details.',
+    'Each team must consist of exactly 4 members.',
+    'Eligible: Undergraduate engineering students with valid college ID.',
+    'No prior Formula 1 knowledge required.',
+    'Rounds 1 & 2: No phones, internet, or books allowed.',
+    'Unique clue chain per team; swapping clues forbidden.',
+    'Round 3: Verbal guidance only — strictly no touching.',
+    'Lifeline adds 45s in Round 2; saved lifeline gives Round 3 advantage.',
   ];
 
   return (
@@ -142,11 +144,11 @@ export function PitStopRulesAndTimeline() {
                 letterSpacing: '0.04em',
               }}
             >
-              See the official rulebook for complete rules.
+              Source: Official Rulebook PDF
             </span>
             <a
               href={d.rulebookPdfUrl}
-              download="PIT_STOP_PROTOCOL_RULEBOOK-finale.pdf"
+              download="pitstop_finalfinal.pdf"
               target="_blank"
               rel="noopener noreferrer"
               style={{
@@ -253,14 +255,14 @@ export function PitStopRulesAndTimeline() {
             </div>
 
             {/* Timeline Rows matching reference */}
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '22px' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '18px' }}>
               {/* Row 1 */}
               <div
                 style={{
                   display: 'grid',
-                  gridTemplateColumns: '120px 1fr',
+                  gridTemplateColumns: '130px 1fr',
                   gap: '16px',
-                  paddingBottom: '18px',
+                  paddingBottom: '14px',
                   borderBottom: '1px solid rgba(255, 255, 255, 0.06)',
                 }}
               >
@@ -274,7 +276,7 @@ export function PitStopRulesAndTimeline() {
                       letterSpacing: '0.06em',
                     }}
                   >
-                    8 OCT
+                    8 OCT 2026
                   </div>
                   <div
                     style={{
@@ -284,7 +286,7 @@ export function PitStopRulesAndTimeline() {
                       letterSpacing: '0.04em',
                     }}
                   >
-                    7–8 PM
+                    7:00 – 8:00 PM
                   </div>
                 </div>
                 <div>
@@ -317,9 +319,9 @@ export function PitStopRulesAndTimeline() {
               <div
                 style={{
                   display: 'grid',
-                  gridTemplateColumns: '120px 1fr',
+                  gridTemplateColumns: '130px 1fr',
                   gap: '16px',
-                  paddingBottom: '18px',
+                  paddingBottom: '14px',
                   borderBottom: '1px solid rgba(255, 255, 255, 0.06)',
                 }}
               >
@@ -333,7 +335,7 @@ export function PitStopRulesAndTimeline() {
                       letterSpacing: '0.06em',
                     }}
                   >
-                    9 OCT
+                    10 OCT 2026
                   </div>
                   <div
                     style={{
@@ -343,7 +345,66 @@ export function PitStopRulesAndTimeline() {
                       letterSpacing: '0.04em',
                     }}
                   >
-                    10 – 11 PM
+                    9:15 – 9:30 AM
+                  </div>
+                </div>
+                <div>
+                  <div
+                    style={{
+                      fontFamily: 'var(--font-display)',
+                      fontSize: '0.98rem',
+                      fontWeight: 700,
+                      color: '#FFFFFF',
+                      letterSpacing: '0.02em',
+                      marginBottom: '2px',
+                    }}
+                  >
+                    Reporting & Briefing
+                  </div>
+                  <div
+                    style={{
+                      fontFamily: 'var(--font-mono)',
+                      fontSize: '0.72rem',
+                      color: '#7E7E88',
+                      letterSpacing: '0.04em',
+                    }}
+                  >
+                    (Team Verification & Safety Briefing)
+                  </div>
+                </div>
+              </div>
+
+              {/* Row 3 */}
+              <div
+                style={{
+                  display: 'grid',
+                  gridTemplateColumns: '130px 1fr',
+                  gap: '16px',
+                  paddingBottom: '14px',
+                  borderBottom: '1px solid rgba(255, 255, 255, 0.06)',
+                }}
+              >
+                <div>
+                  <div
+                    style={{
+                      fontFamily: 'var(--font-mono)',
+                      fontSize: '0.85rem',
+                      fontWeight: 800,
+                      color: 'var(--accent-red)',
+                      letterSpacing: '0.06em',
+                    }}
+                  >
+                    10 OCT 2026
+                  </div>
+                  <div
+                    style={{
+                      fontFamily: 'var(--font-mono)',
+                      fontSize: '0.70rem',
+                      color: '#7E7E88',
+                      letterSpacing: '0.04em',
+                    }}
+                  >
+                    10:00 – 11:00 AM
                   </div>
                 </div>
                 <div>
@@ -372,11 +433,11 @@ export function PitStopRulesAndTimeline() {
                 </div>
               </div>
 
-              {/* Row 3 */}
+              {/* Row 4 */}
               <div
                 style={{
                   display: 'grid',
-                  gridTemplateColumns: '120px 1fr',
+                  gridTemplateColumns: '130px 1fr',
                   gap: '16px',
                 }}
               >
@@ -390,7 +451,7 @@ export function PitStopRulesAndTimeline() {
                       letterSpacing: '0.06em',
                     }}
                   >
-                    9 OCT
+                    10 OCT 2026
                   </div>
                   <div
                     style={{
@@ -400,7 +461,7 @@ export function PitStopRulesAndTimeline() {
                       letterSpacing: '0.04em',
                     }}
                   >
-                    11:30 – 12:30 PM
+                    11:30 AM – 12:30 PM
                   </div>
                 </div>
                 <div>

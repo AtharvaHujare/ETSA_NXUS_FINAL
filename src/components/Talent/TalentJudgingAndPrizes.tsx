@@ -1,5 +1,5 @@
 import React from 'react';
-import { Star, Sparkles, UserCheck, Heart, Target, Users, Trophy } from 'lucide-react';
+import { Cpu, Sparkles, Lightbulb, CheckCircle2, UserCheck, MessageSquare, Users, Trophy } from 'lucide-react';
 import { PCCOE_GOT_TALENT_DATA } from '../../data/pccoeGotTalentData';
 
 export function TalentJudgingAndPrizes() {
@@ -10,12 +10,14 @@ export function TalentJudgingAndPrizes() {
 
   const getCriteriaIcon = (icon: string) => {
     switch (icon) {
-      case 'star': return <Star size={16} />;
+      case 'cpu': return <Cpu size={16} />;
       case 'sparkles': return <Sparkles size={16} />;
+      case 'lightbulb': return <Lightbulb size={16} />;
+      case 'check-circle': return <CheckCircle2 size={16} />;
       case 'user-check': return <UserCheck size={16} />;
-      case 'heart': return <Heart size={16} />;
-      case 'target': return <Target size={16} />;
-      default: return <Users size={16} />;
+      case 'message-square': return <MessageSquare size={16} />;
+      case 'users': return <Users size={16} />;
+      default: return <Sparkles size={16} />;
     }
   };
 
@@ -60,7 +62,7 @@ export function TalentJudgingAndPrizes() {
           </h3>
         </div>
 
-        {/* 6 Criteria Grid */}
+        {/* 7 Criteria Grid */}
         <div
           style={{
             display: 'grid',
@@ -184,7 +186,7 @@ export function TalentJudgingAndPrizes() {
               1ST PLACE
             </div>
             <div style={{ fontFamily: 'var(--font-racing)', fontSize: '1.25rem', fontWeight: 900, color: '#FFFFFF' }}>
-              ₹3,000
+              {prizes.first.amount}
             </div>
           </div>
 
@@ -203,7 +205,7 @@ export function TalentJudgingAndPrizes() {
               2ND PLACE
             </div>
             <div style={{ fontFamily: 'var(--font-racing)', fontSize: '1.25rem', fontWeight: 900, color: '#FFFFFF' }}>
-              ₹2,000
+              {prizes.second.amount}
             </div>
           </div>
 
@@ -222,7 +224,7 @@ export function TalentJudgingAndPrizes() {
               3RD PLACE
             </div>
             <div style={{ fontFamily: 'var(--font-racing)', fontSize: '1.25rem', fontWeight: 900, color: '#FFFFFF' }}>
-              ₹1,000
+              {prizes.third.amount}
             </div>
           </div>
 
@@ -265,8 +267,9 @@ export function TalentJudgingAndPrizes() {
             gap: '8px',
           }}
         >
-          <span>Winner — Certificate + Cash Prize</span>
-          <span>Runner-Up — Certificate</span>
+          <span>First Place — ₹7,000 + Certificate</span>
+          <span>Second Place — ₹5,000 + Certificate</span>
+          <span>Third Place — ₹3,000 + Certificate</span>
           <span>All Participants — Participation Certificate</span>
         </div>
       </div>

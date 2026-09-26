@@ -41,17 +41,18 @@ export const PIT_STOP_PROTOCOL_DATA = {
   heroDescription:
     'A multi-round strategy and coordination challenge inspired by the world of Formula 1. Solve, chase, and execute – it’s not just a game, it’s a pit stop.',
   
-  dates: '8 - 9 OCT 2026',
-  datesSubtitle: 'Rounds Across Two Days',
-  venue: '3rd Floor, EnTC Building',
+  dates: '8 & 10 OCT 2026',
+  datesSubtitle: 'Online & In-Person Rounds',
+  venue: '3rd Floor EnTC Building',
   venueShort: '3rd Floor',
   venueDetail: 'EnTC Building',
-  prizePool: '₹10,000',
+  prizePool: '₹15,000',
   teamSize: '4 Members',
   teamSizeLabel: 'Exactly 4 Members',
-  eventType: 'Non-Technical',
+  eventType: 'Non-Technical Event',
+  eligibility: 'Undergraduate engineering students with valid college ID',
 
-  rulebookPdfUrl: '/PIT_STOP_PROTOCOL_RULEBOOK-finale.pdf',
+  rulebookPdfUrl: '/pitstop_finalfinal.pdf',
   registrationFormUrl: 'https://docs.google.com/forms/d/e/1FAIpQLSd-bD6nwmFtKreRESHkHEIP90TZvry8b_eOgIpFQihly2j2Dg/viewform?usp=publish-editor',
   heroImage: '/pitstop/pit_stop_crew_hero.webp',
   helmetImage: '/pitstop/f1_helmet_card.webp',
@@ -60,8 +61,8 @@ export const PIT_STOP_PROTOCOL_DATA = {
     titleKicker: 'ABOUT THE EVENT',
     titleMain: 'EVENT OVERVIEW',
     paragraphs: [
-      'Pit Stop Protocol is a multi-round strategy and coordination event that tests your logical reasoning, clue-solving ability, teamwork, and composure under time pressure. Inspired by Formula 1 racing, the event challenges teams to move through a qualifying assessment, a clue-driven pursuit across campus, and a final hands-on coordination challenge.',
-      'While the theme is motorsport, every round is self-contained and logic-driven — no prior knowledge of Formula 1, its teams, or its rules is required to compete or to win. Just bring your mind, your team, and your game.',
+      'Pit Stop Protocol is a multi-round strategy and coordination event that tests participants’ logical reasoning, clue-solving ability, teamwork, and composure under time pressure. Inspired by the world of Formula 1 racing, the event challenges teams to move through a qualifying assessment, a clue-driven pursuit across campus which also includes simple technical clues, and a final hands-on coordination challenge modelled on a race pit stop.',
+      'While the theme is motorsport, every round is self-contained and logic-driven — no prior knowledge of Formula 1, its teams, or its rules is required to compete or to win. The event is designed so that participants who have never watched a race compete on equal footing with those who have.',
     ],
     noPriorKnowledgeBadge: 'NO PRIOR FORMULA 1 KNOWLEDGE REQUIRED',
     quoteCard: {
@@ -77,10 +78,10 @@ export const PIT_STOP_PROTOCOL_DATA = {
       format: 'Online Assessment',
       iconType: 'screen',
       points: [
-        'Numerical and logical reasoning',
-        'Lightly themed around race strategy',
-        'All required data is provided',
-        'Teams shortlisted by score and time',
+        'Conducted online; numerical and logical reasoning questions',
+        'Lightly themed around race strategy (pit timing, lap math, probability)',
+        'All data required to solve is provided within each question',
+        'Teams are ranked by score & time; shortlisted for Round 2',
       ],
     },
     {
@@ -89,10 +90,10 @@ export const PIT_STOP_PROTOCOL_DATA = {
       format: 'Treasure Hunt',
       iconType: 'map',
       points: [
-        'Follow a chain of clues across campus',
-        'Each team gets a unique set of clues',
-        'Find the hidden suspense object',
-        'Shortest time → shortlisted',
+        'Chit-based clue hunt across campus; each chit leads to the next',
+        'Unique clue chain for each team to prevent following one another',
+        'Includes short self-contained technical, logical, or engineering tasks',
+        'Final clue reveals hidden "suspense object" confirming completion',
       ],
     },
     {
@@ -101,10 +102,10 @@ export const PIT_STOP_PROTOCOL_DATA = {
       format: 'Final Round',
       iconType: 'cone',
       points: [
-        'One member blindfolded',
-        'Navigate a hurdle track',
-        'Guided only by verbal instructions',
-        'Time + penalties decide the winner',
+        'One team member is blindfolded at the start of a hurdle track',
+        'Track obstacles include tyres, barricades, and cones in a fixed layout',
+        'Teammates guide strictly verbally from outside — zero touching or contact',
+        'Time + hurdle contact penalties decide the champion',
       ],
     },
   ] as RoundInfo[],
@@ -116,23 +117,36 @@ export const PIT_STOP_PROTOCOL_DATA = {
       'Teams may use one additional hint during Round 2. Tactical decision: use the lifeline and absorb the penalty, or save it for an advantage in Round 3.',
     rules: [
       'Each team may call for one additional hint at any point during Round 2.',
-      'Using the lifeline adds exactly 45 seconds to the team’s total round time.',
+      'Using the lifeline adds exactly 45 seconds to the team’s actual completion time (Final Time = Actual Time + 45 sec).',
       'If the lifeline is saved in Round 2, no time penalty is applied.',
       'A saved lifeline carries directly into Round 3 as an exclusive tactical advantage.',
     ],
   },
 
   keyRules: [
-    'Team must have exactly 4 members.',
+    'Each team must consist of exactly 4 members.',
+    'Open to all undergraduate engineering students with a valid college ID.',
     'Teams must report on time for registration and briefing.',
-    'Only registered team members can participate in subsequent rounds.',
+    'Only registered team members are allowed to participate in subsequent rounds.',
     'No external help (phones, internet, books) allowed during Rounds 1 and 2.',
-    'Teams must strictly follow assigned clues; swapping or sharing clues is forbidden.',
-    'In Round 3, only verbal guidance is allowed — no touching or physically directing.',
-    'Round 3 safety briefing is mandatory before entering the hurdle track.',
-    'Any cheating, misconduct or rule violation will result in immediate disqualification.',
+    'Teams must follow their assigned unique clues strictly; swapping or sharing is prohibited.',
+    'In Round 3, only verbal guidance is allowed — no team member may touch or physically direct.',
+    'Safety briefing for Round 3 is mandatory for all participating teams before entering track.',
+    'Hurdle contacts cause time penalties; set touches result in elimination (conveyed during Round 3).',
+    'Any form of misconduct, cheating, or rule violation will result in immediate disqualification.',
+    'Teams once registered cannot be modified.',
     'Judges’ and coordinators’ decisions are final and binding.',
   ],
+
+  judgingCriteria: [
+    'Accuracy of answers and solutions',
+    'Logical approach and problem-solving strategy',
+    'Team coordination and communication (especially in Round 3)',
+    'Time taken to complete each round',
+    'Rule adherence, including hurdle-contact penalties in Round 3',
+  ],
+
+  tieBreaker: 'In case of a tie in Round 1, the team with the lower time taken in the quiz will be ranked higher.',
 
   timeline: [
     {
@@ -140,41 +154,39 @@ export const PIT_STOP_PROTOCOL_DATA = {
       time: '7:00 PM – 8:00 PM',
       title: 'Round 1 — Grid Qualifiers',
       description:
-        'Online aptitude and logical-reasoning assessment lightly themed around race strategy. All data needed is provided within the questions — no prior F1 knowledge required. Teams shortlisted by score and time.',
+        'Online aptitude and logical-reasoning assessment, lightly themed around race strategy. All data needed to answer is provided within the questions — no prior F1 knowledge required. Teams shortlisted by score and time.',
       highlight: true,
     },
     {
-      day: '9 OCT 2026',
+      day: '10 OCT 2026',
       time: '9:15 AM – 9:30 AM',
       title: 'Reporting & Briefing',
       description:
-        'Team verification and explanation of event rules, round structure, and safety instructions for the physical rounds.',
+        'Team verification and explanation of event rules, round structure, and safety instructions for the physical final round.',
       highlight: false,
     },
     {
-      day: '9 OCT 2026',
-      time: '10:00 PM – 11:00 PM',
+      day: '10 OCT 2026',
+      time: '10:00 AM – 11:00 AM',
       title: 'Round 2 — Pit Lane Pursuit',
       description:
-        'Chit-based clue hunt across campus. Each chit hints at the next location, culminating in a hidden "suspense object". Shortest completion time advances.',
-      organizerNote: 'Official rulebook specifies 10 PM – 11 PM',
+        'Chit-based clue hunt across campus. The first chit hints at the location of the second, and so on, ending in a hidden "suspense object" that confirms completion. Teams are shortlisted by the time taken to complete the full chain.',
       highlight: true,
     },
     {
-      day: '9 OCT 2026',
-      time: '11:00 PM – 11:30 PM',
+      day: '10 OCT 2026',
+      time: '11:00 AM – 11:30 AM',
       title: 'Break & Transition',
       description:
-        'Break period followed by briefing and safety walkthrough for the final track round.',
+        'Break period, followed by briefing and safety walkthrough for the final round.',
       highlight: false,
     },
     {
-      day: '9 OCT 2026',
-      time: '11:30 PM – 12:30 PM',
+      day: '10 OCT 2026',
+      time: '11:30 AM – 12:30 PM',
       title: 'Round 3 — Blindfolded Pit Walk',
       description:
-        'Final hands-on coordination test. One blindfolded member navigates hurdles (tyres, barricades, cones) guided strictly by teammates’ verbal instructions.',
-      organizerNote: 'Official rulebook specifies 11:30 PM – 12:30 PM',
+        'One blindfolded team member navigates a hurdle track (tyres, barricades, cones) guided only by verbal instructions from teammates. Winner decided by completion time and number of hurdle contacts.',
       highlight: true,
     },
   ] as TimelineEntry[],
@@ -194,13 +206,13 @@ export const PIT_STOP_PROTOCOL_DATA = {
       answer: 'No. Teams once registered cannot be modified.',
     },
     {
-      question: 'Will all teams receive the same Round 2 clues?',
+      question: 'Will the clues in Round 2 be the same for all teams?',
       answer: 'No. Each team receives a unique clue chain to prevent teams from following one another.',
     },
     {
-      question: 'What happens if the blindfolded participant touches a hurdle?',
+      question: 'What happens if the blindfolded participant touches a hurdle in Round 3?',
       answer:
-        'A time penalty is added for each contact; a set number of contacts within one attempt results in elimination. The exact penalty and threshold are conveyed at the safety briefing.',
+        'A time penalty is added for each contact; a set number of contacts within one attempt results in elimination. The exact number of touches and time penalty will be conveyed at the time of Round 3.',
     },
   ] as FAQItem[],
 

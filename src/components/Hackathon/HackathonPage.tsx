@@ -324,7 +324,7 @@ export function HackathonPage({ onBackToEvents, onRegister }: HackathonPageProps
 
             <a
               href={d.rulebookPdfUrl}
-              download="Rulebook_FORMULA_HARDWARE 1.pdf"
+              download="Rulebook_FORMULA_HARDWARE 2_final.pdf"
               target="_blank"
               rel="noopener noreferrer"
               style={{

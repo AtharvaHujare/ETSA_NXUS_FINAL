@@ -17,6 +17,7 @@ const GlimpsesPage = lazy(() =>
   import('./components/Glimpses/GlimpsesPage').then((m) => ({ default: m.GlimpsesPage }))
 );
 const HackathonPage = lazy(() => import('./components/Hackathon/HackathonPage'));
+const AeroXPage = lazy(() => import('./components/AeroX/AeroXPage'));
 const PitStopProtocolPage = lazy(() =>
   import('./components/PitStop/PitStopProtocolPage').then((m) => ({ default: m.PitStopProtocolPage }))
 );
@@ -77,6 +78,9 @@ function getEventFromLocation(): NexusEvent | null {
   if (hash === '#talent' || hash === '#pccoe-got-talent' || hash === '#events/pccoe-got-talent' || hash === '#/events/pccoe-got-talent') {
     return NEXUS_EVENTS.find((e) => e.id === 'pccoe-got-talent') || null;
   }
+  if (hash === '#aero-x' || hash === '#aerox' || hash === '#events/aero-x' || hash === '#/events/aero-x' || path === '/events/aero-x' || path === '/events/aero-x/') {
+    return NEXUS_EVENTS.find((e) => e.id === 'tech-event-2' || e.id === 'aero-x') || NEXUS_EVENTS[1];
+  }
 
   for (const evt of NEXUS_EVENTS) {
     if (
@@ -94,9 +98,9 @@ function getEventFromLocation(): NexusEvent | null {
 
 function isGlimpsesLocation(): boolean {
   if (typeof window === 'undefined') return false;
-  const path = window.location.pathname.toLowerCase();
+  const path = window.location.pathname.toLowerCase().replace(/\/$/, '') || '/';
   const hash = window.location.hash.toLowerCase();
-  return path === '/glimpses' || path === '/glimpses/' || hash === '#glimpses' || hash === '#/glimpses';
+  return path === '/glimpses' || hash === '#/glimpses';
 }
 
 export function AppContent() {
@@ -171,7 +175,7 @@ export function AppContent() {
   };
 
   const handleNavClick = (href: string) => {
-    if (href === '/glimpses' || href === '#glimpses') {
+    if (href === '/glimpses') {
       setShowIntro(false);
       navigateToRoute('/glimpses');
       return;
@@ -230,7 +234,7 @@ export function AppContent() {
         /* Dedicated Glimpses View (/glimpses) */
         <Suspense fallback={<PageLoader />}>
           <GlimpsesPage onBackToHome={handleBackToHome} />
-          <Footer />
+          <Footer onNavClick={handleNavClick} />
         </Suspense>
       ) : activeEvent ? (
         /* Dedicated Event Subpage View */
@@ -250,10 +254,15 @@ export function AppContent() {
               onBackToEvents={handleBackToEvents}
               onRegister={() => window.open('https://docs.google.com/forms/d/e/1FAIpQLSfscMSrC3bGdzINzabhfzGmZMRUrToqFEKmQCrq0I-uQUIdaA/viewform?usp=publish-editor', '_blank', 'noopener,noreferrer')}
             />
+          ) : activeEvent.id === 'tech-event-2' || activeEvent.id === 'aero-x' ? (
+            <AeroXPage
+              onBackToEvents={handleBackToEvents}
+              onRegister={() => window.open('https://forms.gle/aSW1oNgAGfdZk4pM7', '_blank', 'noopener,noreferrer')}
+            />
           ) : (
             <EventPlaceholderPage event={activeEvent} onBackToEvents={handleBackToEvents} />
           )}
-          <Footer />
+          <Footer onNavClick={handleNavClick} />
         </Suspense>
       ) : (
         /* Main NEXUS 2026 Portal View */
@@ -283,7 +292,7 @@ export function AppContent() {
           <AboutSection />
 
           {/* Minimalist Editorial Footer */}
-          <Footer />
+          <Footer onNavClick={handleNavClick} />
         </>
       )}
 

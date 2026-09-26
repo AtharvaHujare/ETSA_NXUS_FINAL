@@ -1,5 +1,5 @@
 import React from 'react';
-import { Mic, Activity, Music, Smile, Volume2, BookOpen, Film, Radio, Wand2, Star } from 'lucide-react';
+import { Cpu, Brain, Film, Code, PenTool, Video, Globe, Lightbulb, Music, Star } from 'lucide-react';
 import { PCCOE_GOT_TALENT_DATA } from '../../data/pccoeGotTalentData';
 
 export function TalentCategories() {
@@ -7,15 +7,16 @@ export function TalentCategories() {
 
   const getCategoryIcon = (iconName: string) => {
     switch (iconName) {
-      case 'mic': return <Mic size={20} />;
-      case 'activity': return <Activity size={20} />;
-      case 'music': return <Music size={20} />;
-      case 'smile': return <Smile size={20} />;
-      case 'volume-2': return <Volume2 size={20} />;
-      case 'book-open': return <BookOpen size={20} />;
+      case 'cpu': return <Cpu size={20} />;
+      case 'brain': return <Brain size={20} />;
       case 'film': return <Film size={20} />;
-      case 'radio': return <Radio size={20} />;
-      case 'wand': return <Wand2 size={20} />;
+      case 'code': return <Code size={20} />;
+      case 'pen-tool': return <PenTool size={20} />;
+      case 'video': return <Video size={20} />;
+      case 'globe': return <Globe size={20} />;
+      case 'lightbulb': return <Lightbulb size={20} />;
+      case 'music': return <Music size={20} />;
+      case 'star': return <Star size={20} />;
       default: return <Star size={20} />;
     }
   };

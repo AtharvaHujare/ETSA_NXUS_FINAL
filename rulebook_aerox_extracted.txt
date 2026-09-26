@@ -1,0 +1,205 @@
+ 
+ 
+NEXUS 2026 
+Aero-X 
+ 
+ 
+Event Type : Technical Event (Workshop + Competition) 
+Venue :- E&TC Department, PCCOE 
+Date :- 9th and 10th  October 2026 
+Event Coordinators :- 
+TY Coordinators  SY Coordinators  
+V Taraksh Prijay Manthan Waghmare 
+Chinmayi Pethkar Arya Jadhav 
+Manan Gandhi  
+ 
+Description:- 
+Event Overview: 
+Aero-X is a two-day hands-on technical workshop and competition on drone technology, 
+conducted in association with Prarambh-X Technologies. Participants learn the fundamentals 
+of flight, aerodynamics, drone components and DGCA regulations, then assemble, calibrate 
+and fly their own quadcopter. Advanced concepts such as flight controller configuration, GPS 
+and compass integration and mission planning are covered on professional-grade drone kits. 
+
+--- PAGE ---
+Learning is put to the test through a technical quiz and a Drone Arena obstacle course 
+challenge. The event encourages teamwork, problem-solving and the practical application of 
+engineering concepts. 
+Problem Statement: Build and Fly Your Own Quadcopter  
+Drones are now used across agriculture, surveying, defence and delivery, yet most engineers 
+have never built one from the ground up. Understanding how a drone flies requires more than 
+theory: it means knowing how every component works together and what goes wrong when it 
+does not. 
+In teams, assemble a quadcopter from individual components, calibrate it, and fly it through an 
+obstacle course within the constraints given on site. 
+OBJECTIVES & LEARNING OUTCOMES 
+Primary Objective 
+To give participants practical, end -to-end exposure to drone technology, from the physics of 
+flight to assembling, calibrating and piloting a working quadcopter. 
+Participants will gain experience in: 
+● Principles of flight: lift, drag, thrust and weight, and how drones control roll, pitch and 
+yaw 
+● Drone anatomy: motors, ESCs, flight controllers, batteries, propellers, transmitters, 
+receivers and sensors 
+● Hands-on assembly: motor direction, propeller orientation, binding and gyro calibration 
+of a quadcopter 
+● Advanced systems: Pixhawk flight controller setup, GPS and compass integration and 
+mission planning 
+● Piloting: simulator-based pilot training and live flying 
+● Regulations and safety: DGCA drone rules, Ground Control Stations and LiPo battery 
+safety 
+● Teamwork: problem-solving and decision-making under competition conditions 
+--- PAGE ---
+Components & Hardware Provided in Kit:- 
+1. Give-Away Kit: DIY Quadcopter (one per team registered with kit)  
+Each eligible team will receive a basic quadcopter kit containing the essential hardware 
+required for assembly, configuration, testing, and operation 
+The kit will generally include: 
+● Quadcopter frame and structural components 
+● Flight-control system with stabilization and receiver functionality 
+● Motors and compatible propellers 
+● Electronic control and power-management components 
+● Rechargeable battery and charging system 
+● Remote-control system 
+● Required wiring, connectors, and assembly accessories 
+2. Advanced Training Kit: Quadcopter and Hexacopter (for training only) 
+An advanced multirotor platform will be used during the workshop to demonstrate flight-
+control systems, navigation, propulsion, calibration, and advanced drone operations. 
+The training setup may include: 
+● Advanced multirotor frame and flight-control system 
+● Brushless motors, electronic speed controllers, and propellers 
+● Power-management and battery-monitoring system 
+● GPS, compass, and other flight sensors 
+● Safety, monitoring, and flight-logging components 
+● Required wiring, connectors, and supporting accessories 
+*Note: The advanced training kit is provided exclusively for demonstration, training, testing, 
+and supervised practical sessions and will not be distributed to participants. 
+--- PAGE ---
+Event Schedule:- 
+Time Session Duration 
+DAY 01 
+10:00 to 10:05 AM All Aboard: Orientation of the workshop 5 Min 
+10:05 to 10:20 AM 
+The Evolution of Flight and Drone Types: From the 
+first hot air balloon and the Wright brothers to modern 
+autonomous UAVs 
+15 Min 
+10:20 to 11:20 AM 
+Principles of Aerodynamics: Lift, drag, thrust and 
+weight, Bernoulli's principle, Newton's laws, control 
+surfaces and roll, pitch, yaw. Demos: Tug-of-Forces 
+with glider, FPV manoeuvres 
+60 Min 
+11:20 to 11:30 AM Pit Stop: Short break 10 Min 
+11:30 AM to 12:45 PM 
+Drone Anatomy, From Motors to Sensors: Motors, 
+ESCs, batteries, propellers, radios, flight controllers 
+and sensors. Activities: Spin the Motor, One-Arm 
+Demo, Obstacle Avoidance Challenge 
+75 Min 
+12:45 to 1:30 PM Lunch Break 45 Min 
+1:30 to 2:30 PM 
+Hexa Masterclass (Advanced Kit): Soldering, wiring, 
+Pixhawk configuration, calibration and mission 
+planning on S500 / hexacopter platforms 
+60 Min 
+2:30 to 3:00 PM 
+Technical Quiz (50 Marks): Aviation history, 
+principles of flight, drone components and assembly. 
+Top 10 teams qualify for the Drone Arena 
+30 Min 
+3:00 to 5:00 PM Drone Simulator Training: Hands-on transmitter 
+handling and pilot training on the simulator 120 Min 
+5:00 to 6:00 PM 
+DGCA Rules and Regulations: Drone Rules, Ground 
+Control Station, Mission Planner, battery safety. 
+Followed by announcement of the top 10 teams 
+60 Min 
+DAY 02 
+9:00 to 11:00 AM 
+Assembly and Piloting Session: Teams assemble their 
+DIY quadcopter from individual components, set 
+correct motor and propeller orientation, bind and 
+calibrate, and fly the drone they built 
+120 Min 
+11:00 AM to 12:30 PM Drone Arena: Obstacle course flying competition for 
+the top 10 teams 90 Min 
+12:30 to 1:00 PM 
+Airshow, Winners Announcement and Closing 
+Ceremony: Demonstration flights of high-performance 
+drones and gliders, followed by prize distribution 
+30 Min 
+*Schedule is tentative and may change. 
+--- PAGE ---
+Prize Pool:- 
+Total Prize Pool: ₹25,000+ 
+● 1st Prize : ₹12,000 
+● 2nd Prize: ₹8,000  
+● 3rd Prize : ₹5,000 
+*Terms and conditions apply. 
+Event Rules and Regulations:- 
+1. Team & Participation 
+● Participation is allowed in teams of 2 to 5 members. 
+● Registration options: 
+Teams may register: 
+o With Kit (one DIY quadcopter kit per team, which the team keeps). 
+o Without Kit (full workshop and competition participation, no take-home kit). 
+● Participants registering individually will be asked to form a team with other participants 
+at the venue, or will be assigned to a team, as the event involves group activities. 
+● Team composition must remain the same across both days and all rounds. 
+2. Workshop Participation 
+● Participants are expected to attend all sessions on both days. 
+● Advanced training kits are for demonstration only. 
+● Instructions of Prarambh-X trainers must be followed during assembly, calibration and 
+flying. 
+3. Competition 
+● Technical Quiz: a 50-mark quiz for all teams. The top 10 teams qualify for the Drone 
+Arena. 
+● Drone Arena: qualified teams fly a drone through an obstacle course. The team that 
+crosses all obstacles and completes the course within the constraints announced on site 
+will be declared the winner. 
+● Teams registered with kit will fly the DIY quadcopter they assembled. Teams registered 
+without kit will fly a drone provided by the organisers. 
+--- PAGE ---
+● Only minor adjustments such as tightening, trimming and propeller replacement are 
+allowed. No additional components or external modifications are permitted. 
+● Drones may be flown only inside the designated arena and only when instructed by the 
+arena marshal. 
+● Judges’ decisions will be final and binding. 
+4. Safety 
+● All kits operate on low-voltage DC LiPo batteries (3.7V to 12.6V). 
+● No high-voltage equipment is involved. 
+● Keep hands and face clear of propellers whenever a drone is powered. Bench work on 
+advanced kits is done with propellers removed. 
+● LiPo batteries must be charged, handled and stored only as instructed by trainers. 
+● Participants are responsible for reasonable care of their kits during the sessions. 
+● Standard PCCOE lab safety protocols apply. 
+● Prarambh X staff trained in first aid will be present. 
+Evaluation Criteria:- 
+Technical Quiz 
+● Total marks: 50 
+● Shortlisting based on marks scored, with time taken as the tie-breaker 
+● Top 10 teams qualify for the Drone Arena  
+● The quiz has 3 papers-15 marks , 15 marks , and 10 marks.  
+● The quiz is to be solved by the team together. It's not an individual quiz. 
+Drone Arena 
+● Teams fly through an obstacle course within the constraints (time limit and flight rules) 
+announced on site 
+● The team that crosses all obstacles and completes the course within the constraints is the 
+winner 
+● Crashes, touching obstacles or flying outside the arena boundary may attract penalties as 
+announced on site 
+● Tie-breakers, if needed, will be announced on site 
+--- PAGE ---
+FAQs:- 
+1. Is prior drone-building experience required? 
+No, beginners are welcome. 
+2. Will the kit be provided? 
+Teams registered With Kit receive one DIY quadcopter kit per team, which they keep. Teams 
+registered Without Kit take part in all sessions but do not receive a take -home kit. Additional 
+kits can be purchased at the end of the workshop. 
+3. Can I register individually? 
+Yes. You will be asked to team up with other participants at the venue, or will be assigned to a 
+team. 
+4. Can we modify the drone before the competition? 
+Only minor adjustments are allowed. 

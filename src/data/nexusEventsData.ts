@@ -13,6 +13,8 @@ export interface NexusEvent {
   tags: string[];
 }
 
+import { HARDWARE_HACKATHON_DATA } from './hardwareHackathonData';
+import { AERO_X_DATA } from './aeroXData';
 import { PIT_STOP_PROTOCOL_DATA } from './pitStopProtocolData';
 import { PCCOE_GOT_TALENT_DATA } from './pccoeGotTalentData';
 
@@ -22,30 +24,28 @@ export const NEXUS_EVENTS: NexusEvent[] = [
     number: '01',
     category: 'TECHNICAL',
     name: 'Hardware Hackathon',
-    pitStop: 'PIT STOP 01',
+    pitStop: HARDWARE_HACKATHON_DATA.pitStop,
     route: '/events/hardware-hackathon',
     tagline: 'Build. Break. Rebuild.',
-    description:
-      'FORMULA HARDWARE is an open-theme hardware hackathon focused on creativity, practical engineering, innovation and working prototypes.',
-    prizePool: '₹15,000 + Vouchers',
+    description: HARDWARE_HACKATHON_DATA.fullDescription,
+    prizePool: HARDWARE_HACKATHON_DATA.prizes.total,
     format: '12-Hour Prototype Build',
-    teamSize: '2–5 Members',
-    tags: ['Embedded Systems', 'Electronics', 'Robotics', 'Open Theme Prototype'],
+    teamSize: HARDWARE_HACKATHON_DATA.teamSize,
+    tags: ['Embedded Systems', 'Electronics', 'Robotics', 'AI / ML', 'Open Theme'],
   },
   {
-    id: 'tech-event-2',
-    number: '02',
-    category: 'TECHNICAL',
-    name: 'Tech Event 2',
-    pitStop: 'PIT STOP 02',
-    route: '/events/tech-event-2',
-    tagline: 'High-Velocity Technical Challenge',
-    description:
-      'A technology-focused challenge where participants compete through innovation, problem solving and technical skills.',
-    prizePool: '₹20,000+',
-    format: 'Technical Sprint & Defense',
-    teamSize: '2 — 4 Members',
-    tags: ['Algorithms', 'AI & Analytics', 'Problem Solving', 'System Design'],
+    id: AERO_X_DATA.id,
+    number: AERO_X_DATA.number,
+    category: AERO_X_DATA.category,
+    name: AERO_X_DATA.name,
+    pitStop: AERO_X_DATA.pitStop,
+    route: AERO_X_DATA.route,
+    tagline: AERO_X_DATA.tagline,
+    description: AERO_X_DATA.description,
+    prizePool: AERO_X_DATA.prizes.total,
+    format: 'Workshop + Drone Arena Competition',
+    teamSize: AERO_X_DATA.teamSize,
+    tags: ['Drone Technology', 'Quadcopter Build', 'Aerodynamics', 'Drone Arena'],
   },
   {
     id: PIT_STOP_PROTOCOL_DATA.id,
@@ -71,9 +71,9 @@ export const NEXUS_EVENTS: NexusEvent[] = [
     tagline: PCCOE_GOT_TALENT_DATA.tagline,
     description: PCCOE_GOT_TALENT_DATA.heroDescription,
     prizePool: PCCOE_GOT_TALENT_DATA.prizePool,
-    format: 'Live Stage Performance',
+    format: 'Technical Talent & Innovation Showcase',
     teamSize: PCCOE_GOT_TALENT_DATA.teamSize,
-    tags: ['Entertainment', 'Live Stage', 'Performing Arts', 'All PCCOE'],
+    tags: ['Technical Innovation', 'Coding & AI', 'Hardware Builds', 'Digital Design', 'Live Stage'],
   },
 ];
 

@@ -1,7 +1,13 @@
 export interface AeroXCoordinator {
   name: string;
   role: string;
+  phone?: string;
   image: string;
+}
+
+export interface AeroXContact {
+  name: string;
+  phone: string;
 }
 
 export interface AeroXScheduleItem {
@@ -21,48 +27,96 @@ export const AERO_X_DATA = {
   name: 'AERO-X',
   pitStop: 'PIT STOP 02',
   route: '/events/tech-event-2',
-  tagline: 'BUILD | FLY | COMPETE',
-  subtitle: 'A TWO-DAY HANDS-ON TECHNICAL EVENT ON DRONE TECHNOLOGY',
+  tagline: 'DESIGN. CALIBRATE. AVITATE.',
+  subtitle: 'TECHNICAL WORKSHOP + COMPETITION',
   heroMotto: 'WHERE INNOVATION TAKES THE LEAD',
-  inAssociationWith: 'PRARAMBH-X TECHNOLOGIES',
+  inCollaborationWith: 'PrarambhX Technologies',
+  inAssociationWith: 'PrarambhX Technologies',
+
   description:
-    'Aero-X is a two-day hands-on technical workshop and competition on drone technology conducted in association with Prarambh-X Technologies. Learn aerodynamics, assemble, calibrate and fly your own quadcopter, followed by a Technical Quiz and a Drone Arena obstacle course.',
+    'Aero-X is a two-day technical workshop and competition on drone technology conducted in collaboration with PrarambhX Technologies. Learn aerodynamics, assemble, calibrate and fly your own quadcopter, followed by simulator training, hands-on piloting, and the Drone Arena obstacle competition.',
 
   dateStr: '9th & 10th October 2026',
-  dateShort: '9-10 OCT 2026',
-  venue: 'E&TC Department, PCCOE',
-  time: '10:00 AM – 6:00 PM (Day 1) | 9:00 AM – 1:00 PM (Day 2)',
+  dateShort: '09–10 OCT 2026',
+  venue: 'PCCOE Campus',
+  time: '9th & 10th October 2026',
   teamSize: '2–5 Members',
-  teamSizeLabel: 'Team Size: 2–5 Members (Beginners Welcome)',
-  eventType: 'Technical Event (Workshop + Competition)',
-  registrationFee: '₹599 per team',
-  registrationNote: 'Free for PCCOE Students | Listed fee ₹599 per team',
+  teamSizeLabel: 'Team Size: 2–5 Members | Individual Registration Allowed',
+  individualRegistration:
+    'Allowed. Individual participants will be formed into groups or added to an existing group.',
+  eventType: 'Technical Workshop + Competition',
+
+  fees: {
+    groupWithKit: '₹2,500',
+    groupWithKitLabel: 'Group + Kit',
+    groupWithoutKit: '₹1,800',
+    groupWithoutKitLabel: 'Group without Kit',
+    individualWithoutKit: '₹379',
+    individualWithoutKitLabel: 'Individual without Kit',
+    specialOffer: 'First 5 teams get 50% cashback.',
+    summary: 'From ₹379 (Individual) | ₹1800 (Group) | ₹2500 (Group + Kit)',
+  },
 
   rulebookPdfUrl: '/Aero-x rulebook.pdf',
-  registrationFormUrl: 'https://forms.gle/aSW1oNgAGfdZk4pM7',
+  registrationFormUrl: 'https://forms.gle/7VBzyKmEbCQeBc286',
 
-  pillars: [
+  organizingAssociations: [
+    'ETSA – E&TC Students’ Association',
+    'IEEE SPS Student Branch Chapter (SBC62941), PCCOE',
+    'ISF, PCCOE',
+    'Department of Electronics & Telecommunication Engineering, PCCOE',
+  ],
+
+  workshopUsps: [
     {
-      title: 'WORKSHOP',
-      description: 'Learn flight principles, aerodynamics, drone components, Pixhawk configuration & DGCA rules.',
-      icon: 'wrench',
-    },
-    {
-      title: 'BUILD',
-      description: 'Assemble, wire, bind and calibrate your own DIY quadcopter from scratch.',
-      icon: 'cpu',
-    },
-    {
-      title: 'COMPETE',
-      description: 'Technical Quiz (50 marks) and high-octane Drone Arena obstacle flying for top 10 teams.',
+      title: 'Drone Simulation',
+      description: 'Realistic transmitter flight simulation and pilot training drills.',
       icon: 'gamepad',
     },
     {
-      title: 'WIN',
-      description: 'Showcase piloting mastery, win from ₹25,000+ prize pool and take home certificates & kits.',
-      icon: 'trophy',
+      title: 'Mission Planning',
+      description: 'Ground Control Station, waypoint navigation and autonomous mission setup.',
+      icon: 'map',
+    },
+    {
+      title: 'Drone Building',
+      description: 'Complete hands-on assembly, wiring, motor calibration and flight controller configuration.',
+      icon: 'wrench',
+    },
+    {
+      title: 'DIY Drone Kits',
+      description: 'Comprehensive hardware kits with frame, motors, LiPo battery and radio systems.',
+      icon: 'cpu',
+    },
+    {
+      title: 'Live Airshow',
+      description: 'High-octane live aerial demonstrations of advanced drones and RC gliders.',
+      icon: 'zap',
     },
   ],
+
+  dayHighlights: {
+    day1: {
+      tag: 'DAY 01',
+      title: 'BUILD & EXPLORE',
+      points: [
+        'Drone Technology & Aerodynamics',
+        'Drone Building & Assembly',
+        'Flight Controller Configuration',
+        'Drone Simulation & Pilot Training',
+      ],
+    },
+    day2: {
+      tag: 'DAY 02',
+      title: 'MISSION & FLY',
+      points: [
+        'Mission Planning',
+        'Hands-on Piloting',
+        'Drone Arena Competition',
+        'Live Drone & Glider Airshow',
+      ],
+    },
+  },
 
   prizes: {
     first: {
@@ -92,136 +146,105 @@ export const AERO_X_DATA = {
 
   scheduleDay1: [
     {
-      time: '10:00 – 10:05 AM',
-      title: 'All Aboard: Orientation',
-      description: 'Introduction to the workshop, instructors, and event outline.',
-      duration: '5 Min',
-    },
-    {
-      time: '10:05 – 10:20 AM',
-      title: 'Evolution of Flight & Drone Types',
-      description: 'From the Wright brothers and early aviation to modern autonomous UAVs.',
-      duration: '15 Min',
-    },
-    {
-      time: '10:20 – 11:20 AM',
-      title: 'Principles of Aerodynamics',
-      description: 'Lift, drag, thrust, weight, Bernoulli’s principle, Newton’s laws, roll, pitch and yaw demos.',
-      duration: '60 Min',
-    },
-    {
-      time: '11:20 – 11:30 AM',
-      title: 'Pit Stop (Short Break)',
-      description: 'Quick refreshment break.',
-      duration: '10 Min',
-      isBreak: true,
-    },
-    {
-      time: '11:30 AM – 12:45 PM',
-      title: 'Drone Anatomy: Motors to Sensors',
-      description: 'Motors, ESCs, batteries, propellers, radios, flight controllers, and obstacle avoidance demos.',
-      duration: '75 Min',
-    },
-    {
-      time: '12:45 – 1:30 PM',
-      title: 'Lunch Break',
-      description: 'Recharge for the hands-on masterclass.',
-      duration: '45 Min',
-      isBreak: true,
-    },
-    {
-      time: '1:30 – 2:30 PM',
-      title: 'Hexa Masterclass (Advanced Kit)',
-      description: 'Soldering, wiring, Pixhawk configuration, telemetry, and mission planning on S500 / hexacopters.',
-      duration: '60 Min',
+      time: 'Session 01',
+      title: 'Drone Technology & Aerodynamics',
+      description: 'Principles of flight, lift, drag, thrust, airfoil dynamics and modern UAV architecture.',
       isHighlight: true,
     },
     {
-      time: '2:30 – 3:00 PM',
-      title: 'Technical Quiz (50 Marks)',
-      description: '3-part team quiz on aviation history, aerodynamics, components & assembly. Top 10 qualify.',
-      duration: '30 Min',
+      time: 'Session 02',
+      title: 'Drone Building & Assembly',
+      description: 'Hands-on hardware assembly: frames, brushless motors, ESCs, power distribution and soldering.',
       isHighlight: true,
     },
     {
-      time: '3:00 – 5:00 PM',
-      title: 'Drone Simulator Pilot Training',
-      description: 'Hands-on transmitter handling and simulator-based flight drills with real-time feedback.',
-      duration: '120 Min',
+      time: 'Session 03',
+      title: 'Flight Controller Configuration',
+      description: 'Wiring, firmware flashing, sensor calibration, radio binding and safety fail-safes.',
     },
     {
-      time: '5:00 – 6:00 PM',
-      title: 'DGCA Rules & Top 10 Announcement',
-      description: 'Drone Rules, GCS, Mission Planner, LiPo battery safety, and qualifier reveal for Day 2 Arena.',
-      duration: '60 Min',
+      time: 'Session 04',
+      title: 'Drone Simulation & Pilot Training',
+      description: 'Transmitter handling, computer flight simulator drills, hover control and aerial orientation.',
+      isHighlight: true,
     },
   ] as AeroXScheduleItem[],
 
   scheduleDay2: [
     {
-      time: '9:00 – 11:00 AM',
-      title: 'Assembly & Live Piloting Session',
-      description: 'Teams assemble their DIY quadcopter, calibrate motor/prop orientation, bind, and fly.',
-      duration: '120 Min',
+      time: 'Session 01',
+      title: 'Mission Planning',
+      description: 'Ground Control Station (GCS) telemetry, GPS waypoints, autonomous routing and fail-safe return-to-home.',
       isHighlight: true,
     },
     {
-      time: '11:00 AM – 12:30 PM',
-      title: 'Drone Arena Obstacle Course',
-      description: 'Top 10 finalist teams pilot drones through a demanding obstacle circuit for podium glory.',
-      duration: '90 Min',
+      time: 'Session 02',
+      title: 'Hands-on Piloting',
+      description: 'Live field flight trials, outdoor trim calibration, line-of-sight navigation and obstacle practice.',
+    },
+    {
+      time: 'Session 03',
+      title: 'Drone Arena Competition',
+      description: 'Podium obstacle course circuit: precision navigation, agility gates, and timed challenge.',
       isHighlight: true,
     },
     {
-      time: '12:30 – 1:00 PM',
-      title: 'Airshow & Grand Prize Distribution',
-      description: 'High-performance drone and glider aerobatics, victory ceremony, and certificate awards.',
-      duration: '30 Min',
+      time: 'Session 04',
+      title: 'Live Drone & Glider Airshow',
+      description: 'Spectacular aerobatic airshow, prize distribution ceremony and certificate awards.',
+      isHighlight: true,
     },
   ] as AeroXScheduleItem[],
 
   keyRules: [
-    'Participation is in teams of 2 to 5 members; individual registrants will form/join teams at the venue.',
-    'Teams may register With Kit (keeps take-home DIY quadcopter) or Without Kit (uses provided equipment).',
-    'Team composition must remain consistent across both days and all competitive rounds.',
-    'Technical Quiz carries 50 marks across 3 papers (15, 15, 10 marks) solved collectively by the team.',
-    'Top 10 teams from the Technical Quiz qualify for the Drone Arena obstacle competition.',
-    'In Drone Arena, teams fly through an obstacle course; penalties apply for touches, crashes, or boundary exits.',
-    'Only minor on-site adjustments (trimming, prop replacement) are permitted; external mods are prohibited.',
-    'All equipment operates on safe low-voltage DC LiPo batteries (3.7V–12.6V); safety protocols apply.',
-    'Propellers must remain removed during bench work on advanced systems.',
+    'Participation is in teams of 2 to 5 members; individual participants are fully welcome and will be formed into groups or added to an existing group.',
+    'Registration options: ₹2500 (Group + Kit), ₹1800 (Group without Kit), and ₹379 (Individual without Kit).',
+    'Special Offer: First 5 registered teams receive 50% cashback.',
+    'Team composition must remain consistent across both days and all competitive sessions.',
+    'The workshop covers drone technology, building, flight controller setup, and simulator flight training on Day 1.',
+    'Day 2 features mission planning, live piloting, the Drone Arena obstacle challenge, and a live drone/glider airshow.',
+    'All equipment operates on safe low-voltage DC LiPo batteries; strict PCCOE lab safety protocols apply.',
+    'First Aid certified PrarambhX trainers and lab safety marshals present at all times.',
     'Judges’ and organizers’ decisions are final and binding.',
   ],
+
+  contacts: [
+    { name: 'Manthan Waghmare', phone: '9172490670' },
+    { name: 'Arya Jadhav', phone: '9518962557' },
+    { name: 'Chinmayi Pethkar', phone: '9527440230' },
+    { name: 'V Taraksh', phone: '7558226282' },
+    { name: 'Manan Gandhi', phone: '9924426374' },
+  ] as AeroXContact[],
 
   coordinators: [
     {
       name: 'V Taraksh',
       role: 'TY Coordinator',
+      phone: '7558226282',
       image: '/images/coordinators/aerox/v_taraksh.webp',
     },
     {
-      name: 'Prijay',
+      name: 'Chinmayi Pethkar',
       role: 'TY Coordinator',
-      image: '/images/coordinators/aerox/prijay.webp',
+      phone: '9527440230',
+      image: '/images/coordinators/aerox/chinmayi_pethkar.webp',
     },
     {
       name: 'Manthan Waghmare',
       role: 'SY Coordinator',
+      phone: '9172490670',
       image: '/images/coordinators/aerox/manthan_waghmare.webp',
-    },
-    {
-      name: 'Chinmayi Pethkar',
-      role: 'SY Coordinator',
-      image: '/images/coordinators/aerox/chinmayi_pethkar.webp',
     },
     {
       name: 'Arya Jadhav',
       role: 'SY Coordinator',
+      phone: '9518962557',
       image: '/images/coordinators/aerox/arya_jadhav.webp',
     },
     {
       name: 'Manan Gandhi',
       role: 'SY Coordinator',
+      phone: '9924426374',
       image: '/images/coordinators/aerox/manan_gandhi.webp',
     },
   ] as AeroXCoordinator[],

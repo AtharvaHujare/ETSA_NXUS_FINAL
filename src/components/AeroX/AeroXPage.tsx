@@ -11,11 +11,14 @@ import {
   Gamepad2,
   Trophy,
   ShieldCheck,
-  Clock,
-  Sparkles,
   Plane,
-  ChevronRight,
   Award,
+  Zap,
+  Map,
+  Sparkles,
+  Phone,
+  ExternalLink,
+  CheckCircle,
 } from 'lucide-react';
 import { AERO_X_DATA, type AeroXCoordinator } from '../../data/aeroXData';
 
@@ -32,18 +35,28 @@ export function AeroXPage({ onBackToEvents, onRegister }: AeroXPageProps) {
     window.scrollTo(0, 0);
   }, []);
 
-  const getPillarIcon = (icon: string) => {
+  const getUspIcon = (icon: string) => {
     switch (icon) {
-      case 'wrench':
-        return <Wrench size={22} style={{ color: 'var(--accent-red)' }} />;
-      case 'cpu':
-        return <Cpu size={22} style={{ color: 'var(--accent-red)' }} />;
       case 'gamepad':
-        return <Gamepad2 size={22} style={{ color: 'var(--accent-red)' }} />;
-      case 'trophy':
-        return <Trophy size={22} style={{ color: '#FFB800' }} />;
+        return <Gamepad2 size={24} style={{ color: 'var(--accent-red)' }} />;
+      case 'map':
+        return <Map size={24} style={{ color: 'var(--accent-red)' }} />;
+      case 'wrench':
+        return <Wrench size={24} style={{ color: 'var(--accent-red)' }} />;
+      case 'cpu':
+        return <Cpu size={24} style={{ color: 'var(--accent-red)' }} />;
+      case 'zap':
+        return <Zap size={24} style={{ color: '#FFB800' }} />;
       default:
-        return <Plane size={22} style={{ color: 'var(--accent-red)' }} />;
+        return <Plane size={24} style={{ color: 'var(--accent-red)' }} />;
+    }
+  };
+
+  const handleRegisterClick = () => {
+    if (onRegister) {
+      onRegister();
+    } else {
+      window.open(d.registrationFormUrl, '_blank', 'noopener,noreferrer');
     }
   };
 
@@ -153,7 +166,7 @@ export function AeroXPage({ onBackToEvents, onRegister }: AeroXPageProps) {
               <span>{d.pitStop} // EVENT 02</span>
             </div>
 
-            {/* In Association with tag */}
+            {/* In Collaboration with tag */}
             <div
               style={{
                 fontFamily: 'var(--font-mono)',
@@ -164,8 +177,8 @@ export function AeroXPage({ onBackToEvents, onRegister }: AeroXPageProps) {
                 textTransform: 'uppercase',
               }}
             >
-              IN ASSOCIATION WITH{' '}
-              <span style={{ color: '#FFFFFF', fontWeight: 700 }}>{d.inAssociationWith}</span>
+              IN COLLABORATION WITH{' '}
+              <span style={{ color: '#FFFFFF', fontWeight: 700 }}>{d.inCollaborationWith}</span>
             </div>
 
             {/* Main Title: AERO-X */}
@@ -192,19 +205,34 @@ export function AeroXPage({ onBackToEvents, onRegister }: AeroXPageProps) {
               </span>
             </h1>
 
-            {/* Motto */}
+            {/* Tagline */}
             <div
               style={{
                 fontFamily: 'var(--font-mono)',
-                fontSize: 'clamp(0.85rem, 1.6vw, 1.05rem)',
+                fontSize: 'clamp(0.85rem, 1.6vw, 1.1rem)',
                 fontWeight: 800,
                 letterSpacing: '0.22em',
                 color: '#FFFFFF',
                 textTransform: 'uppercase',
-                marginBottom: '14px',
+                marginBottom: '8px',
               }}
             >
               {d.tagline}
+            </div>
+
+            {/* Subtitle */}
+            <div
+              style={{
+                fontFamily: 'var(--font-mono)',
+                fontSize: '0.74rem',
+                color: 'var(--accent-red)',
+                letterSpacing: '0.16em',
+                textTransform: 'uppercase',
+                fontWeight: 700,
+                marginBottom: '16px',
+              }}
+            >
+              {d.subtitle}
             </div>
 
             {/* Description */}
@@ -227,7 +255,7 @@ export function AeroXPage({ onBackToEvents, onRegister }: AeroXPageProps) {
                 display: 'grid',
                 gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
                 gap: '12px',
-                marginBottom: '32px',
+                marginBottom: '28px',
               }}
             >
               {/* Date */}
@@ -248,7 +276,7 @@ export function AeroXPage({ onBackToEvents, onRegister }: AeroXPageProps) {
                     {d.dateStr}
                   </div>
                   <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.66rem', color: '#8A8A93' }}>
-                    2-Day Workshop + Arena
+                    2-Day Workshop + Competition
                   </div>
                 </div>
               </div>
@@ -271,7 +299,7 @@ export function AeroXPage({ onBackToEvents, onRegister }: AeroXPageProps) {
                     {d.venue}
                   </div>
                   <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.66rem', color: '#8A8A93' }}>
-                    PCCOE Campus
+                    Main Campus
                   </div>
                 </div>
               </div>
@@ -293,8 +321,8 @@ export function AeroXPage({ onBackToEvents, onRegister }: AeroXPageProps) {
                   <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.78rem', fontWeight: 700, color: '#FFFFFF' }}>
                     {d.teamSize}
                   </div>
-                  <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.66rem', color: '#8A8A93' }}>
-                    Beginners Welcome
+                  <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.66rem', color: 'var(--accent-red)' }}>
+                    Individual Allowed
                   </div>
                 </div>
               </div>
@@ -314,21 +342,48 @@ export function AeroXPage({ onBackToEvents, onRegister }: AeroXPageProps) {
                 <Tag size={18} style={{ color: 'var(--accent-red)', flexShrink: 0 }} />
                 <div>
                   <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.78rem', fontWeight: 700, color: '#FFFFFF' }}>
-                    {d.registrationFee}
+                    From ₹379 / Indiv
                   </div>
-                  <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.66rem', color: 'var(--accent-red)' }}>
-                    FREE for PCCOE Students
+                  <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.66rem', color: '#8A8A93' }}>
+                    ₹1800 / ₹2500 Group
                   </div>
                 </div>
               </div>
             </div>
 
+            {/* Special Offer Alert Banner */}
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '10px',
+                padding: '10px 16px',
+                background: 'rgba(225, 6, 0, 0.12)',
+                border: '1px solid var(--accent-red-border)',
+                borderRadius: '4px',
+                marginBottom: '24px',
+              }}
+            >
+              <Sparkles size={16} style={{ color: 'var(--accent-red)', flexShrink: 0 }} />
+              <span
+                style={{
+                  fontFamily: 'var(--font-mono)',
+                  fontSize: '0.74rem',
+                  fontWeight: 700,
+                  letterSpacing: '0.08em',
+                  color: '#FFFFFF',
+                  textTransform: 'uppercase',
+                }}
+              >
+                SPECIAL OFFER: <span style={{ color: 'var(--accent-red)' }}>First 5 teams get 50% cashback.</span>
+              </span>
+            </div>
+
             {/* Action Buttons */}
             <div style={{ display: 'flex', alignItems: 'center', gap: '14px', flexWrap: 'wrap' }}>
-              <a
-                href={d.registrationFormUrl}
-                target="_blank"
-                rel="noopener noreferrer"
+              <button
+                type="button"
+                onClick={handleRegisterClick}
                 className="btn-racing-primary"
                 style={{
                   padding: '14px 32px',
@@ -345,7 +400,7 @@ export function AeroXPage({ onBackToEvents, onRegister }: AeroXPageProps) {
               >
                 <span>REGISTER NOW</span>
                 <span className="btn-arrow" style={{ fontSize: '1rem', fontWeight: 900 }}>→</span>
-              </a>
+              </button>
 
               <a
                 href={d.rulebookPdfUrl}
@@ -386,7 +441,7 @@ export function AeroXPage({ onBackToEvents, onRegister }: AeroXPageProps) {
             </div>
           </div>
 
-          {/* Right Hero Column: Interactive Aerospace Drone Blueprint Card */}
+          {/* Right Hero Column: Interactive Blueprint Card & Package Pricing Summary */}
           <div
             style={{
               background: 'linear-gradient(135deg, rgba(16, 17, 24, 0.95) 0%, rgba(9, 10, 14, 0.98) 100%)',
@@ -409,63 +464,104 @@ export function AeroXPage({ onBackToEvents, onRegister }: AeroXPageProps) {
                 textTransform: 'uppercase',
               }}
             >
-              DRONE TECHNOLOGY // SPECIFICATIONS
+              REGISTRATION & PACKAGES // NEXUS 2026
             </div>
             <h3
               style={{
                 fontFamily: 'var(--font-display)',
-                fontSize: '1.6rem',
+                fontSize: '1.5rem',
                 fontWeight: 900,
                 color: '#FFFFFF',
                 letterSpacing: '0.04em',
-                margin: '0 0 20px 0',
+                margin: '0 0 18px 0',
                 textTransform: 'uppercase',
               }}
             >
-              HANDS-ON QUADCOPTER PLATFORM
+              WORKSHOP & ARENA TIERS
             </h3>
 
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '14px', marginBottom: '20px' }}>
+            {/* 3 Tier Pricing Cards */}
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', marginBottom: '20px' }}>
+              {/* Group + Kit */}
               <div
                 style={{
-                  background: 'rgba(255, 255, 255, 0.02)',
-                  border: '1px solid rgba(255, 255, 255, 0.08)',
+                  background: 'rgba(225, 6, 0, 0.08)',
+                  border: '1px solid rgba(225, 6, 0, 0.4)',
                   borderRadius: '6px',
-                  padding: '12px 14px',
+                  padding: '12px 16px',
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
                 }}
               >
-                <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.66rem', color: '#8A8A93' }}>GIVE-AWAY KIT</div>
-                <div style={{ fontFamily: 'var(--font-racing)', fontSize: '1.05rem', fontWeight: 800, color: '#FFFFFF', marginTop: '2px' }}>
-                  DIY Quadcopter
+                <div>
+                  <div style={{ fontFamily: 'var(--font-racing)', fontSize: '0.95rem', fontWeight: 800, color: '#FFFFFF' }}>
+                    GROUP + KIT (2–5 MEMBERS)
+                  </div>
+                  <div style={{ fontFamily: 'var(--font-body)', fontSize: '0.72rem', color: '#BBBBC5', marginTop: '2px' }}>
+                    Includes take-home DIY Quadcopter kit with flight controller & motors
+                  </div>
                 </div>
-                <div style={{ fontFamily: 'var(--font-body)', fontSize: '0.74rem', color: '#9999A5', marginTop: '4px' }}>
-                  Frame, motors, ESCs, flight controller, LiPo battery & 2.4GHz transmitter (teams keep kit).
+                <div style={{ fontFamily: 'var(--font-racing)', fontSize: '1.35rem', fontWeight: 900, color: '#FFD700', flexShrink: 0 }}>
+                  ₹2,500
                 </div>
               </div>
 
+              {/* Group without Kit */}
               <div
                 style={{
                   background: 'rgba(255, 255, 255, 0.02)',
                   border: '1px solid rgba(255, 255, 255, 0.08)',
                   borderRadius: '6px',
-                  padding: '12px 14px',
+                  padding: '12px 16px',
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
                 }}
               >
-                <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.66rem', color: 'var(--accent-red)' }}>
-                  ADVANCED PLATFORM
+                <div>
+                  <div style={{ fontFamily: 'var(--font-racing)', fontSize: '0.95rem', fontWeight: 800, color: '#FFFFFF' }}>
+                    GROUP WITHOUT KIT (2–5 MEMBERS)
+                  </div>
+                  <div style={{ fontFamily: 'var(--font-body)', fontSize: '0.72rem', color: '#9999A5', marginTop: '2px' }}>
+                    Full workshop, simulator training & Drone Arena competition entry
+                  </div>
                 </div>
-                <div style={{ fontFamily: 'var(--font-racing)', fontSize: '1.05rem', fontWeight: 800, color: '#FFFFFF', marginTop: '2px' }}>
-                  Pixhawk & Hexacopter
+                <div style={{ fontFamily: 'var(--font-racing)', fontSize: '1.35rem', fontWeight: 900, color: '#FFFFFF', flexShrink: 0 }}>
+                  ₹1,800
                 </div>
-                <div style={{ fontFamily: 'var(--font-body)', fontSize: '0.74rem', color: '#9999A5', marginTop: '4px' }}>
-                  GPS, compass, telemetry, Ground Control Station & Mission Planner demonstration.
+              </div>
+
+              {/* Individual */}
+              <div
+                style={{
+                  background: 'rgba(255, 255, 255, 0.02)',
+                  border: '1px solid rgba(255, 255, 255, 0.08)',
+                  borderRadius: '6px',
+                  padding: '12px 16px',
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                }}
+              >
+                <div>
+                  <div style={{ fontFamily: 'var(--font-racing)', fontSize: '0.95rem', fontWeight: 800, color: '#FFFFFF' }}>
+                    INDIVIDUAL WITHOUT KIT
+                  </div>
+                  <div style={{ fontFamily: 'var(--font-body)', fontSize: '0.72rem', color: '#9999A5', marginTop: '2px' }}>
+                    {d.individualRegistration}
+                  </div>
+                </div>
+                <div style={{ fontFamily: 'var(--font-racing)', fontSize: '1.35rem', fontWeight: 900, color: '#FFFFFF', flexShrink: 0 }}>
+                  ₹379
                 </div>
               </div>
             </div>
 
+            {/* Total Prize Pool Box */}
             <div
               style={{
-                background: 'linear-gradient(135deg, rgba(225, 6, 0, 0.12) 0%, rgba(10, 10, 14, 0.95) 100%)',
+                background: 'linear-gradient(135deg, rgba(225, 6, 0, 0.14) 0%, rgba(10, 10, 14, 0.95) 100%)',
                 border: '1px solid var(--accent-red)',
                 borderRadius: '6px',
                 padding: '14px 18px',
@@ -490,64 +586,94 @@ export function AeroXPage({ onBackToEvents, onRegister }: AeroXPageProps) {
           </div>
         </div>
 
-        {/* 4 Pillars Grid */}
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
-            gap: '16px',
-            marginBottom: '56px',
-          }}
-        >
-          {d.pillars.map((pillar) => (
+        {/* 5 Workshop USPs Grid */}
+        <div style={{ marginBottom: '56px' }}>
+          <div style={{ marginBottom: '18px' }}>
             <div
-              key={pillar.title}
               style={{
-                background: 'rgba(12, 13, 18, 0.85)',
-                border: '1px solid rgba(255, 255, 255, 0.08)',
-                borderRadius: '6px',
-                padding: '22px 20px',
-                transition: 'all 0.25s ease',
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.borderColor = 'rgba(225, 6, 0, 0.45)';
-                e.currentTarget.style.backgroundColor = 'rgba(225, 6, 0, 0.04)';
-                e.currentTarget.style.transform = 'translateY(-2px)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.08)';
-                e.currentTarget.style.backgroundColor = 'rgba(12, 13, 18, 0.85)';
-                e.currentTarget.style.transform = 'translateY(0)';
+                fontFamily: 'var(--font-mono)',
+                fontSize: '0.68rem',
+                fontWeight: 700,
+                letterSpacing: '0.2em',
+                color: 'var(--accent-red)',
+                textTransform: 'uppercase',
+                marginBottom: '4px',
               }}
             >
-              <div style={{ marginBottom: '12px' }}>{getPillarIcon(pillar.icon)}</div>
-              <div
-                style={{
-                  fontFamily: 'var(--font-racing)',
-                  fontSize: '1.1rem',
-                  fontWeight: 800,
-                  color: '#FFFFFF',
-                  letterSpacing: '0.06em',
-                  marginBottom: '6px',
-                }}
-              >
-                {pillar.title}
-              </div>
-              <div
-                style={{
-                  fontFamily: 'var(--font-body)',
-                  fontSize: '0.82rem',
-                  color: '#8E8E98',
-                  lineHeight: 1.45,
-                }}
-              >
-                {pillar.description}
-              </div>
+              CORE HIGHLIGHTS // WHAT YOU WILL MASTER
             </div>
-          ))}
+            <h2
+              style={{
+                fontFamily: 'var(--font-display)',
+                fontSize: 'clamp(1.6rem, 3vw, 2.2rem)',
+                fontWeight: 900,
+                letterSpacing: '0.04em',
+                color: '#FFFFFF',
+                margin: 0,
+                textTransform: 'uppercase',
+              }}
+            >
+              WORKSHOP USPs
+            </h2>
+          </div>
+
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
+              gap: '16px',
+            }}
+          >
+            {d.workshopUsps.map((usp) => (
+              <div
+                key={usp.title}
+                style={{
+                  background: 'rgba(12, 13, 18, 0.85)',
+                  border: '1px solid rgba(255, 255, 255, 0.08)',
+                  borderRadius: '6px',
+                  padding: '22px 20px',
+                  transition: 'all 0.25s ease',
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.borderColor = 'rgba(225, 6, 0, 0.45)';
+                  e.currentTarget.style.backgroundColor = 'rgba(225, 6, 0, 0.04)';
+                  e.currentTarget.style.transform = 'translateY(-2px)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.08)';
+                  e.currentTarget.style.backgroundColor = 'rgba(12, 13, 18, 0.85)';
+                  e.currentTarget.style.transform = 'translateY(0)';
+                }}
+              >
+                <div style={{ marginBottom: '12px' }}>{getUspIcon(usp.icon)}</div>
+                <div
+                  style={{
+                    fontFamily: 'var(--font-racing)',
+                    fontSize: '1.05rem',
+                    fontWeight: 800,
+                    color: '#FFFFFF',
+                    letterSpacing: '0.06em',
+                    marginBottom: '6px',
+                  }}
+                >
+                  {usp.title}
+                </div>
+                <div
+                  style={{
+                    fontFamily: 'var(--font-body)',
+                    fontSize: '0.80rem',
+                    color: '#8E8E98',
+                    lineHeight: 1.45,
+                  }}
+                >
+                  {usp.description}
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
 
-        {/* 2-Day Interactive Schedule Section */}
+        {/* 2-Day Event Schedule Section */}
         <div
           style={{
             background: 'rgba(12, 13, 18, 0.85)',
@@ -619,7 +745,7 @@ export function AeroXPage({ onBackToEvents, onRegister }: AeroXPageProps) {
                   transition: 'all 0.2s ease',
                 }}
               >
-                DAY 01 // 9 OCT (WORKSHOP & QUIZ)
+                DAY 01 // BUILD & EXPLORE
               </button>
               <button
                 type="button"
@@ -638,26 +764,24 @@ export function AeroXPage({ onBackToEvents, onRegister }: AeroXPageProps) {
                   transition: 'all 0.2s ease',
                 }}
               >
-                DAY 02 // 10 OCT (BUILD & DRONE ARENA)
+                DAY 02 // MISSION & FLY
               </button>
             </div>
           </div>
 
           {/* Schedule List */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
             {(activeDay === 1 ? d.scheduleDay1 : d.scheduleDay2).map((item, idx) => (
               <div
                 key={idx}
                 style={{
                   display: 'grid',
-                  gridTemplateColumns: 'clamp(140px, 16vw, 190px) 1fr auto',
+                  gridTemplateColumns: 'clamp(110px, 14vw, 150px) 1fr',
                   alignItems: 'center',
                   gap: '16px',
-                  padding: '12px 16px',
+                  padding: '14px 18px',
                   background: item.isHighlight
                     ? 'rgba(225, 6, 0, 0.08)'
-                    : item.isBreak
-                    ? 'rgba(255, 255, 255, 0.01)'
                     : 'rgba(255, 255, 255, 0.02)',
                   border: item.isHighlight
                     ? '1px solid rgba(225, 6, 0, 0.35)'
@@ -665,35 +789,23 @@ export function AeroXPage({ onBackToEvents, onRegister }: AeroXPageProps) {
                   borderRadius: '4px',
                 }}
               >
-                <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.74rem', fontWeight: 700, color: item.isHighlight ? 'var(--accent-red)' : '#FFFFFF' }}>
+                <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.74rem', fontWeight: 800, color: item.isHighlight ? 'var(--accent-red)' : '#FFFFFF' }}>
                   {item.time}
                 </div>
                 <div>
-                  <div style={{ fontFamily: 'var(--font-display)', fontSize: '0.92rem', fontWeight: 800, color: '#FFFFFF', textTransform: 'uppercase' }}>
+                  <div style={{ fontFamily: 'var(--font-display)', fontSize: '0.96rem', fontWeight: 800, color: '#FFFFFF', textTransform: 'uppercase' }}>
                     {item.title}
                   </div>
-                  <div style={{ fontFamily: 'var(--font-body)', fontSize: '0.78rem', color: '#8E8E98', marginTop: '2px' }}>
+                  <div style={{ fontFamily: 'var(--font-body)', fontSize: '0.80rem', color: '#9E9EA8', marginTop: '3px' }}>
                     {item.description}
                   </div>
                 </div>
-                {item.duration && (
-                  <span
-                    style={{
-                      fontFamily: 'var(--font-mono)',
-                      fontSize: '0.64rem',
-                      color: item.isHighlight ? 'var(--accent-red)' : '#7A7A85',
-                      letterSpacing: '0.1em',
-                    }}
-                  >
-                    {item.duration}
-                  </span>
-                )}
               </div>
             ))}
           </div>
         </div>
 
-        {/* 2-Column: Key Rules & Evaluation */}
+        {/* 2-Column: Key Rules & Organizing Associations */}
         <div
           style={{
             display: 'grid',
@@ -756,7 +868,7 @@ export function AeroXPage({ onBackToEvents, onRegister }: AeroXPageProps) {
             </ul>
           </div>
 
-          {/* Evaluation & Competition Breakdown Card */}
+          {/* Organizing Associations & Quick Contacts Card */}
           <div
             style={{
               background: 'rgba(12, 13, 18, 0.85)',
@@ -781,41 +893,84 @@ export function AeroXPage({ onBackToEvents, onRegister }: AeroXPageProps) {
                     textTransform: 'uppercase',
                   }}
                 >
-                  EVALUATION MATRIX
+                  ORGANIZING BODIES
                 </h3>
               </div>
 
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
-                <div
-                  style={{
-                    background: 'rgba(255, 255, 255, 0.02)',
-                    border: '1px solid rgba(255, 255, 255, 0.06)',
-                    borderRadius: '6px',
-                    padding: '14px',
-                  }}
-                >
-                  <div style={{ fontFamily: 'var(--font-racing)', fontSize: '0.96rem', fontWeight: 800, color: '#FFFFFF' }}>
-                    1. TECHNICAL QUIZ (50 MARKS)
+              {/* Associations List */}
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', marginBottom: '20px' }}>
+                {d.organizingAssociations.map((assoc, idx) => (
+                  <div
+                    key={idx}
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '8px',
+                      padding: '8px 12px',
+                      background: 'rgba(255, 255, 255, 0.02)',
+                      border: '1px solid rgba(255, 255, 255, 0.06)',
+                      borderRadius: '4px',
+                      fontFamily: 'var(--font-mono)',
+                      fontSize: '0.72rem',
+                      color: '#E0E0E6',
+                      fontWeight: 600,
+                    }}
+                  >
+                    <CheckCircle size={14} style={{ color: 'var(--accent-red)', flexShrink: 0 }} />
+                    <span>{assoc}</span>
                   </div>
-                  <div style={{ fontFamily: 'var(--font-body)', fontSize: '0.80rem', color: '#8E8E98', marginTop: '4px' }}>
-                    3 papers (15m + 15m + 10m) solved by the entire team. Aviation physics, drone anatomy, components, and DGCA regulations. Top 10 teams qualify.
-                  </div>
-                </div>
+                ))}
+              </div>
 
+              {/* Quick Contacts List */}
+              <div style={{ marginTop: '16px' }}>
                 <div
                   style={{
-                    background: 'rgba(255, 255, 255, 0.02)',
-                    border: '1px solid rgba(255, 255, 255, 0.06)',
-                    borderRadius: '6px',
-                    padding: '14px',
+                    fontFamily: 'var(--font-mono)',
+                    fontSize: '0.68rem',
+                    fontWeight: 800,
+                    letterSpacing: '0.14em',
+                    color: 'var(--accent-red)',
+                    textTransform: 'uppercase',
+                    marginBottom: '8px',
                   }}
                 >
-                  <div style={{ fontFamily: 'var(--font-racing)', fontSize: '0.96rem', fontWeight: 800, color: 'var(--accent-red)' }}>
-                    2. DRONE ARENA OBSTACLE COURSE
-                  </div>
-                  <div style={{ fontFamily: 'var(--font-body)', fontSize: '0.80rem', color: '#8E8E98', marginTop: '4px' }}>
-                    Top 10 finalist teams pilot their quadcopter across dynamic obstacle gates. Scoring based on completion time, obstacle clearance, and stability.
-                  </div>
+                  STUDENT COORDINATOR CONTACTS
+                </div>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '8px' }}>
+                  {d.contacts.map((cnt) => (
+                    <a
+                      key={cnt.name}
+                      href={`tel:${cnt.phone}`}
+                      style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'space-between',
+                        padding: '8px 12px',
+                        background: 'rgba(225, 6, 0, 0.08)',
+                        border: '1px solid rgba(225, 6, 0, 0.25)',
+                        borderRadius: '4px',
+                        textDecoration: 'none',
+                        color: '#FFFFFF',
+                        transition: 'all 0.2s ease',
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.borderColor = 'var(--accent-red)';
+                        e.currentTarget.style.backgroundColor = 'rgba(225, 6, 0, 0.18)';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.borderColor = 'rgba(225, 6, 0, 0.25)';
+                        e.currentTarget.style.backgroundColor = 'rgba(225, 6, 0, 0.08)';
+                      }}
+                    >
+                      <span style={{ fontFamily: 'var(--font-body)', fontSize: '0.76rem', fontWeight: 600 }}>
+                        {cnt.name}
+                      </span>
+                      <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.72rem', color: 'var(--accent-red)', fontWeight: 700 }}>
+                        {cnt.phone}
+                      </span>
+                    </a>
+                  ))}
                 </div>
               </div>
             </div>
@@ -824,21 +979,20 @@ export function AeroXPage({ onBackToEvents, onRegister }: AeroXPageProps) {
               style={{
                 marginTop: '20px',
                 padding: '12px 14px',
-                background: 'rgba(225, 6, 0, 0.08)',
-                border: '1px solid rgba(225, 6, 0, 0.25)',
+                background: 'rgba(255, 255, 255, 0.02)',
+                border: '1px solid rgba(255, 255, 255, 0.08)',
                 borderRadius: '4px',
                 fontFamily: 'var(--font-mono)',
                 fontSize: '0.68rem',
-                color: '#D0D0D8',
-                letterSpacing: '0.04em',
+                color: '#A0A0A8',
               }}
             >
-              First Aid certified Prarambh-X trainers and standard PCCOE lab safety marshals present at all times.
+              In Collaboration with: <strong style={{ color: '#FFFFFF' }}>PrarambhX Technologies</strong>
             </div>
           </div>
         </div>
 
-        {/* Coordinators Section (6 Coordinators) */}
+        {/* Coordinators Photo Section (Retains original photos & design) */}
         <div
           style={{
             background: 'rgba(12, 13, 18, 0.85)',
@@ -894,7 +1048,7 @@ export function AeroXPage({ onBackToEvents, onRegister }: AeroXPageProps) {
                 textTransform: 'uppercase',
               }}
             >
-              6 EVENT LEADS
+              5 EVENT LEADS
             </div>
           </div>
 
@@ -982,12 +1136,29 @@ export function AeroXPage({ onBackToEvents, onRegister }: AeroXPageProps) {
                 >
                   {c.role}
                 </div>
+                {c.phone && (
+                  <a
+                    href={`tel:${c.phone}`}
+                    style={{
+                      fontFamily: 'var(--font-mono)',
+                      fontSize: '0.62rem',
+                      color: '#A0A0A8',
+                      letterSpacing: '0.06em',
+                      marginTop: '4px',
+                      textDecoration: 'none',
+                    }}
+                    onMouseEnter={(e) => (e.currentTarget.style.color = '#FFFFFF')}
+                    onMouseLeave={(e) => (e.currentTarget.style.color = '#A0A0A8')}
+                  >
+                    {c.phone}
+                  </a>
+                )}
               </div>
             ))}
           </div>
         </div>
 
-        {/* Download Rulebook CTA Banner */}
+        {/* Download Rulebook & Register CTA Banner */}
         <div
           style={{
             background: 'linear-gradient(135deg, rgba(225, 6, 0, 0.14) 0%, rgba(12, 13, 18, 0.95) 100%)',
@@ -1014,7 +1185,7 @@ export function AeroXPage({ onBackToEvents, onRegister }: AeroXPageProps) {
                 marginBottom: '6px',
               }}
             >
-              OFFICIAL EVENT RULEBOOK
+              REGISTRATION & SPECIFICATIONS
             </div>
             <h2
               style={{
@@ -1027,7 +1198,7 @@ export function AeroXPage({ onBackToEvents, onRegister }: AeroXPageProps) {
                 textTransform: 'uppercase',
               }}
             >
-              AERO-X FULL SPECIFICATIONS & GUIDELINES
+              AERO-X — NEXUS 2026
             </h2>
             <p
               style={{
@@ -1038,32 +1209,66 @@ export function AeroXPage({ onBackToEvents, onRegister }: AeroXPageProps) {
                 maxWidth: '640px',
               }}
             >
-              Download the official PDF for full syllabus, kit breakdown, DGCA safety regulations, and Drone Arena obstacle scoring rules.
+              First 5 teams get 50% cashback. Register online now for hands-on drone building, simulation, and the Drone Arena challenge.
             </p>
           </div>
 
-          <a
-            href={d.rulebookPdfUrl}
-            download="Aero-x rulebook.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-racing-primary"
-            style={{
-              padding: '16px 36px',
-              fontSize: '0.86rem',
-              fontWeight: 800,
-              letterSpacing: '0.18em',
-              textDecoration: 'none',
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '12px',
-              boxShadow: '0 0 30px rgba(225, 6, 0, 0.5)',
-            }}
-          >
-            <Download size={18} />
-            <span>DOWNLOAD RULEBOOK</span>
-            <span className="btn-arrow" style={{ fontSize: '1rem', fontWeight: 900 }}>→</span>
-          </a>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '14px', flexWrap: 'wrap' }}>
+            <button
+              type="button"
+              onClick={handleRegisterClick}
+              className="btn-racing-primary"
+              style={{
+                padding: '16px 36px',
+                fontSize: '0.86rem',
+                fontWeight: 800,
+                letterSpacing: '0.18em',
+                cursor: 'pointer',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '12px',
+                boxShadow: '0 0 30px rgba(225, 6, 0, 0.5)',
+              }}
+            >
+              <span>REGISTER NOW</span>
+              <span className="btn-arrow" style={{ fontSize: '1rem', fontWeight: 900 }}>→</span>
+            </button>
+
+            <a
+              href={d.rulebookPdfUrl}
+              download="Aero-x rulebook.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                padding: '15px 28px',
+                background: 'rgba(255, 255, 255, 0.04)',
+                border: '1px solid rgba(255, 255, 255, 0.2)',
+                borderRadius: '3px',
+                color: '#E0E0E0',
+                fontFamily: 'var(--font-mono)',
+                fontSize: '0.82rem',
+                fontWeight: 700,
+                letterSpacing: '0.14em',
+                textDecoration: 'none',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '10px',
+                cursor: 'pointer',
+                transition: 'all 0.25s ease',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.borderColor = 'var(--accent-red)';
+                e.currentTarget.style.color = '#FFFFFF';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.2)';
+                e.currentTarget.style.color = '#E0E0E0';
+              }}
+            >
+              <Download size={16} style={{ color: 'var(--accent-red)' }} />
+              <span>DOWNLOAD RULEBOOK</span>
+            </a>
+          </div>
         </div>
       </div>
     </div>

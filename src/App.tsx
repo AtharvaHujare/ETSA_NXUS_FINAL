@@ -257,7 +257,7 @@ export function AppContent() {
           ) : activeEvent.id === 'tech-event-2' || activeEvent.id === 'aero-x' ? (
             <AeroXPage
               onBackToEvents={handleBackToEvents}
-              onRegister={() => window.open('https://forms.gle/aSW1oNgAGfdZk4pM7', '_blank', 'noopener,noreferrer')}
+              onRegister={() => window.open('https://forms.gle/7VBzyKmEbCQeBc286', '_blank', 'noopener,noreferrer')}
             />
           ) : (
             <EventPlaceholderPage event={activeEvent} onBackToEvents={handleBackToEvents} />

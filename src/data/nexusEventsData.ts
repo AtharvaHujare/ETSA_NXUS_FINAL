@@ -43,9 +43,9 @@ export const NEXUS_EVENTS: NexusEvent[] = [
     tagline: AERO_X_DATA.tagline,
     description: AERO_X_DATA.description,
     prizePool: AERO_X_DATA.prizes.total,
-    format: 'Workshop + Drone Arena Competition',
+    format: 'Technical Workshop + Competition',
     teamSize: AERO_X_DATA.teamSize,
-    tags: ['Drone Technology', 'Quadcopter Build', 'Aerodynamics', 'Drone Arena'],
+    tags: ['Drone Technology', 'Workshop', 'Simulation', 'Drone Arena', 'Airshow'],
   },
   {
     id: PIT_STOP_PROTOCOL_DATA.id,

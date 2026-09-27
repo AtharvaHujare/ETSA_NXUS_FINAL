@@ -116,7 +116,7 @@ export function HeroContent({ hasInteracted, onExploreEvents, onWatchTrailer }: 
               }}
             >
               <img
-                src="/logos/ieeelogo.webp"
+                src="/ieeelogofinal.jpeg"
                 alt="IEEE Logo"
                 style={{
                   height: '100%',

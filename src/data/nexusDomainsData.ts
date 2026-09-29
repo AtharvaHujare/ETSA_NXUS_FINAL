@@ -75,7 +75,7 @@ export const NEXUS_DOMAINS: NexusDomain[] = [
       {
         name: 'Niraj Ingle',
         role: 'Sponsorship Lead',
-        image: '/images/domains/sponsorship/niraj_ingle.webp',
+        image: '/images/domains/sponsorship/niraj_ingle_final.webp',
       },
       {
         name: 'Swarnika Salunkhe',

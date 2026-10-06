@@ -873,15 +873,31 @@ export function AboutSection() {
           margin-bottom: 16px;
           transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
         }
+        .domain-grid-5 {
+          grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
+        }
+        .domain-grid-5 .domain-avatar-wrap {
+          width: 145px;
+          height: 145px;
+        }
         .domain-grid > div:hover .domain-avatar-wrap {
           border-color: var(--accent-red);
           box-shadow: 0 0 24px rgba(225, 6, 0, 0.45);
           transform: scale(1.03);
         }
+        @media (max-width: 1100px) {
+          .domain-grid-5 {
+            grid-template-columns: repeat(3, 1fr) !important;
+          }
+        }
         @media (max-width: 900px) {
           .domain-avatar-wrap {
             width: 140px;
             height: 140px;
+          }
+          .domain-grid-5 .domain-avatar-wrap {
+            width: 135px;
+            height: 135px;
           }
           .about-editorial-grid {
             grid-template-columns: 1fr !important;
@@ -902,6 +918,9 @@ export function AboutSection() {
           .domain-grid-3 {
             grid-template-columns: repeat(3, 1fr) !important;
           }
+          .domain-grid-5 {
+            grid-template-columns: repeat(3, 1fr) !important;
+          }
         }
         @media (max-width: 680px) {
           .domain-avatar-wrap {
@@ -914,6 +933,15 @@ export function AboutSection() {
           }
           .domain-grid-4 {
             grid-template-columns: repeat(2, 1fr) !important;
+          }
+          .domain-grid-5 {
+            grid-template-columns: repeat(2, 1fr) !important;
+          }
+          .domain-grid-5 > div:last-child {
+            grid-column: span 2 !important;
+            max-width: 320px;
+            width: 100%;
+            justify-self: center;
           }
         }
         @media (max-width: 580px) {
@@ -930,6 +958,13 @@ export function AboutSection() {
           }
           .domain-grid-3 {
             grid-template-columns: 1fr !important;
+          }
+          .domain-grid-5 {
+            grid-template-columns: 1fr !important;
+          }
+          .domain-grid-5 > div:last-child {
+            grid-column: auto !important;
+            max-width: 100%;
           }
         }
       `}</style>

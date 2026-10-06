@@ -38,6 +38,16 @@ export const NEXUS_DOMAINS: NexusDomain[] = [
         role: 'Event Coordinator',
         image: '/images/domains/coordinators/nikhilesh.webp',
       },
+      {
+        name: 'Komal Kankariya',
+        role: 'Event Coordinator',
+        image: '/images/domains/coordinators/komal_kankariya.webp',
+      },
+      {
+        name: 'Tejas Kundargi',
+        role: 'Event Coordinator',
+        image: '/images/domains/coordinators/tejas_kundargi.webp',
+      },
     ],
   },
   {

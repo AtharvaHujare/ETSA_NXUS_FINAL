@@ -55,6 +55,7 @@
     { "source": "/glimpses/(.*\\..*)", "destination": "/images/glimpses/$1" },
     { "source": "/glimpses", "destination": "/index.html" },
     { "source": "/glimpses/", "destination": "/index.html" },
+    { "source": "/sponsors/(.*)", "destination": "/sponsors/$1" },
     { "source": "/((?!api/|.*\\..*).*)$", "destination": "/index.html" }
   ]
 }

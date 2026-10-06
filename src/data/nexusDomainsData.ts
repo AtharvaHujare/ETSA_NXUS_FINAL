@@ -109,6 +109,11 @@ export const NEXUS_DOMAINS: NexusDomain[] = [
         role: 'Social Media Lead',
         image: '/images/domains/socialmedia/harshita_singh.webp',
       },
+      {
+        name: 'Vedanti Waikar',
+        role: 'Social Media Lead',
+        image: '/images/domains/socialmedia/vedanti_waikar.webp',
+      },
     ],
   },
 ];

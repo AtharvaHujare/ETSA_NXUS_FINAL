@@ -880,6 +880,10 @@ export function AboutSection() {
           width: 145px;
           height: 145px;
         }
+        .domain-grid-2 {
+          grid-template-columns: repeat(2, minmax(260px, 340px)) !important;
+          justify-content: center !important;
+        }
         .domain-grid > div:hover .domain-avatar-wrap {
           border-color: var(--accent-red);
           box-shadow: 0 0 24px rgba(225, 6, 0, 0.45);
@@ -934,6 +938,9 @@ export function AboutSection() {
           .domain-grid-4 {
             grid-template-columns: repeat(2, 1fr) !important;
           }
+          .domain-grid-2 {
+            grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+          }
           .domain-grid-5 {
             grid-template-columns: repeat(2, 1fr) !important;
           }
@@ -957,6 +964,9 @@ export function AboutSection() {
             grid-template-columns: 1fr !important;
           }
           .domain-grid-3 {
+            grid-template-columns: 1fr !important;
+          }
+          .domain-grid-2 {
             grid-template-columns: 1fr !important;
           }
           .domain-grid-5 {

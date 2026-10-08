@@ -52,17 +52,17 @@ export const NEXUS_DOMAINS: NexusDomain[] = [
   },
   {
     number: '02',
-    name: 'WEBSITE CONVENER',
+    name: 'CONVENER',
     description: 'Symposium conveners steering the digital architecture, platform strategy, and technical vision of NEXUS 2026.',
     members: [
       {
         name: 'Vedant Gore',
-        role: 'Website Convener',
+        role: 'Convener',
         image: '/images/domains/convener/vedant_gore.webp',
       },
       {
         name: 'Atharv Huilgol',
-        role: 'Website Convener',
+        role: 'Convener',
         image: '/images/domains/convener/atharv_huilgol.webp',
       },
     ],

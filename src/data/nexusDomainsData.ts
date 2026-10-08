@@ -52,6 +52,23 @@ export const NEXUS_DOMAINS: NexusDomain[] = [
   },
   {
     number: '02',
+    name: 'WEBSITE CONVENER',
+    description: 'Symposium conveners steering the digital architecture, platform strategy, and technical vision of NEXUS 2026.',
+    members: [
+      {
+        name: 'Vedant Gore',
+        role: 'Website Convener',
+        image: '/images/domains/convener/vedant_gore.webp',
+      },
+      {
+        name: 'Atharv Huilgol',
+        role: 'Website Convener',
+        image: '/images/domains/convener/atharv_huilgol.webp',
+      },
+    ],
+  },
+  {
+    number: '03',
     name: 'WEB DEV',
     description: 'Digital architects and engineers constructing the high-velocity portal and interactive race telemetries.',
     members: [
@@ -59,11 +76,6 @@ export const NEXUS_DOMAINS: NexusDomain[] = [
         name: 'Atharva Hujare',
         role: 'Web Developer',
         image: '/images/domains/webdev/atharva_hujare.webp',
-      },
-      {
-        name: 'Atharva Huilgol',
-        role: 'Web Developer',
-        image: '/images/domains/webdev/atharva_huilgol.webp',
       },
       {
         name: 'Manan Gandhi',
@@ -78,7 +90,7 @@ export const NEXUS_DOMAINS: NexusDomain[] = [
     ],
   },
   {
-    number: '03',
+    number: '04',
     name: 'SPONSORSHIP',
     description: 'Corporate alliance leads driving industry partnerships, paddock alliances, and constructor support.',
     members: [
@@ -100,7 +112,7 @@ export const NEXUS_DOMAINS: NexusDomain[] = [
     ],
   },
   {
-    number: '04',
+    number: '05',
     name: 'SOCIAL MEDIA',
     description: 'Digital narrative strategists amplifying NEXUS broadcasts, paddock spotlights, and real-time coverage.',
     members: [

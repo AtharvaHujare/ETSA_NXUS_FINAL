@@ -202,7 +202,7 @@ export function AboutSection() {
                 display: 'inline-block',
               }}
             />
-            ORGANIZING CREW // 4 DOMAINS
+            ORGANIZING CREW // {NEXUS_DOMAINS.length} DOMAINS
           </div>
 
           {/* Heading */}
